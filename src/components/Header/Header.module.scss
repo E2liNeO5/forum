@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 2em;
+  padding: 1em;
+  border-radius: .25em;
+  background-color: var(--mainColor);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    perspective: 500px;
+    transform-style: preserve-3d;
+
+    .nav_link {
+      padding: 1em;
+      outline: none;
+      text-decoration: none;
+      border-radius: .25em;
+      color: #fff;
+      transition: background-color .2s, box-shadow .2s, transform .2s;
+
+      &:hover,
+      &.active {
+        background-color: var(--foreignColor);
+        box-shadow: 0 8px 8px rgba(0, 0, 0, .5);
+
+        animation: navLinkAnimation linear .4s both;
+  
+        @keyframes navLinkAnimation {
+          0% { transform: rotateX(0deg); }
+          25% { transform: rotateX(-15deg) translateZ(25px); }
+          50% { transform: rotateX(-15deg) translateZ(25px) translateY(-10px); }
+          100% { transform: rotateX(0deg) translateZ(50px); }
+        }
+      }
+    }
+  }
+}

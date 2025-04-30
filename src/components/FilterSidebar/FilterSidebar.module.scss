@@ -1,0 +1,60 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 25%;
+  background-color: var(--mainColor);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+  transition: left .3s, box-shadow .5s;
+
+  &.closed {
+    left: -25%;
+    box-shadow: none;
+
+    .visible_toggle {
+      left: 0;
+      animation: bounceAnimation .6s ease-in .31s;
+
+      @keyframes bounceAnimation {
+        25% {
+          left: 30px;
+        }
+        75% {
+          left: 10px;
+        }
+        0%, 50%, 100% {
+          left: 0;
+        }
+      }
+
+      & > svg {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+
+  .visible_toggle {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: calc(25% - 50px);
+    background-color: var(--foreignColor);
+    border-radius: 5px;
+    padding: .25em;
+    transition: left .4s;
+    cursor: pointer;
+  }
+
+  .filters {
+    margin-top: 50px;
+    padding: 1em;
+
+    .filter_item {
+
+    }
+  }
+}
