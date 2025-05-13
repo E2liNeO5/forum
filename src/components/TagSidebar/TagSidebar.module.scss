@@ -7,6 +7,7 @@
   border-bottom-right-radius: 1em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
   transition: left .3s, box-shadow .5s;
+  z-index: 9999;
 
   &.closed {
     left: -25%;
@@ -49,12 +50,29 @@
     cursor: pointer;
   }
 
-  .filters {
+  .tags {
+    display: flex;
+    flex-flow: row wrap;
     margin-top: 50px;
     padding: 1em;
 
-    .filter_item {
+    .tag_item {
+      margin: 2px;
+      border: 2px solid #fff;
+      padding: .25em;
+      color: #fff;
+      transition: background-color .2s, transform .2s;
+      user-select: none;
+      cursor: pointer;
 
+      &:hover,
+      &.selected {
+        background-color: var(--foreignColor);
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
     }
   }
 }
