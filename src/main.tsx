@@ -6,6 +6,7 @@ import { store } from './store/store.ts'
 import { Provider } from 'react-redux'
 import { Routes } from 'react-router'
 import MainLayout from './pages/MainLayout.tsx'
+import Login from './components/Forms/Login.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
