@@ -1,13 +1,16 @@
-import styles from './Post.module.scss'
+import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
+import useShowPost from '../../hooks/posts/useShowPost'
 
 type Props = {
   item: Post
 }
 
 const PostLeft = ({ item }: Props) => {
+  const showPost = useShowPost()
+
   return (
-    <div className={styles.post_item + ' ' + styles.post_left}>
+    <div className={styles.post_item + ' ' + styles.post_left} onClick={() => showPost(item.id)}>
       <div className={styles.post_info}>
         <div className={styles.post_title}>{ item.title }</div>
         <img

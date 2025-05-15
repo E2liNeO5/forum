@@ -1,0 +1,31 @@
+.post_container {
+  width: 85%;
+  margin: 0 auto;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .post_image {
+    width: 40%;
+    padding: 1em;
+    background-color: var(--foreignColor);
+    border-radius: 1em;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    margin-right: 1em;
+    margin-bottom: 1em;
+    float: left;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .post_text {
+    word-wrap: break-word;
+    word-break: break-word;
+    padding: 1em;
+  }
+}

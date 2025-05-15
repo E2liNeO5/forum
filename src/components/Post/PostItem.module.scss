@@ -16,15 +16,21 @@
     transform-style: preserve-3d;
     width: 100%;
     height: 350px;
+    transition: transform .2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     .post_info {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 30%;
+      width: 35%;
     }
 
     .post_title {
+      width: 100%;
       text-align: center;
       margin-bottom: 1em;
       overflow: hidden;
@@ -63,18 +69,26 @@
 
     &.post_left {
       grid-column: 1/3;
+
+      .post_info {
+        margin-right: 1em;
+      }
     }
 
     &.post_right {
       grid-column: 2/4;
+
+      .post_info {
+        margin-left: 1em;
+      }
     }
 
     img {
       &.size_by_width {
-        height: 250px;
+        max-width: 200px;
       }
       &.size_by_height {
-        width: 200px;
+        max-height: 250px;
       }
     }
 

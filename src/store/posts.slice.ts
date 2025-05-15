@@ -5,12 +5,13 @@ import { Post } from "../types/post";
 const initialState: Post[] = [ // todo: брать из бд через сервис
   {
     id: 1,
-    title: 'Пост про животных1',
+    title: 'Пост про животных1111111111111111111111111111111111111111111111111111111',
     tags: [1],
     text: 'Lorem ipsum, dolor sit amet consectetur '+
       'adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n1\n1\n1\n1\n11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',
     image: 'vertical.jpg',
-    imageSize: 'width'
+    imageSize: 'height',
+    comments: [1, 2]
   },
   {
     id: 2,
@@ -18,7 +19,7 @@ const initialState: Post[] = [ // todo: брать из бд через серв
     tags: [2],
     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!',
     image: 'bat2.jpg',
-    imageSize: 'height'
+    imageSize: 'width'
   },
   {
     id: 3,
@@ -26,7 +27,7 @@ const initialState: Post[] = [ // todo: брать из бд через серв
     tags: [1, 2],
     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!',
     image: 'vertical.jpg',
-    imageSize: 'width'
+    imageSize: 'height'
   },
   {
     id: 4,
@@ -34,7 +35,7 @@ const initialState: Post[] = [ // todo: брать из бд через серв
     tags: [1, 2],
     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!',
     image: 'vertical.jpg',
-    imageSize: 'width'
+    imageSize: 'height'
   },
   {
     id: 5,
@@ -42,13 +43,15 @@ const initialState: Post[] = [ // todo: брать из бд через серв
     tags: [1, 2],
     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!',
     image: 'bat2.jpg',
-    imageSize: 'height'
+    imageSize: 'width'
   },
   {
     id: 6,
     title: 'Пост про животных6',
     tags: [1, 2],
-    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!'
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio minus sed, facilis necessitatibus quasi ullam voluptatem a, perspiciatis officiis tempore fugit cumque tenetur laudantium distinctio cupiditate. Hic, cupiditate porro? Sapiente eaque, quas placeat nostrum doloremque itaque natus nesciunt libero, earum nam vero consequuntur at maiores distinctio laudantium voluptatum asperiores corrupti cupiditate laboriosam! Accusamus error molestias culpa quidem? Corporis eos nisi accusantium, expedita autem sapiente laboriosam quas laborum maiores tenetur exercitationem in quam officiis dolor aliquam eligendi quo facere quia et illum nulla a esse tempore ipsa? Quasi eius, excepturi ea incidunt temporibus officiis nobis aliquid consequuntur molestias vitae dolor!',
+    image: 'bat.jpg',
+    imageSize: 'height'
   },
   {
     id: 7,

@@ -1,9 +1,10 @@
 import { useMemo } from "react"
-import styles from '../components/Post/Post.module.scss'
-import Post from "../components/Post/Post"
+import styles from '../components/Post/PostItem.module.scss'
+import PostSmall from "../components/Post/PostSmall"
 import useGetPosts from "../hooks/posts/useGetPosts"
 import PostLeft from "../components/Post/PostLeft"
 import PostRight from "../components/Post/PostRight"
+import TagSidebar from "../components/TagSidebar/TagSidebar"
 
 function Home() {
   const posts = useGetPosts()
@@ -19,13 +20,14 @@ function Home() {
       else if(count === 4) {
         return <PostRight key={item.id} item={item} />
       } else {
-        return <Post key={item.id} item={item} />
+        return <PostSmall key={item.id} item={item} />
       }
     })
   }, [posts])
 
   return (
     <>
+      <TagSidebar />
       {
         memorizedPosts.length > 0 ? 
           <div className={styles.posts_container}>

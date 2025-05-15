@@ -1,13 +1,16 @@
-import styles from './Post.module.scss'
+import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
+import useShowPost from '../../hooks/posts/useShowPost'
 
 type Props = {
   item: Post
 }
 
-const Post = ({ item }: Props) => {
+const PostSmall = ({ item }: Props) => {
+  const showPost = useShowPost()
+
   return (
-    <div className={styles.post_item}>
+    <div className={styles.post_item} onClick={() => showPost(item.id)}>
       <div className={styles.post_front}>
         <div className={styles.post_title}>{ item.title }</div>
         <img
@@ -25,4 +28,4 @@ const Post = ({ item }: Props) => {
   )
 }
 
-export default Post
+export default PostSmall
