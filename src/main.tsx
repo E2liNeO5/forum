@@ -6,7 +6,8 @@ import { store } from './store/store.ts'
 import { Provider } from 'react-redux'
 import { Routes } from 'react-router'
 import MainLayout from './pages/MainLayout.tsx'
-import Login from './components/Forms/Login.tsx'
+import SignIn from './components/Forms/SignIn.tsx'
+import SignUp from './components/Forms/SignUp.tsx'
 import Post from './pages/Post/Post.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -16,7 +17,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/signIn" element={<SignIn />} />
+            <Route path="/signUp" element={<SignUp />} />
             <Route path="/post/:id" element={<Post />} />
           </Route>
         </Routes>

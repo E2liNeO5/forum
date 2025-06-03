@@ -1,16 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./user.slice";
-import { postsReducer } from "./posts.slice"
-import { tagsReducer } from "./tags.slice"
+import { postsReducer } from "./slices/posts.slice"
+import { tagsReducer } from "./slices/tags.slice"
+import { userApi } from "./api/user.api";
+import { toastsReducer } from "./slices/toasts.slice";
 
 const reducers = combineReducers({
-  userReducer,
-  postsReducer,
-  tagsReducer
+  posts: postsReducer,
+  tags: tagsReducer,
+  toast: toastsReducer,
+  [userApi.reducerPath]: userApi.reducer
 })
 
 export const store = configureStore({
-  reducer: reducers
+  reducer: reducers,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>

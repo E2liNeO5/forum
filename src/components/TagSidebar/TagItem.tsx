@@ -9,7 +9,7 @@ type Props = {
 }
 
 const TagItem = ({ item }: Props) => {
-  const { currentTags } = useAppSelector(state => state.tagsReducer)
+  const { currentTags } = useAppSelector(state => state.tags)
   const { selectTag } = useActions()
 
   const clickHandler = () => {

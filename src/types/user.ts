@@ -1,6 +1,12 @@
 export type User = {
-  name: string
+  login: string
   password: string
-  gender: string
-  postAmount: number
+  posts: number[]
+  role: string
+}
+
+export type AuthData = Pick<User, 'login' | 'password'>
+
+export type UserInitialState = {
+  user: User | null
 }

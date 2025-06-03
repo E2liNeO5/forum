@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Post } from "../types/post";
+import { Post } from "../../types/post";
 
 
 const initialState: Post[] = [ // todo: брать из бд через сервис

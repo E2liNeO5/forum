@@ -1,0 +1,19 @@
+{
+  "users": {
+    "lastId": 5,
+    "data": [
+      {
+        "id": 1,
+        "login": "admin",
+        "password": "123",
+        "role": "admin"
+      },
+      {
+        "id": 5,
+        "login": "user",
+        "password": "123",
+        "role": "user"
+      }
+    ]
+  }
+}

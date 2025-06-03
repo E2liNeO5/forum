@@ -1,14 +1,14 @@
 import { bindActionCreators } from "@reduxjs/toolkit"
-import { postsActions } from "../store/posts.slice"
-import { tagsActions } from "../store/tags.slice"
-import { userActions } from "../store/user.slice"
+import { postsActions } from "../store/slices/posts.slice"
+import { tagsActions } from "../store/slices/tags.slice"
 import { useAppDispatch } from "./typedHooks"
 import { useMemo } from "react"
+import { toastsActions } from "../store/slices/toasts.slice"
 
 const rootActions = {
-  ...userActions,
   ...tagsActions,
-  ...postsActions
+  ...postsActions,
+  ...toastsActions
 }
 
 const useActions = () => {
