@@ -7,7 +7,7 @@ import Comments from '../../components/Comments/Comments'
 
 const Post = () => {
   const { id } = useParams()
-  const posts = useAppSelector(state => state.postsReducer)
+  const posts = useAppSelector(state => state.posts)
 
   const post: Post | undefined = useMemo(() => {
     return posts.find(p => p.id === Number(id))

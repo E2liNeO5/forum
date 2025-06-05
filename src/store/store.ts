@@ -3,11 +3,13 @@ import { postsReducer } from "./slices/posts.slice"
 import { tagsReducer } from "./slices/tags.slice"
 import { userApi } from "./api/user.api";
 import { toastsReducer } from "./slices/toasts.slice";
+import { userReducer } from "./slices/user.slice";
 
 const reducers = combineReducers({
   posts: postsReducer,
   tags: tagsReducer,
   toast: toastsReducer,
+  user: userReducer,
   [userApi.reducerPath]: userApi.reducer
 })
 

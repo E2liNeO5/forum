@@ -9,6 +9,8 @@ import MainLayout from './pages/MainLayout.tsx'
 import SignIn from './components/Forms/SignIn.tsx'
 import SignUp from './components/Forms/SignUp.tsx'
 import Post from './pages/Post/Post.tsx'
+import ErrorPage from './pages/ErrorPage/ErrorPage.tsx'
+import CreatePost from './pages/CreatePost/CreatePost.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -20,6 +22,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/post/:id" element={<Post />} />
+            <Route path="/create_post" element={<CreatePost />} />
+            <Route path="*" element={<ErrorPage text='Такой страницы не существует' />} />
           </Route>
         </Routes>
       </BrowserRouter>
