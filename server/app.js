@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/upload'),
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
+        cb(null, Date.now() + file.originalname);
     }
 });
 
@@ -28,11 +28,14 @@ const upload = multer({
     storage: storage
 })
 
-app.post('/upload', upload.single('image'), async (req, res) => {
-  const image = req.file && req.file.originalname
-  const {  } = req.body
+app.post('/create_post', upload.single('image'), async (req, res) => {
+  const image = req.file && req.file.filename
+  const postData = req.body
 
-  res.json({})
+  const newPost = await json_db.writeToTable('posts', { ...postData, tags: JSON.parse(postData.tags), comments: [], image })
+  const post = await json_db.getTable('posts', { condition: item => item.id === newPost[0] })
+
+  res.json(post)
 })
 
 app.post('/signIn', async (req, res) => {

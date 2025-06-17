@@ -1,0 +1,9 @@
+.hint_small {
+  color: #fff;
+  font-size: .75rem;
+  transition: color .2s;
+
+  &:hover {
+    color: var(--foreignColor);
+  }
+}

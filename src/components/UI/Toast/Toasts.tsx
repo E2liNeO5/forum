@@ -6,10 +6,13 @@ const Toasts = () => {
   const { toasts } = useAppSelector(state => state.toast)
 
   return (
-    
-    <div className={styles.toasts_container}>
-      { toasts.map(toast => <Toast key={toast.id} toast={toast} />) }
-    </div>
+    <>
+      { toasts.length > 0 &&
+        <div className={styles.toasts_container}>
+          { toasts.map(toast => <Toast key={toast.id} toast={toast} />) }
+        </div>
+      }
+    </>
   )
 }
 

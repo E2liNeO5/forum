@@ -5,3 +5,8 @@ export type CustomError = {
   }
   status: number
 }
+
+export type TagsSelectItemType = {
+  id: number
+  name: string
+}

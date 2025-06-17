@@ -1,23 +1,30 @@
-.post_form {
-  width: 80% !important;
+.input_block {
+  position: relative;
+  width: 50%;
 
-  .post_block {
-    width: 80%;
+  .input_label {
+    position: absolute;
+    top: 25%;
+    left: 15px;
+    background-color: var(--foreignColor);
+    color: #fff;
+    padding: .5em;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, .5);
+    border-radius: 5px;
   }
 
-  .post_text {
-    width: 80%;
-    min-height: 150px;
+  input {
+    width: 100%;
     outline: none;
+    background: none;
     border: 3px solid var(--foreignColor);
     background-color: var(--foreignColor);
     padding: 1.5em 1em;
-    margin: 1em;
+    margin-top: 50px;
     box-shadow: 0 0 8px rgba(0, 0, 0, .5) inset;
     transition: border-color .6s, box-shadow .6s;
     color: #fff;
     border-radius: 5px;
-    resize: none;
 
     &:focus {
       border-color: #fff;
@@ -28,17 +35,6 @@
       box-shadow:
         0 0 8px rgba(0, 0, 0, .5) inset,
         0 0 8px #ab0202;
-    }
-  }
-
-  .split_fields {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .post_block {
-      width: 48%;
     }
   }
 }

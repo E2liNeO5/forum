@@ -4,6 +4,7 @@ import { Tag } from "../../types/tag";
 type StateType = {
   tags: Tag[]
   currentTags: number[]
+  createPost: Tag[]
 }
 
 const initialState: StateType = {
@@ -29,7 +30,8 @@ const initialState: StateType = {
       name: 'Тема5'
     }
   ],
-  currentTags: []
+  currentTags: [],
+  createPost: []
 }
 
 const tagsSlice = createSlice({
@@ -44,6 +46,15 @@ const tagsSlice = createSlice({
         state.currentTags.length = 0
       else
         state.currentTags.push(payload)
+    },
+    createPostAddTag: (state, { payload }: PayloadAction<Tag>) => {
+      state.createPost.push(payload)
+    },
+    createPostRemoveTag: (state, { payload }: PayloadAction<Tag>) => {
+      state.createPost = state.createPost.filter(tag => tag.id !== payload.id)
+    },
+    clearCreatePostTags: (state) => {
+      state.createPost = []
     }
   }
 })

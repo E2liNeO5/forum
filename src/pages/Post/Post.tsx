@@ -7,7 +7,7 @@ import Comments from '../../components/Comments/Comments'
 
 const Post = () => {
   const { id } = useParams()
-  const posts = useAppSelector(state => state.posts)
+  const posts = useAppSelector(state => state.posts).posts
 
   const post: Post | undefined = useMemo(() => {
     return posts.find(p => p.id === Number(id))
@@ -19,7 +19,7 @@ const Post = () => {
         <div className={styles.post_container}>
           <div className={styles.post_image}>
             <img
-              src={`/images/${post.image || 'not_found_img.png'}`}
+              src={`/upload/${post.image || 'not_found_img.png'}`}
               alt={`${post.id}_post_picture`}
               className={post.imageSize === 'width' ? styles.size_by_width : styles.size_by_height}
             />

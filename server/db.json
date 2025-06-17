@@ -1,6 +1,6 @@
 {
   "users": {
-    "lastId": 6,
+    "lastId": 7,
     "data": [
       {
         "id": 1,
@@ -13,6 +13,24 @@
         "login": "user",
         "password": "123",
         "role": "user"
+      }
+    ]
+  },
+  "posts": {
+    "lastId": 6,
+    "data": [
+      {
+        "id": 6,
+        "title": "3123",
+        "text": "123123",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "17.6.2025 14:58:44",
+        "imageSize": "width",
+        "comments": [],
+        "image": "175016152484600060-1732914112.png"
       }
     ]
   }

@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: var(--foreignColor);
+  padding: .5em;
+  margin: .25em;
+  transform: scale(1);
+  transition: transform .25s;
+
+  &.hidden {
+    display: none;
+  }
+
+  &.fadeOut {
+    transform: scale(0);
+  }
+
+  .btn {
+    margin-left: 5px;
+    transition: color .2s, background-color .2s;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background-color: var(--foreignColor); 
+    }
+  }
+}

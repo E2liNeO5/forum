@@ -4,18 +4,23 @@ import { tagsReducer } from "./slices/tags.slice"
 import { userApi } from "./api/user.api";
 import { toastsReducer } from "./slices/toasts.slice";
 import { userReducer } from "./slices/user.slice";
+import { postApi } from "./api/post.api";
 
 const reducers = combineReducers({
   posts: postsReducer,
   tags: tagsReducer,
   toast: toastsReducer,
   user: userReducer,
-  [userApi.reducerPath]: userApi.reducer
+  [userApi.reducerPath]: userApi.reducer,
+  [postApi.reducerPath]: postApi.reducer
 })
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
+    userApi.middleware,
+    postApi.middleware
+  )
 })
 
 export type RootState = ReturnType<typeof store.getState>
