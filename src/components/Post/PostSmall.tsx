@@ -14,7 +14,7 @@ const PostSmall = ({ item }: Props) => {
       <div className={styles.post_front}>
         <div className={styles.post_title}>{ item.title }</div>
         <img
-          src={`/images/${item.image || 'not_found_img.png'}`}
+          src={`/upload/${item.image}`}
           alt={`${item.id}_post_picture`}
           className={item.imageSize === 'width' ? styles.size_by_width : styles.size_by_height}
         />

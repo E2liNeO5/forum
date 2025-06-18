@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+
+  .loading_text {
+    font-size: 3rem;
+    letter-spacing: 0;
+    animation: textAnimation 2s ease-in infinite;
+
+    @keyframes textAnimation {
+      0% { letter-spacing: 0; }
+      50% { letter-spacing: .5em; animation-timing-function: ease-out; }
+      100% { letter-spacing: 0; }
+    }
+  }
+}

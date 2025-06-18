@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { postsReducer } from "./slices/posts.slice"
 import { tagsReducer } from "./slices/tags.slice"
 import { userApi } from "./api/user.api";
 import { toastsReducer } from "./slices/toasts.slice";
@@ -7,7 +6,6 @@ import { userReducer } from "./slices/user.slice";
 import { postApi } from "./api/post.api";
 
 const reducers = combineReducers({
-  posts: postsReducer,
   tags: tagsReducer,
   toast: toastsReducer,
   user: userReducer,

@@ -17,7 +17,7 @@
     ]
   },
   "posts": {
-    "lastId": 6,
+    "lastId": 9,
     "data": [
       {
         "id": 6,
@@ -31,6 +31,45 @@
         "imageSize": "width",
         "comments": [],
         "image": "175016152484600060-1732914112.png"
+      },
+      {
+        "id": 7,
+        "title": "Второй пост",
+        "text": "Пост про что-то",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "18.6.2025 13:27:42",
+        "imageSize": "width",
+        "comments": [],
+        "image": "175024246232000022-2424624754.png"
+      },
+      {
+        "id": 8,
+        "title": "111",
+        "text": "123",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "18.6.2025 13:36:8",
+        "imageSize": "width",
+        "comments": [],
+        "image": "175024296828400060-1732914112.png"
+      },
+      {
+        "id": 9,
+        "title": "2222",
+        "text": "12341234",
+        "authorId": "1",
+        "tags": [
+          2
+        ],
+        "date": "18.6.2025 13:36:45",
+        "imageSize": "width",
+        "comments": [],
+        "image": "175024300512600180-2362372930.png"
       }
     ]
   }

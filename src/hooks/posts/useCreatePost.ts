@@ -10,7 +10,7 @@ const useCreatePost = () => {
   const [mutate] = useCreatePostMutation()
   const navigate = useNavigate()
 
-  const { addPost, addToast } = useActions()
+  const { addToast } = useActions()
 
   const createPost = async (data: CreatePostType) => {
     const formData = new FormData()
@@ -39,10 +39,8 @@ const useCreatePost = () => {
     const response = await mutate(post)
     if(response.error && 'data' in response.error)
       addToast({ id: Date.now(), text: response.error && response.error.data.message, type: 'error' })
-    else if(response.data) {
-      addPost(response.data)
+    else if(response.data)
       navigate(`/post/${response.data.id}`)
-    }
   }
 
   return createPost

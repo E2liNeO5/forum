@@ -21,3 +21,5 @@ export const ADMIN_LINKS = [
     title: 'Тестовая для админа'
   }
 ]
+
+export const POSTS_PER_PAGE = 8

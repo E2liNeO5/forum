@@ -38,6 +38,36 @@ app.post('/create_post', upload.single('image'), async (req, res) => {
   res.json(post)
 })
 
+app.get('/get_posts', async (req, res) => {
+  const { page, postsAmount } = req.query
+  try {
+    const posts = await json_db.getTable('posts')
+
+    const postsOnPage = posts.splice((page - 1) * postsAmount, postsAmount)
+    res.json(postsOnPage)
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({
+      error: 'Произошла ошибка при обработке запроса',
+      message: e.message
+    });
+  }
+})
+
+app.get('/get_single_post', async (req, res) => {
+  const { postId } = req.query
+  try {
+    const post = await json_db.getTable('posts', { condition: item => +item.id === +postId })
+    res.json(post)
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({
+      error: 'Произошла ошибка при обработке запроса',
+      message: e.message
+    });
+  }
+})
+
 app.post('/signIn', async (req, res) => {
   const { login, password } = req.body
   
