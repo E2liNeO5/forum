@@ -6,7 +6,9 @@ type Props = {
 
 const Comments = ({}: Props) => {
   return (
-    <>Comments</>
+    <div className={styles.container}>
+      comments
+    </div>
   )
 }
 

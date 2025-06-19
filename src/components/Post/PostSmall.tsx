@@ -1,16 +1,17 @@
 import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
 import useShowPost from '../../hooks/posts/useShowPost'
+import { Link } from 'react-router'
 
 type Props = {
   item: Post
 }
 
 const PostSmall = ({ item }: Props) => {
-  const showPost = useShowPost()
+  // const showPost = useShowPost()
 
   return (
-    <div className={styles.post_item} onClick={() => showPost(item.id)}>
+    <Link to={`/post/${item.id}`} className={styles.post_item}>
       <div className={styles.post_front}>
         <div className={styles.post_title}>{ item.title }</div>
         <img
@@ -24,7 +25,7 @@ const PostSmall = ({ item }: Props) => {
           { item.text }
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

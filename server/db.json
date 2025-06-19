@@ -17,13 +17,13 @@
     ]
   },
   "posts": {
-    "lastId": 9,
+    "lastId": 13,
     "data": [
       {
         "id": 6,
         "title": "3123",
         "text": "123123",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -36,7 +36,7 @@
         "id": 7,
         "title": "Второй пост",
         "text": "Пост про что-то",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -49,7 +49,7 @@
         "id": 8,
         "title": "111",
         "text": "123",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -62,7 +62,7 @@
         "id": 9,
         "title": "2222",
         "text": "12341234",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           2
         ],
@@ -70,6 +70,58 @@
         "imageSize": "width",
         "comments": [],
         "image": "175024300512600180-2362372930.png"
+      },
+      {
+        "id": 10,
+        "title": "Тестовый",
+        "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos tempore tempora quidem perspiciatis quae laborum fugit labore hic necessitatibus sapiente quam possimus architecto dolore alias esse unde veritatis, dolores molestiae dolor voluptatibus consequatur! Suscipit autem quis cupiditate provident error quia, similique, excepturi nam id aperiam voluptates, rerum sed consequuntur esse!\r\nНовая строка\r\nЕщё новая строка",
+        "authorId": "1",
+        "tags": [
+          2
+        ],
+        "date": "18.6.2025 15:29:9",
+        "imageSize": "height",
+        "comments": [],
+        "image": "1750249749344vertical.jpg"
+      },
+      {
+        "id": 11,
+        "title": "Другой тестовый",
+        "text": "123",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "18.6.2025 15:35:47",
+        "imageSize": "width",
+        "comments": [],
+        "image": "1750250147218bat.jpg"
+      },
+      {
+        "id": 12,
+        "title": "123",
+        "text": "12312321213",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "19.6.2025 10:33:46",
+        "imageSize": "width",
+        "comments": [],
+        "image": "1750318426582bat.jpg"
+      },
+      {
+        "id": 13,
+        "title": "123123",
+        "text": "123123",
+        "authorId": "1",
+        "tags": [
+          1
+        ],
+        "date": "19.6.2025 10:34:16",
+        "imageSize": "height",
+        "comments": [],
+        "image": "17503184562471750249749344vertical.jpg"
       }
     ]
   }

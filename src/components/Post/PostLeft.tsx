@@ -1,6 +1,7 @@
 import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
 import useShowPost from '../../hooks/posts/useShowPost'
+import { Link } from 'react-router'
 
 type Props = {
   item: Post
@@ -10,7 +11,7 @@ const PostLeft = ({ item }: Props) => {
   const showPost = useShowPost()
 
   return (
-    <div className={styles.post_item + ' ' + styles.post_left} onClick={() => showPost(item.id)}>
+    <Link to={`/post/${item.id}`} className={styles.post_item + ' ' + styles.post_left} onClick={() => showPost(item.id)}>
       <div className={styles.post_info}>
         <div className={styles.post_title}>{ item.title }</div>
         <img
@@ -22,7 +23,7 @@ const PostLeft = ({ item }: Props) => {
       <div className={styles.post_text}>
         { item.text }
       </div>
-    </div>
+    </Link>
   )
 }
 

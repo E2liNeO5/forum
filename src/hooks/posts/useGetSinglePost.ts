@@ -3,7 +3,6 @@ import { CustomError } from "../../types/global"
 
 const useGetSinglePost = (postId: number) => {
   const data = useGetSinglePostQuery(postId)
-  console.log(data)
   return { isLoading: data.isLoading, error: (data.error as CustomError)?.data, post: data.data }
 }
 

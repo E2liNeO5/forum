@@ -10,13 +10,14 @@ import Loading from '../../components/UI/Loading/Loading'
 const Post = () => {
   const { id } = useParams()
   const { isLoading, error, post } = useGetSinglePost(Number(id))
-
+  console.log(post?.imageSize)
   return (
     <>
       { 
         isLoading ? <Loading /> :
         error ? <h1 style={{ textAlign: 'center' }}>Пост не найден</h1> :
-        <div className={styles.post_container}>
+        <>
+          <div className={styles.post_container}>
           <div className={styles.post_image}>
             <img
               src={`/upload/${post?.image}`}
@@ -27,11 +28,11 @@ const Post = () => {
           <div className={styles.post_text}>
             { post?.text }
           </div>
-          { post?.comments && <Comments id={post?.id} /> }
         </div>
+        { post?.comments && <Comments id={post?.id} /> }
+        </>
       }
     </>
-    
   )
 }
 

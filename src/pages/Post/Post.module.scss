@@ -9,7 +9,7 @@
   }
 
   .post_image {
-    width: 40%;
+    width: fit-content;
     padding: 1em;
     background-color: var(--foreignColor);
     border-radius: 1em;
@@ -19,7 +19,7 @@
     float: left;
 
     img {
-      width: 100%;
+      max-width: 400px;
     }
   }
 
