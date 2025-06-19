@@ -1,6 +1,6 @@
 import { FieldError } from 'react-hook-form'
 import styles from './TagsSelect.module.scss'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import TagsSelectItem from './TagsSelectItem/TagsSelectItem'
 import TagsSelectSearch from './TagsSelectSearch/TagsSelectSearch'
 import useCreatePostSelectTags from '../../../hooks/tags/useCreatePostSelectTags'

@@ -25,7 +25,6 @@ const useCreatePost = () => {
         image: data.image,
         imageSize: img.height > img.width ? 'height' : 'width'
       }
-
       const response = await mutate(post)
       if(response.error && 'data' in response.error)
         addToast({ id: Date.now(), text: response.error && response.error.data.message, type: 'error' })

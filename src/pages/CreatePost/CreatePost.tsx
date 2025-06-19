@@ -9,6 +9,7 @@ import TagsSelect from '../../components/UI/TagsSelect/TagsSelect'
 import useCreatePost from '../../hooks/posts/useCreatePost'
 import { useEffect } from 'react'
 import useActions from '../../hooks/useActions'
+import FileInput from '../../components/UI/Input/FileInput/FileInput'
 
 const CreatePost = () => {
   const user = useGetUser()
@@ -16,7 +17,7 @@ const CreatePost = () => {
 
   const { clearCreatePostTags } = useActions()
 
-  const { register, handleSubmit, formState: { errors }, control } = useForm<CreatePostType>()
+  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<CreatePostType>()
   const onSubmit: SubmitHandler<CreatePostType> = async(data: CreatePostType) => createPost(data)
 
   useEffect(() => {
@@ -41,16 +42,16 @@ const CreatePost = () => {
                   required: true
                 })}
               />
-              <Input
+              <FileInput
                 classes={{
                   block: styles.post_block
                 }}
                 label='Изображение'
-                type='file'
                 error={errors.image}
                 register={register('image', {
                   required: true
                 })}
+                setValue={setValue}
               />
             </div>
             

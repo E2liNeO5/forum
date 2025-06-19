@@ -17,7 +17,7 @@
     ]
   },
   "posts": {
-    "lastId": 13,
+    "lastId": 15,
     "data": [
       {
         "id": 6,
@@ -122,6 +122,32 @@
         "imageSize": "height",
         "comments": [],
         "image": "17503184562471750249749344vertical.jpg"
+      },
+      {
+        "id": 14,
+        "title": "123123",
+        "text": "123123",
+        "authorId": "1",
+        "tags": [
+          2
+        ],
+        "date": "19.6.2025 11:34:24",
+        "imageSize": "width",
+        "comments": [],
+        "image": "1750322064260i.webp"
+      },
+      {
+        "id": 15,
+        "title": "Тестик",
+        "text": "Опа",
+        "authorId": "1",
+        "tags": [
+          2
+        ],
+        "date": "19.6.2025 12:20:6",
+        "imageSize": "width",
+        "comments": [],
+        "image": "1750324806843i.webp"
       }
     ]
   }
