@@ -1,6 +1,6 @@
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 import styles from './Input.module.scss'
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 
 type extraKeys = keyof (Exclude<Props['classes'], undefined>)
 
@@ -33,4 +33,4 @@ const Input = ({ label, type, error, register, classes }: Props) => {
   )
 }
 
-export default Input
+export default memo(Input)

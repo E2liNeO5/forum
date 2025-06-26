@@ -10,6 +10,7 @@ import useCreatePost from '../../hooks/posts/useCreatePost'
 import { useEffect } from 'react'
 import useActions from '../../hooks/useActions'
 import FileInput from '../../components/UI/Input/FileInput/FileInput'
+import Textarea from '../../components/UI/Textarea/Textarea'
 
 const CreatePost = () => {
   const user = useGetUser()
@@ -55,12 +56,13 @@ const CreatePost = () => {
               />
             </div>
             
-            <textarea
-              className={`${styles.post_text + (errors.text ? ' ' + styles.invalid : '')}`}
-              { ...register('text', {
-                required: true
-              }) }
+            <Textarea
+              register={register('text', { required: true })}
+              error={errors.text}
+              setValue={setValue} // Хз как решить эту проблемы с дженериками, пока оставить так
+              fieldName='text'
             />
+
             <Controller
                 name='tags'
                 rules={{ required: true }}

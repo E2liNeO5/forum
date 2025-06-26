@@ -1,0 +1,46 @@
+.post_text_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 80%;
+  margin: 1em;
+
+  .post_text {
+    width: 89%;
+    min-height: 150px;
+    outline: none;
+    border: 3px solid var(--foreignColor);
+    background-color: var(--foreignColor);
+    padding: 1em;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5) inset;
+    transition: border-color .6s, box-shadow .6s;
+    color: #fff;
+    border-radius: 5px;
+    resize: none;
+  
+    &:focus {
+      border-color: #fff;
+    }
+  
+    &.invalid {
+      border-color: var(--invalidColor);
+      box-shadow:
+        0 0 8px rgba(0, 0, 0, .5) inset,
+        0 0 8px var(--invalidColor);
+    }
+  }
+
+  .font_customization_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 10%;
+    height: 150px;
+    border: 3px solid var(--foreignColor);
+    background-color: var(--foreignColor);
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5) inset;
+    border-radius: 5px;
+  }
+}

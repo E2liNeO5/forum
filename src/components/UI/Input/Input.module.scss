@@ -33,10 +33,10 @@
     }
 
     &.invalid {
-      border-color: #ab0202;
+      border-color: var(--invalidColor);
       box-shadow:
         0 0 8px rgba(0, 0, 0, .5) inset,
-        0 0 8px #ab0202;
+        0 0 8px var(--invalidColor);
     }
   }
 }

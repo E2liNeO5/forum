@@ -5,32 +5,6 @@
     width: 80%;
   }
 
-  .post_text {
-    width: 80%;
-    min-height: 150px;
-    outline: none;
-    border: 3px solid var(--foreignColor);
-    background-color: var(--foreignColor);
-    padding: 1.5em 1em;
-    margin: 1em;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .5) inset;
-    transition: border-color .6s, box-shadow .6s;
-    color: #fff;
-    border-radius: 5px;
-    resize: none;
-
-    &:focus {
-      border-color: #fff;
-    }
-
-    &.invalid {
-      border-color: #ab0202;
-      box-shadow:
-        0 0 8px rgba(0, 0, 0, .5) inset,
-        0 0 8px #ab0202;
-    }
-  }
-
   .split_fields {
     width: 80%;
     display: flex;

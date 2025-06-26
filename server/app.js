@@ -5,7 +5,8 @@ const path = require('path')
 const json_db = require('./json_db')
 
 const app = express()
-const port = 3000
+const PORT = 3000
+const IMAGE_NAME_MAX_LENGTH = 10
 
 // Настройка CORS
 app.use((req, res, next) => {
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/upload'),
     filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
+        cb(null, Date.now() + file.originalname.substring(0, IMAGE_NAME_MAX_LENGTH));
     }
 });
 
@@ -117,6 +118,6 @@ app.post('/signUp', async (req, res) => {
 });
 
 // Запуск сервера
-app.listen(port, () => {
-  console.log(`Сервер запущен на http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на http://localhost:${PORT}`)
 })

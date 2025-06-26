@@ -1,20 +1,16 @@
 import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
-import useShowPost from '../../hooks/posts/useShowPost'
 import { Link } from 'react-router'
+import { parseToSafeHtml } from '../../utils'
 
 type Props = {
   item: Post
 }
 
 const PostRight = ({ item }: Props) => {
-  const showPost = useShowPost()
-
   return (
-    <Link  to={`/post/${item.id}`} className={styles.post_item + ' ' + styles.post_right} onClick={() => showPost(item.id)}>
-      <div className={styles.post_text}>
-        { item.text }
-      </div>
+    <Link  to={`/post/${item.id}`} className={styles.post_item + ' ' + styles.post_right}>
+      <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
       <div className={styles.post_info}>
         <div className={styles.post_title}>{ item.title }</div>
         <img

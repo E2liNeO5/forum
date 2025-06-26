@@ -1,0 +1,11 @@
+.icon {
+  width: 90%;
+  height: 30%;
+  color: #fff;
+  transition: background-color .2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--mainColorOpacity);
+  }
+}

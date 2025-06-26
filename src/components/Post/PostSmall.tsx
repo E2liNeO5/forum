@@ -1,15 +1,13 @@
 import styles from './PostItem.module.scss'
 import { Post } from '../../types/post'
-import useShowPost from '../../hooks/posts/useShowPost'
 import { Link } from 'react-router'
+import { parseToSafeHtml } from '../../utils'
 
 type Props = {
   item: Post
 }
 
 const PostSmall = ({ item }: Props) => {
-  // const showPost = useShowPost()
-
   return (
     <Link to={`/post/${item.id}`} className={styles.post_item}>
       <div className={styles.post_front}>
@@ -21,9 +19,7 @@ const PostSmall = ({ item }: Props) => {
         />
       </div>
       <div className={styles.post_back}>
-        <div className={styles.post_text}>
-          { item.text }
-        </div>
+        <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
       </div>
     </Link>
   )

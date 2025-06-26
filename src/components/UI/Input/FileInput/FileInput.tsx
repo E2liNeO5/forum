@@ -1,7 +1,7 @@
 import { FieldError, UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form'
 import styles from '../Input.module.scss'
 import stylesFile from './FIleInput.module.scss'
-import { ChangeEvent, DragEvent, useCallback, useRef, useState } from 'react'
+import { ChangeEvent, DragEvent, memo, useCallback, useRef, useState } from 'react'
 import { CreatePostType } from '../../../../types/post'
 
 type extraKeys = keyof (Exclude<Props['classes'], undefined>)
@@ -47,8 +47,10 @@ const FileInput = ({ label, error, register, classes, setValue }: Props) => {
   }, [])
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if(e.target.files)
+    if(e.target.files) {
       setImgSrc(URL.createObjectURL(e.target.files[0]))
+      setValue('image', e.target.files)
+    }
   }
 
   return (
@@ -66,7 +68,7 @@ const FileInput = ({ label, error, register, classes, setValue }: Props) => {
         ref={inputRef}
         onChange={changeHandler}
       />
-      <div className={`${stylesFile.file_input_fake} ${dndClass} ${error ? styles.invalid : ''}${addExtraClass('input')}`}>
+      <div className={`${stylesFile.file_input_fake}${dndClass ? ' ' + dndClass : ''}${error ? ' ' + stylesFile.invalid : ''}${addExtraClass('input')}`}>
         <span className={stylesFile.file_btn}>Выбрать</span>
         <img src={imgSrc} alt="" height={45} />
       </div>
@@ -74,4 +76,4 @@ const FileInput = ({ label, error, register, classes, setValue }: Props) => {
   )
 }
 
-export default FileInput
+export default memo(FileInput)
