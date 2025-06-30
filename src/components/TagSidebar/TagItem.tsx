@@ -1,11 +1,11 @@
 import styles from './TagSidebar.module.scss'
-import { Tag } from '../../types/tag'
+import { TTag } from '../../types/tag'
 import { useAppSelector } from '../../hooks/typedHooks'
 import { useCallback } from 'react'
 import useActions from '../../hooks/useActions'
 
 type Props = {
-  item: Tag
+  item: TTag
 }
 
 const TagItem = ({ item }: Props) => {

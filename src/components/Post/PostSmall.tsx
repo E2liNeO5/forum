@@ -1,10 +1,10 @@
 import styles from './PostItem.module.scss'
-import { Post } from '../../types/post'
+import { TPost } from '../../types/post'
 import { Link } from 'react-router'
 import { parseToSafeHtml } from '../../utils'
 
 type Props = {
-  item: Post
+  item: TPost
 }
 
 const PostSmall = ({ item }: Props) => {

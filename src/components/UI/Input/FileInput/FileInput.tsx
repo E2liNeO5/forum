@@ -2,7 +2,7 @@ import { FieldError, UseFormRegisterReturn, UseFormSetValue } from 'react-hook-f
 import styles from '../Input.module.scss'
 import stylesFile from './FIleInput.module.scss'
 import { ChangeEvent, DragEvent, memo, useCallback, useRef, useState } from 'react'
-import { CreatePostType } from '../../../../types/post'
+import { TCreatePost } from '../../../../types/post'
 
 type extraKeys = keyof (Exclude<Props['classes'], undefined>)
 
@@ -15,7 +15,7 @@ type Props = {
     input?: string
     block?: string
   }
-  setValue: UseFormSetValue<CreatePostType>
+  setValue: UseFormSetValue<TCreatePost>
 }
 
 const FileInput = ({ label, error, register, classes, setValue }: Props) => {

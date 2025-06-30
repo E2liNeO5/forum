@@ -1,12 +1,12 @@
-import styles from './Post.module.scss'
+import styles from './SinglePost.module.scss'
 import { useParams } from 'react-router'
-import { Post } from '../../types/post'
 import Comments from '../../components/Comments/Comments'
 import useGetSinglePost from '../../hooks/posts/useGetSinglePost'
 import Loading from '../../components/UI/Loading/Loading'
 import { parseToSafeHtml } from '../../utils'
+import DivideLine from '../../components/UI/DivideLine/DivideLine'
 
-const Post = () => {
+const SinglePost = () => {
   const { id } = useParams()
   const { isLoading, error, post } = useGetSinglePost(Number(id))
 
@@ -26,11 +26,15 @@ const Post = () => {
             </div>
             <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
           </div>
-          { post.comments && <Comments id={post.id} /> }
+          { post.comments &&
+            <>
+              <DivideLine width='80%' />
+              <Comments id={post.id} />
+            </> }
         </>
       }
     </>
   )
 }
 
-export default Post
+export default SinglePost

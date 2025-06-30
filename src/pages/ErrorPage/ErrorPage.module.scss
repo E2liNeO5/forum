@@ -1,31 +1,12 @@
 .container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+  margin: 0 auto;
 
   h1 {
     text-align: center;
     position: relative;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      left: 10%;
-      bottom: -10px;
-      width: 95%;
-      height: 10px;
-      transform: skew(-15deg);
-    }
-
-    &:before {
-      background-color: var(--mainColor);
-    }
-
-    &:after {
-      background-color: var(--foreignColor);
-      bottom: -15px;
-      left: 11%;
-      box-shadow: -2px 0 4px rgba(255, 255, 255, .5);
-    }
   }
 }

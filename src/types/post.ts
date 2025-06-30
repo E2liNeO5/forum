@@ -1,4 +1,4 @@
-export type Post = {
+export type TPost = {
   id: number
   title: string
   tags: number[]
@@ -10,15 +10,19 @@ export type Post = {
   date: string
 }
 
-
-export type CreatePostType = Pick<Post, 'title' | 'text'> & {
+export type TCreatePost = Pick<TPost, 'title' | 'text'> & {
   image: FileList
   tags: number[]
 }
 
-export type PostDataType = Pick<Post, 'date' | 'authorId' | 'imageSize'> & CreatePostType
+export type TPostData = Pick<TPost, 'date' | 'authorId' | 'imageSize'> & TCreatePost
 
-export type Comment = {
+export type TPostsResponse = {
+  postsOnPage: TPost[]
+  maxPostsCount: number
+}
+
+export type TComment = {
   id: number
   authorId: number
   text: number

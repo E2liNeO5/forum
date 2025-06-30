@@ -1,12 +1,12 @@
 import { useGetPostsQuery } from "../../store/api/post.api"
-import { CustomError } from "../../types/global"
+import { TCustomError } from "../../types/global"
 import { useAppSelector } from "../typedHooks"
 
 const useGetPosts = (page: number) => {
-  const posts = useGetPostsQuery(page)
+  const response = useGetPostsQuery(page)
   const { currentTags } = useAppSelector(state => state.tags)
 
-  const postsOnPage = currentTags.length === 0 ? posts.data || [] : posts.data?.filter(post => {
+  const postsOnPage = currentTags.length === 0 ? response.data?.postsOnPage || [] : response.data?.postsOnPage.filter(post => {
     const tags = post.tags.reduce<number[]>((acc: number[], tagId: number) => {
       if(currentTags.includes(tagId))
         acc.push(tagId)
@@ -17,7 +17,7 @@ const useGetPosts = (page: number) => {
       return true
   })
 
-  return { isLoading: posts.isLoading, error: (posts.error as CustomError)?.data, posts: postsOnPage }
+  return { isLoading: response.isLoading, error: (response.error as TCustomError)?.data, posts: postsOnPage, maxPostsCount: response.data?.maxPostsCount }
 }
 
 export default useGetPosts

@@ -1,9 +1,9 @@
-export type Toast = {
+export type TToast = {
   id: number
   text: string
   type?: 'success' | 'error'
 }
 
-export type ToastInitialState = {
-  toasts: Toast[]
+export type TToastInitialState = {
+  toasts: TToast[]
 }

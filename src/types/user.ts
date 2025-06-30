@@ -1,4 +1,4 @@
-export type User = {
+export type TUser = {
   id: number
   login: string
   password: string
@@ -6,8 +6,8 @@ export type User = {
   role: string
 }
 
-export type AuthData = Pick<User, 'login' | 'password'>
+export type TAuthData = Pick<TUser, 'login' | 'password'>
 
-export type UserInitialState = {
-  user: User | null
+export type TUserInitialState = {
+  user: TUser | null
 }

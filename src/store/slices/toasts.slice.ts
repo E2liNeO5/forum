@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { Toast, ToastInitialState } from "../../types/toast"
+import { TToast, TToastInitialState } from "../../types/toast"
 
-const initialState: ToastInitialState = {
+const initialState: TToastInitialState = {
   toasts: []
 }
 
@@ -9,10 +9,10 @@ const toastsSlice = createSlice({
   name: 'toastsSlice',
   initialState,
   reducers: {
-    addToast: (state, { payload }: PayloadAction<Toast>) => {
+    addToast: (state, { payload }: PayloadAction<TToast>) => {
       state.toasts.push(payload)
     },
-    removeToast: (state, { payload }: PayloadAction<Pick<Toast, 'id'>>) => {
+    removeToast: (state, { payload }: PayloadAction<Pick<TToast, 'id'>>) => {
       state.toasts = state.toasts.filter(item => item.id !== payload.id)
     }
   }

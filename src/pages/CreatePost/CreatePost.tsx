@@ -3,7 +3,7 @@ import Input from '../../components/UI/Input/Input'
 import useGetUser from '../../hooks/user/useGetUser'
 import ErrorPage from '../ErrorPage/ErrorPage'
 import styles from './CreatePost.module.scss'
-import { CreatePostType } from '../../types/post'
+import { TCreatePost } from '../../types/post'
 import Form from '../../components/UI/Form/Form'
 import TagsSelect from '../../components/UI/TagsSelect/TagsSelect'
 import useCreatePost from '../../hooks/posts/useCreatePost'
@@ -18,8 +18,8 @@ const CreatePost = () => {
 
   const { clearCreatePostTags } = useActions()
 
-  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<CreatePostType>()
-  const onSubmit: SubmitHandler<CreatePostType> = async(data: CreatePostType) => createPost(data)
+  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<TCreatePost>()
+  const onSubmit: SubmitHandler<TCreatePost> = async(data: TCreatePost) => createPost(data)
 
   useEffect(() => {
     return () => { clearCreatePostTags() }

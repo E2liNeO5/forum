@@ -1,4 +1,4 @@
-export type Tag = {
+export type TTag = {
   id: number
   name: string
 }

@@ -1,16 +1,16 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router'
-import { AuthData } from '../../types/user'
+import { TAuthData } from '../../types/user'
 import useSignIn from '../../hooks/auth/useSignIn'
 import Input from '../UI/Input/Input'
 import Form from '../UI/Form/Form'
 import styles from './Auth.module.scss'
 
 const SignIn = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<AuthData>()
+  const { register, handleSubmit, formState: { errors } } = useForm<TAuthData>()
 
   const signIn = useSignIn()
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => signIn(data)
+  const onSubmit: SubmitHandler<TAuthData> = async (data: TAuthData) => signIn(data)
 
   return (
       <Form button='Войти' onSubmit={handleSubmit(onSubmit)}>

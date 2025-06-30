@@ -1,4 +1,4 @@
-export type CustomError = {
+export type TCustomError = {
   data: {
     error: string
     message: string
@@ -6,7 +6,7 @@ export type CustomError = {
   status: number
 }
 
-export type TagsSelectItemType = {
+export type TTagsSelectItem = {
   id: number
   name: string
 }

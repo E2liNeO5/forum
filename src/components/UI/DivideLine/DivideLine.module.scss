@@ -1,0 +1,30 @@
+.divide_line {
+  position: relative;
+  margin: 1em 0 2em;
+
+  &.center {
+    margin: 1em auto;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    left: -1%;
+    top: -15px;
+    width: 100%;
+    height: 10px;
+    transform: skew(-15deg);
+  }
+
+  &:before {
+    background-color: var(--mainColor);
+  }
+
+  &:after {
+    background-color: var(--foreignColor);
+    top: -10px;
+    left: -0.25%;
+    box-shadow: -2px 0 4px rgba(255, 255, 255, .5);
+  }
+}

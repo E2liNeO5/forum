@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, UserInitialState } from "../../types/user";
+import { TUser, TUserInitialState } from "../../types/user";
 import { USER_KEY } from "../../constants";
 import { localStorageGet, localStorageSet } from "../../utils";
 
-const initialState: UserInitialState = {
+const initialState: TUserInitialState = {
   user: localStorageGet(USER_KEY) || null
 }
 
@@ -11,7 +11,7 @@ const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    addUser: (state, { payload }: PayloadAction<User>) => {
+    addUser: (state, { payload }: PayloadAction<TUser>) => {
       state.user = payload
       localStorageSet(USER_KEY, payload)
     },

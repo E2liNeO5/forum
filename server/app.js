@@ -43,9 +43,10 @@ app.get('/get_posts', async (req, res) => {
   const { page, postsAmount } = req.query
   try {
     const posts = await json_db.getTable('posts')
+    const maxPostsCount = posts.length
 
     const postsOnPage = posts.sort((a, b) => b.id - a.id).splice((page - 1) * postsAmount, postsAmount)
-    res.json(postsOnPage)
+    res.json({ postsOnPage, maxPostsCount })
   } catch(e) {
     console.error(e);
     res.status(500).json({

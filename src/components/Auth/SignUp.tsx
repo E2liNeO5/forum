@@ -1,14 +1,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../UI/Input/Input'
-import { AuthData } from '../../types/user'
+import { TAuthData } from '../../types/user'
 import useSignUp from '../../hooks/auth/useSignUp'
 import Form from '../UI/Form/Form'
 
 const SignIn = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<AuthData>()
+  const { register, handleSubmit, formState: { errors } } = useForm<TAuthData>()
 
   const signUp = useSignUp()
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => signUp(data)
+  const onSubmit: SubmitHandler<TAuthData> = async (data: TAuthData) => signUp(data)
 
   return (
     <Form button='Зарегистрироваться' onSubmit={handleSubmit(onSubmit)}>

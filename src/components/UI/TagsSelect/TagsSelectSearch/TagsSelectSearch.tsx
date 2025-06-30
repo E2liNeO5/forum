@@ -1,6 +1,6 @@
 import { ChangeEvent, useMemo, useState } from 'react'
 import useGetTags from '../../../../hooks/tags/useGetTags'
-import { TagsSelectItemType } from '../../../../types/global'
+import { TTagsSelectItem } from '../../../../types/global'
 import TagsSelectItem from '../TagsSelectItem/TagsSelectItem'
 import styles from './TagsSelectSearch.module.scss'
 import useCreatePostSelectTags from '../../../../hooks/tags/useCreatePostSelectTags'
@@ -13,7 +13,7 @@ const TagsSelectSearch = () => {
 
   const [search, setSearch] = useState('')
 
-  const selectOptions: TagsSelectItemType[] = useMemo(() => {
+  const selectOptions: TTagsSelectItem[] = useMemo(() => {
     return tags
       .filter(tag => !selectedIds.includes(tag.id) && tag.name.toLocaleLowerCase().indexOf(search) >= 0)
       .map(tag => ({

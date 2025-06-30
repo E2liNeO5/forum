@@ -8,7 +8,7 @@ import { Routes } from 'react-router'
 import MainLayout from './pages/MainLayout.tsx'
 import SignIn from './components/Auth/SignIn.tsx'
 import SignUp from './components/Auth/SignUp.tsx'
-import Post from './pages/Post/Post.tsx'
+import SinglePost from './pages/SinglePost/SinglePost.tsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx'
 import CreatePost from './pages/CreatePost/CreatePost.tsx'
 
@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/" element={<Home />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
-            <Route path="/post/:id" element={<Post />} />
+            <Route path="/post/:id" element={<SinglePost />} />
             <Route path="/create_post" element={<CreatePost />} />
             <Route path="*" element={<ErrorPage text='Такой страницы не существует' />} />
           </Route>

@@ -7,17 +7,17 @@ import PostRight from "../components/Post/PostRight"
 import TagSidebar from "../components/TagSidebar/TagSidebar"
 import ErrorPage from "./ErrorPage/ErrorPage"
 import Loading from "../components/UI/Loading/Loading"
-import { Post } from "../types/post"
+import { TPost } from "../types/post"
 
 function Home() {
   const [page, setPage] = useState(1)
-  const [loadedPosts, setLoadedPosts] = useState<Post[]>([])
+  const [loadedPosts, setLoadedPosts] = useState<TPost[]>([])
 
-  const { isLoading, error, posts } = useGetPosts(page)
+  const { isLoading, error, posts, maxPostsCount } = useGetPosts(page)
 
   const memorizedPosts = useMemo(() => {
     let count = 0
-    return loadedPosts?.map(item => {
+    return loadedPosts.map(item => {
       count++
       if(count === 5)
         count = 1
@@ -34,7 +34,7 @@ function Home() {
 
   useEffect(() => {
     if(posts && posts.length > 0) 
-      setLoadedPosts(prev => ([...prev, ...posts]))
+      setLoadedPosts(prev => ([...prev, ...posts.filter(post => !prev.find(prev_post => prev_post.id === post.id))]))
   }, [posts])
 
   return (
@@ -48,7 +48,7 @@ function Home() {
             <div className={styles.posts_container}>
               { memorizedPosts }
             </div>
-            <div className="loading_posts" onClick={() => setPage(prev => prev + 1)}>Показать ещё</div>
+            { maxPostsCount !== memorizedPosts.length && <div className="loading_posts" onClick={() => setPage(prev => prev + 1)}>Показать ещё</div> }
           </>
         : <h1 style={{ textAlign: 'center' }}>Посты не найдены</h1>
       }

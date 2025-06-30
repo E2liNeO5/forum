@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Tag } from "../../types/tag";
+import { TTag } from "../../types/tag";
 
 type StateType = {
-  tags: Tag[]
+  tags: TTag[]
   currentTags: number[]
-  createPost: Tag[]
+  createPost: TTag[]
 }
 
 const initialState: StateType = {
@@ -47,10 +47,10 @@ const tagsSlice = createSlice({
       else
         state.currentTags.push(payload)
     },
-    createPostAddTag: (state, { payload }: PayloadAction<Tag>) => {
+    createPostAddTag: (state, { payload }: PayloadAction<TTag>) => {
       state.createPost.push(payload)
     },
-    createPostRemoveTag: (state, { payload }: PayloadAction<Tag>) => {
+    createPostRemoveTag: (state, { payload }: PayloadAction<TTag>) => {
       state.createPost = state.createPost.filter(tag => tag.id !== payload.id)
     },
     clearCreatePostTags: (state) => {

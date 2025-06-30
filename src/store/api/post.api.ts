@@ -1,15 +1,15 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL, POSTS_PER_PAGE } from "../../constants";
-import { CustomError } from "../../types/global";
-import { Post, PostDataType } from "../../types/post";
+import { TCustomError } from "../../types/global";
+import { TPost, TPostData, TPostsResponse } from "../../types/post";
 import { getCurrentDate } from "../../utils";
 
 export const postApi = createApi({
   reducerPath: 'post/api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<string | FetchArgs, unknown, CustomError, {}>,
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<string | FetchArgs, unknown, TCustomError, {}>,
   tagTypes: ['posts'],
   endpoints: builder => ({
-    getPosts: builder.query<Post[], number>({
+    getPosts: builder.query<TPostsResponse, number>({
       query: page => ({
         params: {
           page,
@@ -20,14 +20,14 @@ export const postApi = createApi({
       }),
       providesTags: () => [{ type: 'posts' }]
     }),
-    getSinglePost: builder.query<Post, number>({
+    getSinglePost: builder.query<TPost, number>({
       query: postId => ({
         params: { postId },
         url: '/get_single_post',
         method: 'GET'
       })
     }),
-    createPost: builder.mutation<Post, PostDataType>({      
+    createPost: builder.mutation<TPost, TPostData>({      
       query: post => {
         const formData = new FormData()
         formData.append('title', post.title)

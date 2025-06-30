@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import { useCreatePostMutation } from "../../store/api/post.api"
-import { CreatePostType, PostDataType } from "../../types/post"
+import { TCreatePost, TPostData } from "../../types/post"
 import { getCurrentDate } from "../../utils"
 import useActions from "../useActions"
 import useGetUser from "../user/useGetUser"
@@ -12,11 +12,11 @@ const useCreatePost = () => {
 
   const { addToast } = useActions()
 
-  const createPost = async (data: CreatePostType) => {
+  const createPost = async (data: TCreatePost) => {
     var img = new Image
     img.src = URL.createObjectURL(data.image[0])
     img.onload = async () => {
-      const post: PostDataType = {
+      const post: TPostData = {
         title: data.title,
         text: data.text,
         authorId: user ? +user.id : 0,

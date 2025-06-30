@@ -1,12 +1,12 @@
 import styles from './Toast.module.scss'
-import { Toast } from "../../../types/toast"
+import { TToast } from "../../../types/toast"
 import { useEffect, useState } from 'react'
 import { TOAST_REMOVE_TIME } from '../../../constants'
 import useActions from '../../../hooks/useActions'
 import useAnimation from '../../../hooks/useAnimation'
 
 type Props = {
-  toast: Toast
+  toast: TToast
 }
 
 const Toast = ({ toast }: Props) => {

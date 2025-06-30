@@ -1,12 +1,12 @@
 import { Plus, X } from 'lucide-react'
-import { TagsSelectItemType } from '../../../../types/global'
+import { TTagsSelectItem } from '../../../../types/global'
 import styles from './TagsSelectItem.module.scss'
 import useAnimation from '../../../../hooks/useAnimation'
 import { useState } from 'react'
 import useActions from '../../../../hooks/useActions'
 
 type Props = {
-  item: TagsSelectItemType
+  item: TTagsSelectItem
   type: 'add' | 'remove'
 }
 
