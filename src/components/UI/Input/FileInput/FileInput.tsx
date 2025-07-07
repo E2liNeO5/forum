@@ -2,7 +2,7 @@ import { FieldError, UseFormRegisterReturn, UseFormSetValue } from 'react-hook-f
 import styles from '../Input.module.scss'
 import stylesFile from './FIleInput.module.scss'
 import { ChangeEvent, DragEvent, memo, useCallback, useRef, useState } from 'react'
-import { TCreatePost } from '../../../../types/post'
+import { TCreatePost } from '../../../../types/post.types'
 
 type extraKeys = keyof (Exclude<Props['classes'], undefined>)
 

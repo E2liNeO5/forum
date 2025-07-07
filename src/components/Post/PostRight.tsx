@@ -1,5 +1,5 @@
 import styles from './PostItem.module.scss'
-import { TPost } from '../../types/post'
+import { TPost } from '../../types/post.types'
 import { Link } from 'react-router'
 import { parseToSafeHtml } from '../../utils'
 

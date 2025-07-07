@@ -33,16 +33,34 @@ app.post('/create_post', upload.single('image'), async (req, res) => {
   const image = req.file && req.file.filename
   const postData = req.body
 
-  const newPost = await json_db.writeToTable('posts', { ...postData, tags: JSON.parse(postData.tags), comments: [], image })
+  const newPost = await json_db.writeToTable('posts', {
+    ...postData,
+    tags: JSON.parse(postData.tags),
+    comments: [],
+    author_id: +postData.author_id,
+    image })
   const post = await json_db.getTable('posts', { condition: item => item.id === newPost[0] })
 
   res.json(post)
 })
 
 app.get('/get_posts', async (req, res) => {
-  const { page, postsAmount } = req.query
+  const { page, postsAmount, search} = req.query
+  const tags = JSON.parse(req.query.tags)
   try {
-    const posts = await json_db.getTable('posts')
+    const posts = await json_db.getTable('posts', {
+      isArray: true,
+      condition: item => {
+        const tagsCondition = tags.length === 0 ? true : item.tags.reduce((memo, tag) => {
+          if(tags.includes(+tag))
+            memo.push(tag)
+          return memo
+        }, []).length > 0
+        return tagsCondition && (item.title.toLowerCase().indexOf(search.toLowerCase()) >= 0 ||
+          item.text.toLowerCase().indexOf(search.toLowerCase()) >= 0)
+      }
+    })
+
     const maxPostsCount = posts.length
 
     const postsOnPage = posts.sort((a, b) => b.id - a.id).splice((page - 1) * postsAmount, postsAmount)

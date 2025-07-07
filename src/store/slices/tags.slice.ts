@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TTag } from "../../types/tag";
+import { TTag } from "../../types/tag.types";
 
 type StateType = {
   tags: TTag[]

@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../UI/Input/Input'
-import { TAuthData } from '../../types/user'
+import { TAuthData } from '../../types/user.types'
 import useSignUp from '../../hooks/auth/useSignUp'
 import Form from '../UI/Form/Form'
 

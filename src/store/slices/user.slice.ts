@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TUser, TUserInitialState } from "../../types/user";
+import { TUser, TUserInitialState } from "../../types/user.types";
 import { USER_KEY } from "../../constants";
 import { localStorageGet, localStorageSet } from "../../utils";
 

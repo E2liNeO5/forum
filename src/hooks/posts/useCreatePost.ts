@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import { useCreatePostMutation } from "../../store/api/post.api"
-import { TCreatePost, TPostData } from "../../types/post"
+import { TCreatePost, TPostData } from "../../types/post.types"
 import { getCurrentDate } from "../../utils"
 import useActions from "../useActions"
 import useGetUser from "../user/useGetUser"

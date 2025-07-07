@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router'
-import { TAuthData } from '../../types/user'
+import { TAuthData } from '../../types/user.types'
 import useSignIn from '../../hooks/auth/useSignIn'
 import Input from '../UI/Input/Input'
 import Form from '../UI/Form/Form'

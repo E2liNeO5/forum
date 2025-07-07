@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 1em;
+
+  .search_input {
+    padding: .5em 1em;
+    outline: none;
+  }
+
+  .search_reset {
+    background-color: var(--foreignColor);
+    color: #fff;
+    margin-left: 5px;
+    transition: background-color .2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--foreignColorOpacity);
+    }
+  }
+}

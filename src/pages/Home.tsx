@@ -7,17 +7,22 @@ import PostRight from "../components/Post/PostRight"
 import TagSidebar from "../components/TagSidebar/TagSidebar"
 import ErrorPage from "./ErrorPage/ErrorPage"
 import Loading from "../components/UI/Loading/Loading"
-import { TPost } from "../types/post"
+import { TPost } from "../types/post.types"
+import PostSearch from "../components/PostSearch/PostSearch"
+import { getPostSearchCondition } from "../utils"
+import useGetCurrentTags from "../hooks/tags/useGetCurrentTags"
 
 function Home() {
   const [page, setPage] = useState(1)
   const [loadedPosts, setLoadedPosts] = useState<TPost[]>([])
+  const [search, setSearch] = useState('')
 
-  const { isLoading, error, posts, maxPostsCount } = useGetPosts(page)
+  const { isLoading, error, posts, maxPostsCount } = useGetPosts(page, search)
+  const currentTags = useGetCurrentTags()
 
   const memorizedPosts = useMemo(() => {
     let count = 0
-    return loadedPosts.map(item => {
+    return loadedPosts.sort((a, b) => b.id - a.id).map(item => {
       count++
       if(count === 5)
         count = 1
@@ -33,13 +38,23 @@ function Home() {
   }, [loadedPosts])
 
   useEffect(() => {
-    if(posts && posts.length > 0) 
-      setLoadedPosts(prev => ([...prev, ...posts.filter(post => !prev.find(prev_post => prev_post.id === post.id))]))
+    setPage(1)
+    setLoadedPosts([])
+  }, [search, currentTags])
+
+  useEffect(() => {
+    if(posts) {
+      setLoadedPosts(prev => ([
+        ...prev.filter(post => getPostSearchCondition(post, search)),
+        ...posts.filter(post => !prev.find(prev_post => prev_post.id === post.id))
+      ]))
+    }
   }, [posts])
 
   return (
     <>
       <TagSidebar />
+      <PostSearch setSearch={setSearch} />
       {
         isLoading ? <Loading /> :
         error ? <ErrorPage text={error.message} /> : 

@@ -1,5 +1,5 @@
 import styles from './Toast.module.scss'
-import { TToast } from "../../../types/toast"
+import { TToast } from "../../../types/toast.types"
 import { useEffect, useState } from 'react'
 import { TOAST_REMOVE_TIME } from '../../../constants'
 import useActions from '../../../hooks/useActions'

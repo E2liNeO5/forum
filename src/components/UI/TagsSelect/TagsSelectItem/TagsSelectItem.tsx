@@ -1,5 +1,5 @@
 import { Plus, X } from 'lucide-react'
-import { TTagsSelectItem } from '../../../../types/global'
+import { TTagsSelectItem } from '../../../../types/global.types'
 import styles from './TagsSelectItem.module.scss'
 import useAnimation from '../../../../hooks/useAnimation'
 import { useState } from 'react'

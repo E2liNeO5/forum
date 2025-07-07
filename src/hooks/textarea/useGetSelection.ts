@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react"
 import { getTextStyle } from "../../utils"
 
-export type textStyleType = 'b' | 'u' | 'i' | ''
+export type TTextStyleType = 'b' | 'u' | 'i' | ''
 
 const useGetSelection = () => {
   const [selection, setSelection] = useState({
@@ -16,7 +16,7 @@ const useGetSelection = () => {
     })
   }
 
-  const applyStyle = (text: string, setText: Dispatch<SetStateAction<string>>, style: textStyleType) => {
+  const applyStyle = (text: string, setText: Dispatch<SetStateAction<string>>, style: TTextStyleType) => {
     const selectedText = text.substring(selection.start, selection.end)
 
     if(!selectedText) return

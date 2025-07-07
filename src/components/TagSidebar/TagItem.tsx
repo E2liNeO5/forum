@@ -1,15 +1,15 @@
 import styles from './TagSidebar.module.scss'
-import { TTag } from '../../types/tag'
-import { useAppSelector } from '../../hooks/typedHooks'
+import { TTag } from '../../types/tag.types'
 import { useCallback } from 'react'
 import useActions from '../../hooks/useActions'
+import useGetCurrentTags from '../../hooks/tags/useGetCurrentTags'
 
 type Props = {
   item: TTag
 }
 
 const TagItem = ({ item }: Props) => {
-  const { currentTags } = useAppSelector(state => state.tags)
+  const currentTags = useGetCurrentTags()
   const { selectTag } = useActions()
 
   const clickHandler = () => {

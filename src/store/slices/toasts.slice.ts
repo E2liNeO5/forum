@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { TToast, TToastInitialState } from "../../types/toast"
+import { TToast, TToastInitialState } from "../../types/toast.types"
 
 const initialState: TToastInitialState = {
   toasts: []

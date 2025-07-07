@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
-import { TAuthData, TUser } from "../../types/user";
-import { TCustomError } from "../../types/global";
+import { TAuthData, TUser } from "../../types/user.types";
+import { TCustomError } from "../../types/global.types";
 
 export const userApi = createApi({
   reducerPath: 'user/api',

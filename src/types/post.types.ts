@@ -22,6 +22,12 @@ export type TPostsResponse = {
   maxPostsCount: number
 }
 
+export type TPostsHomeParams = {
+  page: number
+  search: string
+  tags: number[]
+}
+
 export type TComment = {
   id: number
   authorId: number

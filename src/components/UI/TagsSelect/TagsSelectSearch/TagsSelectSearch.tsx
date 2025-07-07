@@ -1,6 +1,6 @@
 import { ChangeEvent, useMemo, useState } from 'react'
 import useGetTags from '../../../../hooks/tags/useGetTags'
-import { TTagsSelectItem } from '../../../../types/global'
+import { TTagsSelectItem } from '../../../../types/global.types'
 import TagsSelectItem from '../TagsSelectItem/TagsSelectItem'
 import styles from './TagsSelectSearch.module.scss'
 import useCreatePostSelectTags from '../../../../hooks/tags/useCreatePostSelectTags'

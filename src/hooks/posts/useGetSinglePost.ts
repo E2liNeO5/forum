@@ -1,5 +1,5 @@
 import { useGetSinglePostQuery } from "../../store/api/post.api"
-import { TCustomError } from "../../types/global"
+import { TCustomError } from "../../types/global.types"
 
 const useGetSinglePost = (postId: number) => {
   const data = useGetSinglePostQuery(postId)

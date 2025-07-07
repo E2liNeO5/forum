@@ -1,5 +1,5 @@
 import { useSignInMutation } from "../../store/api/user.api"
-import { TAuthData } from "../../types/user"
+import { TAuthData } from "../../types/user.types"
 import { useNavigate } from "react-router"
 import useActions from "../useActions"
 
