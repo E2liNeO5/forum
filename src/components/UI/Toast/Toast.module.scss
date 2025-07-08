@@ -15,18 +15,47 @@
     border-radius: 5px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
 
-    animation: toastShow 1s linear both;
+    animation: toastShow 1s both;
 
     @keyframes toastShow {
-      0% { bottom: -100%; transform: scale(0.5); }
-      20% { bottom: 0; transform: scale(1) translateY(-20px); }
-      30% { bottom: 0; transform: translateY(0px); }
-      40% { bottom: 0; transform: translateY(-10px); }
-      50% { bottom: 0; transform: translateY(0px); }
-      60% { bottom: 0; transform: translateY(-4px); }
-      80% { bottom: 0; transform: translateY(0px); }
-      90% { bottom: 0; transform: translateY(-2px); }
-      100% { bottom: 0; transform: translateY(0px); }
+      // 0% { bottom: -100%; transform: scale(0.5); }
+      // 20% { bottom: 0; transform: scale(1) translateY(-20px); }
+      // 30% { bottom: 0; transform: translateY(0px); }
+      // 40% { bottom: 0; transform: translateY(-10px); }
+      // 50% { bottom: 0; transform: translateY(0px); }
+      // 60% { bottom: 0; transform: translateY(-4px); }
+      // 80% { bottom: 0; transform: translateY(0px); }
+      // 90% { bottom: 0; transform: translateY(-2px); }
+      // 100% { bottom: 0; transform: translateY(0px); }
+      0% {
+        bottom: -100%;
+        transform: scale(0) translateY(-80px);
+        animation-timing-function: ease-in;
+      }
+      25%, 55%, 75% {
+        bottom: 0;
+        transform: scale(1) translateY(0);
+        animation-timing-function: ease-out;
+      }
+      40% {
+        bottom: 0;
+        transform: translateY(-24px);
+        animation-timing-function: ease-in;
+      }
+      65% {
+        bottom: 0;
+        transform: translateY(-7.1px);
+        animation-timing-function: ease-in;
+      }
+      85% {
+        bottom: 0;
+        transform: translateY(-2.1px);
+        animation-timing-function: ease-in;
+      }
+      95%, 100% {
+        bottom: 0;
+        transform: translateY(0);
+      }
     }
 
     &.fadeOut {

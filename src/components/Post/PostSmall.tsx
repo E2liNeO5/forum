@@ -19,6 +19,7 @@ const PostSmall = ({ item }: Props) => {
         />
       </div>
       <div className={styles.post_back}>
+        <div className={styles.post_date}>Дата: { item.date }</div>
         <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
       </div>
     </Link>

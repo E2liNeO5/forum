@@ -18,7 +18,10 @@ const PostLeft = ({ item }: Props) => {
           className={item.imageSize === 'width' ? styles.size_by_width : styles.size_by_height}
         />
       </div>
-      <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
+      <div className={styles.content_container}>
+        <div className={styles.post_date}>Дата: { item.date }</div>
+        <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
+      </div>
     </Link>
   )
 }

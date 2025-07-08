@@ -24,7 +24,11 @@ const SinglePost = () => {
                 className={post.imageSize === 'width' ? styles.size_by_width : styles.size_by_height}
               />
             </div>
-            <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
+            <div className={styles.content_container}>
+              <div className={styles.post_date}>Дата: { post.date }</div>
+              <div className={styles.post_tags}>Тэги: { post.tags.join(', ') }</div>
+              <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
+            </div>
           </div>
           { post.comments &&
             <>

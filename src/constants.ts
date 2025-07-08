@@ -22,6 +22,6 @@ export const ADMIN_LINKS = [
   }
 ]
 
-export const POSTS_PER_PAGE = 2
+export const POSTS_PER_PAGE = 8
 
 export const SAFE_HTML_TAGS = ['<b>', '<u>', '<i>', '</b>', '</u>', '</i>']

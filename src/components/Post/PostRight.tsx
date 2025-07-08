@@ -10,7 +10,10 @@ type Props = {
 const PostRight = ({ item }: Props) => {
   return (
     <Link  to={`/post/${item.id}`} className={styles.post_item + ' ' + styles.post_right}>
-      <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
+      <div className={styles.content_container}>
+        <div className={styles.post_date}>Дата: { item.date }</div>
+        <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
+      </div>
       <div className={styles.post_info}>
         <div className={styles.post_title}>{ item.title }</div>
         <img

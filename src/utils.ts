@@ -11,9 +11,11 @@ export const localStorageGet = (key: string) => {
   return data ? JSON.parse(data) : data
 }
 
+const getNormalDateValue = (value: number) => String(value).length === 1 ? `0${value}` : value
+
 export const getCurrentDate = () => {
   const now = new Date()
-  return `${now.getDate()}.${now.getMonth() + 1}.${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+  return `${getNormalDateValue(now.getDate())}.${getNormalDateValue(now.getMonth() + 1)}.${now.getFullYear()} ${getNormalDateValue(now.getHours())}:${getNormalDateValue(now.getMinutes())}:${getNormalDateValue(now.getSeconds())}`
 }
 
 export const parseToSafeHtml = (html: string) => {
