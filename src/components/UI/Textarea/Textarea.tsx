@@ -8,7 +8,7 @@ import CustomizationItem from './CustomizationItem/CustomizationItem'
 type Props<T extends FieldValues> = {
   error?: FieldError
   register: UseFormRegisterReturn<string>
-  setValue: UseFormSetValue<T>
+  setValue: UseFormSetValue<any> // any - костыль
   fieldName: Path<T>
 }
 

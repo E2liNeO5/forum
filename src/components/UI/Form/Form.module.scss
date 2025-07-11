@@ -12,20 +12,5 @@
     background-color: var(--mainColor);
     border-radius: 5px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
-
-    .form_btn {
-      background-color: var(--foreignColor);
-      padding: .25em 1em;
-      font-size: 1.5em;
-      color: #fff;
-      border: 2px solid #fff;
-      margin: 1em 0;
-      cursor: pointer;
-      transition: transform .2s;
-
-      &:active {
-        transform: scale(.8);
-      }
-    }
   }
 }

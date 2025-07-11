@@ -12,7 +12,7 @@ const Form = ({ children, button, onSubmit, extraClass }: Props & PropsWithChild
     <div className={styles.form_wrapper}>
       <form className={`${styles.form + (extraClass ? ' ' + extraClass : '')}`} onSubmit={onSubmit}>
         { children }
-        <button className={styles.form_btn}>{button}</button>
+        <button className='btn'>{button}</button>
       </form>
     </div>
   )

@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .25);
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3em;
+    background-color: var(--mainColor);
+    border-radius: 5px;
+    border: 5px solid var(--foreignColor);
+    box-shadow: 0 5px 10px rgba(255, 255, 255, .5);
+
+    .title {
+      margin-bottom: 1em;
+      color: #fff;
+    }
+  }
+}

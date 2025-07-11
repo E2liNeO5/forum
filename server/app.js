@@ -88,6 +88,21 @@ app.get('/get_single_post', async (req, res) => {
   }
 })
 
+
+app.get('/get_user_by_id', async (req, res) => {
+  const { id } = req.query
+  try {
+    const user = await json_db.getTable('users', { condition: item => +item.id === +id })
+    res.json(user)
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({
+      error: 'Произошла ошибка при обработке запроса',
+      message: e.message
+    });
+  }
+})
+
 app.post('/signIn', async (req, res) => {
   const { login, password } = req.body
   
@@ -109,8 +124,9 @@ app.post('/signIn', async (req, res) => {
   }
 })
 
-app.post('/signUp', async (req, res) => {
+app.post('/signUp', upload.single('image'), async (req, res) => {
   const { login, password } = req.body
+  const image = req.file && req.file.filename
   
   try {
     const alreadyExist = await json_db.getTable('users', {
@@ -121,7 +137,7 @@ app.post('/signUp', async (req, res) => {
       throw new Error('Пользователь с таким логином уже существует')
 
     const userId = await json_db.writeToTable('users', {
-      login, password, role: 'user'
+      login, password, role: 'user', image
     })
 
     const user = await json_db.getTable('users', { condition: item => item.id === userId })
@@ -135,6 +151,26 @@ app.post('/signUp', async (req, res) => {
     });
   }
 });
+
+app.get('/get_user_posts', async (req, res) => {
+  const { id } = req.query
+
+  try {
+    const user = await json_db.getTable('users', { condition: user => +user.id === +id })
+
+    if(!user)
+      throw new Error('Пользователь не найден')
+
+    const posts = await json_db.getTable('posts', { isArray: true, condition: post => +user.id === +post.authorId })
+    res.json(posts.map(post => ({ id: post.id, title: post.title, date: post.date })).sort((a, b) => b.id - a.id))
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      error: 'Произошла ошибка при обработке запроса',
+      message: e.message
+    });
+  }
+})
 
 // Запуск сервера
 app.listen(PORT, () => {

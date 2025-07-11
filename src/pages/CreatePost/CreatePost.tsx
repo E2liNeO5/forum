@@ -52,6 +52,7 @@ const CreatePost = () => {
                 register={register('image', {
                   required: true
                 })}
+                fieldName='image'
                 setValue={setValue}
               />
             </div>
@@ -59,7 +60,7 @@ const CreatePost = () => {
             <Textarea
               register={register('text', { required: true })}
               error={errors.text}
-              setValue={setValue} // Хз как решить эту проблемы с дженериками, пока оставить так
+              setValue={setValue}
               fieldName='text'
             />
 

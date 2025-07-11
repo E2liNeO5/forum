@@ -1,18 +1,17 @@
-import { NavLink } from 'react-router'
+import { Link, NavLink, useParams } from 'react-router'
 import styles from './Header.module.scss'
-import { HEADER_LINKS } from '../../constants'
 import useGetUser from '../../hooks/user/useGetUser'
-import LogoutButton from './LogoutButton/LogoutButton'
-import useGetAdminLinks from '../../hooks/user/useGetAdminLinks'
+import useGetUserLinks from '../../hooks/user/useGetUserLinks'
 import { useCallback } from 'react'
+import { SquareUser } from 'lucide-react'
 
 const Header = () => {
   const user = useGetUser()
+  const links = useGetUserLinks()
 
-  const adminLinks = useGetAdminLinks()
+  const { id } = useParams()
 
   const showLinks = useCallback(() => {
-    const links = [...HEADER_LINKS, ...adminLinks]
     return links.map(link =>
       <NavLink
         key={link.title}
@@ -24,12 +23,19 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <div className="logo"><img src="/images/logo.png" alt="logo" height={50} /></div>
+      <Link to='/' className="logo"><img src="/images/logo.png" alt="logo" height={50} /></Link>
       <nav className={styles.nav}>
+        <NavLink to='/' className={ ({isActive}) => `${styles.nav_link} ${isActive ? styles.active : ''}` }>Главная</NavLink>
         { showLinks() }
         { user ?
-            <LogoutButton /> :
-            <NavLink to='/signIn' className={ ({isActive}) => `${styles.nav_link} ${isActive ? styles.active : ''}` }>Войти</NavLink> }
+            <NavLink
+              to={`/profile/${user.id}`}
+              className={ ({isActive}) => `${styles.nav_link} ${styles.profile} ${isActive && id && +id === user.id ? styles.active : ''}` }
+            ><SquareUser size={30} /></NavLink> :
+            <NavLink
+              to='/signIn'
+              className={ ({isActive}) => `${styles.nav_link} ${isActive ? styles.active : ''}` }
+            >Войти</NavLink> }
       </nav>
     </div>
   )

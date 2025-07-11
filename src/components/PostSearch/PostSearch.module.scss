@@ -7,8 +7,21 @@
   padding: 1em;
 
   .search_input {
-    padding: .5em 1em;
+    padding: .75em 1em;
+    background-color: var(--mainColor);
     outline: none;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: box-shadow .2s;
+
+    &:focus {
+      box-shadow: 0 5px 10px var(--foreignColor);
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
   }
 
   .search_reset {

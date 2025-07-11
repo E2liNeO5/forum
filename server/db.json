@@ -1,18 +1,20 @@
 {
   "users": {
-    "lastId": 7,
+    "lastId": 9,
     "data": [
       {
         "id": 1,
         "login": "admin",
         "password": "123",
-        "role": "admin"
+        "role": "admin",
+        "image": "1752045989121iHpMoJMuP6"
       },
       {
         "id": 5,
         "login": "user",
         "password": "123",
-        "role": "user"
+        "role": "user",
+        "image": "1750249749344vertical.jpg"
       }
     ]
   },
@@ -75,7 +77,7 @@
         "id": 10,
         "title": "Тестовый",
         "text": "<b>Lorem, ipsum dolor sit</b> amet consectetur adipisicing elit. Eos tempore tempora quidem perspiciatis quae laborum fugit labore hic necessitatibus sapiente quam possimus architecto dolore alias esse unde veritatis, dolores molestiae dolor voluptatibus consequatur! Suscipit autem quis cupiditate provident error quia, similique, excepturi nam id aperiam voluptates, rerum sed consequuntur esse!\r\nНовая строка\r\nЕщё новая строка",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           2
         ],
@@ -88,7 +90,7 @@
         "id": 11,
         "title": "Другой тестовый",
         "text": "123",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -101,7 +103,7 @@
         "id": 12,
         "title": "123",
         "text": "12312321213",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -114,7 +116,7 @@
         "id": 13,
         "title": "123123",
         "text": "123123",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],
@@ -127,7 +129,7 @@
         "id": 14,
         "title": "123123",
         "text": "123123",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           2
         ],
@@ -140,7 +142,7 @@
         "id": 15,
         "title": "Тестик",
         "text": "Опа",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           2
         ],
@@ -153,7 +155,7 @@
         "id": 16,
         "title": "Ну тестовый пост",
         "text": "111",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           5
         ],
@@ -166,7 +168,7 @@
         "id": 17,
         "title": "Заменят ли нейросети программистов?",
         "text": "Нет, нихрена не заменят, так как <b>нейросети </b>слишком тупые и выдают рандомные ответы, с <u>ошибками</u>, даже если их чётко побуждать учитывать все возможные и дальнейшие ошибки, которые могут возникнут. <i>Программисты, не бойтесь!</i>",
-        "authorId": "1",
+        "authorId": 1,
         "tags": [
           1
         ],

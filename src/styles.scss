@@ -11,6 +11,7 @@
   --mainColor: #4a9697;
   --foreignColor: #544a97;
   --foreignColorOpacity: rgba(84, 74, 151, .5);
+  --foreignColorDark: #2c2464;
   --mainColorOpacity: rgba(74, 150, 151, .5);
   --errorColor: #f48282;
   --invalidColor: #ab0202;
@@ -45,5 +46,24 @@ body {
     &:hover {
       transform: scaleX(1.01);
     }
+  }
+}
+
+.btn {
+  background-color: var(--foreignColor);
+  padding: .25em 1em;
+  font-size: 1.5em;
+  color: #fff;
+  border: 2px solid #fff;
+  margin: 1em 0;
+  cursor: pointer;
+  transition: transform .2s, background-color .2s;
+
+  &:active {
+    transform: scale(.8);
+  }
+
+  &:hover {
+    background-color: var(--foreignColorDark);
   }
 }

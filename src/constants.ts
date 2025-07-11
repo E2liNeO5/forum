@@ -4,11 +4,7 @@ export const TOAST_REMOVE_TIME = 4000
 
 export const USER_KEY = 'user'
 
-export const HEADER_LINKS = [
-  {
-    to: '/',
-    title: 'Главная'
-  },
+export const USER_LINKS = [
   {
     to:'create_post',
     title: 'Написать'
@@ -16,10 +12,6 @@ export const HEADER_LINKS = [
 ]
 
 export const ADMIN_LINKS = [
-  {
-    to: '/test',
-    title: 'Тестовая для админа'
-  }
 ]
 
 export const POSTS_PER_PAGE = 8

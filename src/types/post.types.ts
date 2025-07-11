@@ -28,6 +28,8 @@ export type TPostsHomeParams = {
   tags: number[]
 }
 
+export type TUserPost = Pick<TPost, 'id' | 'title' | 'date'>
+
 export type TComment = {
   id: number
   authorId: number

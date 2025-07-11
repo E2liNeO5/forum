@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100%;
+
+  .answer_btn:last-child {
+    margin-left: 1em;
+  }
+}

@@ -1,32 +1,26 @@
-import { FieldError, UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form'
+import { FieldError, FieldValues, Path, UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form'
 import styles from '../Input.module.scss'
-import stylesFile from './FIleInput.module.scss'
+import stylesFile from './FileInput.module.scss'
 import { ChangeEvent, DragEvent, memo, useCallback, useRef, useState } from 'react'
-import { TCreatePost } from '../../../../types/post.types'
+import { TExtraClass } from '../../../../types/global.types'
+import useExtraClass from '../../../../hooks/useExtraClass'
 
-type extraKeys = keyof (Exclude<Props['classes'], undefined>)
-
-type Props = {
+type Props<T extends FieldValues> = {
   label: string
   error?: FieldError
   register: UseFormRegisterReturn<string>
-  classes?: {
-    label?: string
-    input?: string
-    block?: string
-  }
-  setValue: UseFormSetValue<TCreatePost>
+  classes?: TExtraClass
+  setValue: UseFormSetValue<any> // any - костыль
+  fieldName: Path<T>
 }
 
-const FileInput = ({ label, error, register, classes, setValue }: Props) => {
+const FileInput = <T extends FieldValues>({ label, error, register, classes, setValue, fieldName }: Props<T>) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [imgSrc, setImgSrc] = useState('')
   const [dndClass, setDndClass] = useState('')
 
-  const addExtraClass = useCallback((item: extraKeys) => {
-    return classes && classes[item] ? ' ' + classes[item] : ''
-  }, [])
+  const addExtraClass = useExtraClass(classes)
 
   const dragOverHandler = useCallback((e: DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -41,7 +35,7 @@ const FileInput = ({ label, error, register, classes, setValue }: Props) => {
 
   const dropHandler = useCallback((e: DragEvent<HTMLLabelElement>) => {
     e.preventDefault()
-    setValue('image', e.dataTransfer.files)
+    setValue(fieldName, e.dataTransfer.files as T[Path<T>])
     setImgSrc(URL.createObjectURL(e.dataTransfer.files[0]))
     setDndClass('')
   }, [])
@@ -49,7 +43,7 @@ const FileInput = ({ label, error, register, classes, setValue }: Props) => {
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if(e.target.files) {
       setImgSrc(URL.createObjectURL(e.target.files[0]))
-      setValue('image', e.target.files)
+      setValue(fieldName, e.target.files as T[Path<T>])
     }
   }
 
