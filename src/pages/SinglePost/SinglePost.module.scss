@@ -30,7 +30,11 @@
       padding: 1em;
     }
 
-    .post_date {
+    .post_details {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
       padding: .75em;
       color: #fff;
       background-color: var(--foreignColor);
@@ -61,6 +65,26 @@
         }
         95%, 100% {
           transform: translateY(0);
+        }
+      }
+
+      .post_user {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+        transition: color .2s;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--foreignColorDark);
+        }
+
+        img {
+          border: 1px solid var(--mainColor);
+          border-radius: 5px;
+          height: 50px;
+          margin-right: 10px;
         }
       }
     }

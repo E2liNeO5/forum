@@ -1,10 +1,10 @@
-import styles from './PostItem.module.scss'
-import { TPost } from '../../types/post.types'
+import styles from './Post.module.scss'
+import { TSinglePost } from '../../types/post.types'
 import { Link } from 'react-router'
 import { parseToSafeHtml } from '../../utils'
 
 type Props = {
-  item: TPost
+  item: TSinglePost
 }
 
 const PostSmall = ({ item }: Props) => {
@@ -19,7 +19,11 @@ const PostSmall = ({ item }: Props) => {
         />
       </div>
       <div className={styles.post_back}>
-        <div className={styles.post_date}>Дата: { item.date }</div>
+        <div className={styles.post_details}>
+          <div className={styles.post_author}>Автор: { item.user.login }</div>
+          <div className={styles.post_date}>Дата: { item.date }</div>
+        </div>
+        
         <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(item.text) }} />
       </div>
     </Link>

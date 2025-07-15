@@ -15,7 +15,7 @@ type Props<T extends FieldValues> = {
 const Textarea = <T extends FieldValues>({ error, register, setValue, fieldName }: Props<T>) => {
   const [text, setText] = useState('')
 
-  const { getSelection, applyStyle } = useGetSelection()
+  const { getSelection, applyStyle } = useGetSelection(text, setText)
 
   const changeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)
 
@@ -33,9 +33,9 @@ const Textarea = <T extends FieldValues>({ error, register, setValue, fieldName 
         value={text}
       />
       <div className={styles.font_customization_container}>
-        <CustomizationItem icon={Bold} click={() => applyStyle(text, setText, 'b')}/>
-        <CustomizationItem icon={Italic} click={() => applyStyle(text, setText, 'i')}/>
-        <CustomizationItem icon={Underline} click={() => applyStyle(text, setText, 'u')}/>
+        <CustomizationItem icon={Bold} click={() => applyStyle('b')}/>
+        <CustomizationItem icon={Italic} click={() => applyStyle('i')}/>
+        <CustomizationItem icon={Underline} click={() => applyStyle('u')}/>
       </div>
     </div>
   )

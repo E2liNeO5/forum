@@ -4,18 +4,44 @@
   align-items: center;
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, .25);
+  z-index: 99;
+
+  .overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .25);
+    inset: 0;
+    z-index: 1;
+  }
 
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width: 90dvw;
+    max-height: 90dvh;
     padding: 3em;
     background-color: var(--mainColor);
     border-radius: 5px;
     border: 5px solid var(--foreignColor);
     box-shadow: 0 5px 10px rgba(255, 255, 255, .5);
+    position: relative;
+    z-index: 2;
+
+    .close_btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: #fff;
+      background-color: var(--foreignColor);
+      padding: 5px;
+      transition: background-color .2s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--foreignColorDark);
+      }
+    }
 
     .title {
       margin-bottom: 1em;

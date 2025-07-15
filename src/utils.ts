@@ -28,8 +28,6 @@ export const parseToSafeHtml = (html: string) => {
   return safeHtml
 }
 
-export const getTextStyle = (text: string, style: TTextStyleType) => style ? `<${style}>${text}</${style}>` : text
-
 export const getPostSearchCondition = (post: TPost, search: string) => {
   return post.title.toLowerCase().indexOf(search) >= 0 || post.text.toLowerCase().indexOf(search) >= 0
 }

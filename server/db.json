@@ -19,7 +19,7 @@
     ]
   },
   "posts": {
-    "lastId": 17,
+    "lastId": 18,
     "data": [
       {
         "id": 6,
@@ -176,6 +176,20 @@
         "imageSize": "width",
         "comments": [],
         "image": "175092834430300180-2362"
+      },
+      {
+        "id": 18,
+        "title": "Тест переноса строк",
+        "text": "<b>Первая</b> строка\r\nВторая <i>строка</i>\r\n<u>Третья</u> строка",
+        "authorId": "1",
+        "tags": [
+          4
+        ],
+        "date": "15.07.2025 11:17:48",
+        "imageSize": "width",
+        "comments": [],
+        "author_id": null,
+        "image": "1752567468019God of War"
       }
     ]
   }

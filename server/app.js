@@ -61,9 +61,18 @@ app.get('/get_posts', async (req, res) => {
       }
     })
 
+    const authorIds = posts.map(post => +post.authorId)
+    const users = await json_db.getTable('users', { isArray: true, condition: user => authorIds.includes(+user.id) })
+
     const maxPostsCount = posts.length
 
-    const postsOnPage = posts.sort((a, b) => b.id - a.id).splice((page - 1) * postsAmount, postsAmount)
+    const postsOnPage = posts
+                          .sort((a, b) => b.id - a.id)
+                          .splice((page - 1) * postsAmount, postsAmount)
+                          .map(post => {
+                            post.user = users.find(user => +user.id === +post.authorId)
+                            return post
+                          })
     res.json({ postsOnPage, maxPostsCount })
   } catch(e) {
     console.error(e);
@@ -78,6 +87,8 @@ app.get('/get_single_post', async (req, res) => {
   const { postId } = req.query
   try {
     const post = await json_db.getTable('posts', { condition: item => +item.id === +postId })
+    const user = await json_db.getTable('users', { condition: user => +user.id === +post.authorId })
+    post.user = user
     res.json(post)
   } catch(e) {
     console.error(e);

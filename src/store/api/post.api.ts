@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL, POSTS_PER_PAGE } from "../../constants";
 import { TCustomError } from "../../types/global.types";
-import { TPost, TPostData, TPostsHomeParams, TPostsResponse } from "../../types/post.types";
+import { TPost, TPostData, TPostsHomeParams, TPostsResponse, TSinglePost } from "../../types/post.types";
 import { getCurrentDate } from "../../utils";
 
 export const postApi = createApi({
@@ -22,7 +22,7 @@ export const postApi = createApi({
       }),
       providesTags: () => [{ type: 'posts' }]
     }),
-    getSinglePost: builder.query<TPost, number>({
+    getSinglePost: builder.query<TSinglePost, number>({
       query: postId => ({
         params: { postId },
         url: '/get_single_post',

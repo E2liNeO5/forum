@@ -1,5 +1,5 @@
 import styles from './SinglePost.module.scss'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import Comments from '../../components/Comments/Comments'
 import useGetSinglePost from '../../hooks/posts/useGetSinglePost'
 import Loading from '../../components/UI/Loading/Loading'
@@ -25,7 +25,13 @@ const SinglePost = () => {
               />
             </div>
             <div className={styles.content_container}>
-              <div className={styles.post_date}>Дата: { post.date }</div>
+              <div className={styles.post_details}>
+                <Link to={`/profile/${post.user.id}`} className={styles.post_user}>
+                  <img src={`/upload/${post.user.image}`} alt="user avatar" />
+                  <span className={styles.post_author}>Автор: { post.user.login }</span>
+                </Link>
+                <div className={styles.post_data}>Дата: { post.date }</div>
+              </div>
               <div className={styles.post_tags}>Тэги: { post.tags.join(', ') }</div>
               <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
             </div>

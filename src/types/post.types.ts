@@ -1,3 +1,5 @@
+import { TUser } from "./user.types"
+
 export type TPost = {
   id: number
   title: string
@@ -18,7 +20,7 @@ export type TCreatePost = Pick<TPost, 'title' | 'text'> & {
 export type TPostData = Pick<TPost, 'date' | 'authorId' | 'imageSize'> & TCreatePost
 
 export type TPostsResponse = {
-  postsOnPage: TPost[]
+  postsOnPage: TSinglePost[]
   maxPostsCount: number
 }
 
@@ -29,6 +31,10 @@ export type TPostsHomeParams = {
 }
 
 export type TUserPost = Pick<TPost, 'id' | 'title' | 'date'>
+
+export type TSinglePost = TPost & {
+  user: TUser
+}
 
 export type TComment = {
   id: number

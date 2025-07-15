@@ -57,9 +57,13 @@
       }
     }
 
-    .post_date {
-      font-size: .75rem;
+    .post_details {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 2px solid #fff;
+      font-size: .75rem;
       padding-bottom: 5px;
       margin-bottom: 5px;
     }
@@ -78,7 +82,7 @@
         display: flex;
         flex-direction: column;
 
-        .post_date {
+        .post_details {
           border-color: var(--mainColor);
         }
       }

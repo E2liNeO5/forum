@@ -1,20 +1,19 @@
 import { useEffect, useMemo, useState } from "react"
-import styles from '../components/Post/PostItem.module.scss'
+import styles from '../components/Post/Post.module.scss'
 import PostSmall from "../components/Post/PostSmall"
 import useGetPosts from "../hooks/posts/useGetPosts"
-import PostLeft from "../components/Post/PostLeft"
-import PostRight from "../components/Post/PostRight"
 import TagSidebar from "../components/TagSidebar/TagSidebar"
 import ErrorPage from "./ErrorPage/ErrorPage"
 import Loading from "../components/UI/Loading/Loading"
-import { TPost } from "../types/post.types"
+import { TSinglePost } from "../types/post.types"
 import PostSearch from "../components/PostSearch/PostSearch"
 import { getPostSearchCondition } from "../utils"
 import useGetCurrentTags from "../hooks/tags/useGetCurrentTags"
+import Post from "../components/Post/Post"
 
 function Home() {
   const [page, setPage] = useState(1)
-  const [loadedPosts, setLoadedPosts] = useState<TPost[]>([])
+  const [loadedPosts, setLoadedPosts] = useState<TSinglePost[]>([])
   const [search, setSearch] = useState('')
 
   const { isLoading, error, posts, maxPostsCount } = useGetPosts(page, search)
@@ -28,9 +27,9 @@ function Home() {
         count = 1
 
       if(count === 1)
-        return <PostLeft key={item.id} item={item} />
+        return <Post key={item.id} item={item} side='left' />
       else if(count === 4) {
-        return <PostRight key={item.id} item={item} />
+        return <Post key={item.id} item={item} side='right' />
       } else {
         return <PostSmall key={item.id} item={item} />
       }
