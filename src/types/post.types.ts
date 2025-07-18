@@ -35,10 +35,3 @@ export type TUserPost = Pick<TPost, 'id' | 'title' | 'date'>
 export type TSinglePost = TPost & {
   user: TUser
 }
-
-export type TComment = {
-  id: number
-  authorId: number
-  text: number
-  date: string
-}

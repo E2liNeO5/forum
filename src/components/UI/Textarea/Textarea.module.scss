@@ -1,13 +1,11 @@
-.post_text_container {
-  display: flex;
+.text_container {
+  display: grid;
+  grid-template-columns: 90% 9%;
   justify-content: space-between;
-  align-items: center;
-  flex-flow: row nowrap;
   width: 80%;
   margin: 1em;
 
-  .post_text {
-    width: 89%;
+  .text {
     min-height: 150px;
     outline: none;
     border: 3px solid var(--foreignColor);
@@ -36,7 +34,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 10%;
     height: 150px;
     border: 3px solid var(--foreignColor);
     background-color: var(--foreignColor);

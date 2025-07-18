@@ -5,6 +5,7 @@ import useGetSinglePost from '../../hooks/posts/useGetSinglePost'
 import Loading from '../../components/UI/Loading/Loading'
 import { parseToSafeHtml } from '../../utils'
 import DivideLine from '../../components/UI/DivideLine/DivideLine'
+import CommentCreate from '../../components/Comments/CommentCreate/CommentCreate'
 
 const SinglePost = () => {
   const { id } = useParams()
@@ -39,7 +40,9 @@ const SinglePost = () => {
           { post.comments &&
             <>
               <DivideLine width='80%' />
-              <Comments id={post.id} />
+              <h3 className={styles.comments_title}>Комментарии: </h3>
+              <CommentCreate postId={post.id} />
+              <Comments postId={post.id} />
             </> }
         </>
       }

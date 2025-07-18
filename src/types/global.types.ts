@@ -15,4 +15,7 @@ export type TExtraClass = {
   label?: string
   input?: string
   block?: string
+  form?: string
+  wrapper?: string
+  button?: string
 }

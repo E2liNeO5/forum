@@ -29,6 +29,14 @@ const upload = multer({
     storage: storage
 })
 
+const getError = (res, e) => {
+  console.error(e)
+  res.status(500).json({
+    error: 'Произошла ошибка при обработке запроса',
+    message: e.message
+  })
+}
+
 app.post('/create_post', upload.single('image'), async (req, res) => {
   const image = req.file && req.file.filename
   const postData = req.body
@@ -75,11 +83,7 @@ app.get('/get_posts', async (req, res) => {
                           })
     res.json({ postsOnPage, maxPostsCount })
   } catch(e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
   }
 })
 
@@ -91,11 +95,7 @@ app.get('/get_single_post', async (req, res) => {
     post.user = user
     res.json(post)
   } catch(e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
   }
 })
 
@@ -106,11 +106,7 @@ app.get('/get_user_by_id', async (req, res) => {
     const user = await json_db.getTable('users', { condition: item => +item.id === +id })
     res.json(user)
   } catch(e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
   }
 })
 
@@ -127,11 +123,7 @@ app.post('/signIn', async (req, res) => {
 
     res.json(user)
   } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
   }
 })
 
@@ -155,11 +147,7 @@ app.post('/signUp', upload.single('image'), async (req, res) => {
 
     res.json(user)
   } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
   }
 });
 
@@ -175,11 +163,45 @@ app.get('/get_user_posts', async (req, res) => {
     const posts = await json_db.getTable('posts', { isArray: true, condition: post => +user.id === +post.authorId })
     res.json(posts.map(post => ({ id: post.id, title: post.title, date: post.date })).sort((a, b) => b.id - a.id))
   } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      error: 'Произошла ошибка при обработке запроса',
-      message: e.message
-    });
+    getError(res, e)
+  }
+})
+
+app.get('/get_post_comments', async (req, res) => {
+  const { postId } = req.query
+  try {
+    const post = await json_db.getTable('posts', { condition: post => +post.id === +postId })
+    const comments = await json_db.getTable('comments', { isArray: true, condition: comment => post.comments.includes(+comment.id) })
+    const authorIds = comments.map(comment => +comment.authorId)
+    const users = await json_db.getTable('users', { isArray: true, condition: user => authorIds.includes(+user.id) })
+    const response = comments
+                      .sort((a, b) => b.id - a.id)
+                      .map(comment => {
+                        comment.user = users.find(user => +user.id === +comment.authorId)
+                        return comment
+                      })
+    res.json(response)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/create_comment', async (req, res) => {
+  const { authorId, date, text, postId } = req.body
+  try {
+    const newIds = await json_db.writeToTable('comments', {
+      authorId,
+      date,
+      text,
+      postId
+    })
+    const post = await json_db.getTable('posts', { condition: post => +post.id === +postId })
+    await json_db.updateFromTable('posts', post => +post.id === +postId, {
+      comments: [newIds[0], ...post.comments]
+    })
+    res.json({ newIds })
+  } catch (e) {
+    getError(res, e)
   }
 })
 

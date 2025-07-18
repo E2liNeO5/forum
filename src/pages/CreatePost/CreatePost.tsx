@@ -30,7 +30,9 @@ const CreatePost = () => {
       {
         user ?
         (
-          <Form button='Создать' onSubmit={handleSubmit(onSubmit)} extraClass={styles.post_form}>
+          <Form button='Создать' onSubmit={handleSubmit(onSubmit)} classes={{
+            form: styles.post_form
+          }}>
             <div className={styles.split_fields}>
               <Input
                 classes={{

@@ -1,5 +1,4 @@
 import { SAFE_HTML_TAGS } from "./constants"
-import { TTextStyleType } from "./hooks/textarea/useGetSelection"
 import { TPost } from "./types/post.types"
 
 export const localStorageSet = (key: string, data: any) => {
@@ -15,7 +14,18 @@ const getNormalDateValue = (value: number) => String(value).length === 1 ? `0${v
 
 export const getCurrentDate = () => {
   const now = new Date()
-  return `${getNormalDateValue(now.getDate())}.${getNormalDateValue(now.getMonth() + 1)}.${now.getFullYear()} ${getNormalDateValue(now.getHours())}:${getNormalDateValue(now.getMinutes())}:${getNormalDateValue(now.getSeconds())}`
+  const date = [
+    `${getNormalDateValue(now.getDate())}`,
+    `${getNormalDateValue(now.getMonth() + 1)}`,
+    `${now.getFullYear()}`
+  ].join('.')
+  const time = [
+    `${getNormalDateValue(now.getHours())}`,
+    `${getNormalDateValue(now.getMinutes())}`,
+    `${getNormalDateValue(now.getSeconds())}`
+  ].join(':')
+
+  return `${date} ${time}`
 }
 
 export const parseToSafeHtml = (html: string) => {

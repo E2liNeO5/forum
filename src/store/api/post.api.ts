@@ -3,11 +3,12 @@ import { BASE_URL, POSTS_PER_PAGE } from "../../constants";
 import { TCustomError } from "../../types/global.types";
 import { TPost, TPostData, TPostsHomeParams, TPostsResponse, TSinglePost } from "../../types/post.types";
 import { getCurrentDate } from "../../utils";
+import { TComment, TCommentData, TPostComment } from "../../types/comment.types";
 
 export const postApi = createApi({
   reducerPath: 'post/api',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<string | FetchArgs, unknown, TCustomError, {}>,
-  tagTypes: ['posts'],
+  tagTypes: ['posts', 'comments'],
   endpoints: builder => ({
     getPosts: builder.query<TPostsResponse, TPostsHomeParams>({
       query: req => ({
@@ -47,8 +48,30 @@ export const postApi = createApi({
         }
       },
       invalidatesTags: () => [{ type: 'posts' }]
+    }),
+    getPostComments: builder.query<TPostComment[], number>({
+      query: postId => ({
+        url: '/get_post_comments',
+        params: { postId },
+        method: 'GET'
+      }),
+      providesTags: () => [{ type: 'comments' }]
+    }),
+    createComment: builder.mutation<TComment, TCommentData>({
+      query: comment => ({
+        url: '/create_comment',
+        body: comment,
+        method: 'POST'
+      }),
+      invalidatesTags: () => [{ type: 'comments' }]
     })
   })
 })
 
-export const { useCreatePostMutation, useGetPostsQuery, useGetSinglePostQuery } = postApi
+export const {
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useGetSinglePostQuery,
+  useGetPostCommentsQuery,
+  useCreateCommentMutation
+} = postApi

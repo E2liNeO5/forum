@@ -4,29 +4,40 @@ import { ChangeEvent, memo, useEffect, useState } from 'react'
 import useGetSelection from '../../../hooks/textarea/useGetSelection'
 import { Bold, Italic, Underline } from 'lucide-react'
 import CustomizationItem from './CustomizationItem/CustomizationItem'
+import { TExtraClass } from '../../../types/global.types'
+import useExtraClass from '../../../hooks/useExtraClass'
 
 type Props<T extends FieldValues> = {
   error?: FieldError
   register: UseFormRegisterReturn<string>
   setValue: UseFormSetValue<any> // any - костыль
   fieldName: Path<T>
+  classes?: TExtraClass
+  isReset?: boolean
 }
 
-const Textarea = <T extends FieldValues>({ error, register, setValue, fieldName }: Props<T>) => {
+const Textarea = <T extends FieldValues>({ error, register, setValue, fieldName, classes, isReset }: Props<T>) => {
   const [text, setText] = useState('')
-
   const { getSelection, applyStyle } = useGetSelection(text, setText)
 
-  const changeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)
+  const addExtraClass = useExtraClass(classes)
+
+  const changeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value)
+    setValue(fieldName, e.target.value as T[Path<T>])
+  }
 
   useEffect(() => {
-    setValue(fieldName, text as T[Path<T>])
-  }, [text])
+    if(isReset) {
+      setText('')
+      setValue(fieldName, '' as T[Path<T>])
+    }
+  }, [isReset])
 
   return (
-    <div className={styles.post_text_container}>
+    <div className={`${styles.text_container + (addExtraClass('wrapper'))}`}>
       <textarea
-        className={`${styles.post_text + (error ? ' ' + styles.invalid : '')}`}
+        className={`${styles.text + (error ? ' ' + styles.invalid : '')}`}
         { ...register }
         onChange={changeHandler}
         onSelect={getSelection}

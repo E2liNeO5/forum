@@ -1,0 +1,18 @@
+.form_wrapper {
+  width: 85%;
+  margin: 0 auto;
+  justify-content: flex-start !important;
+
+  .form {
+    padding: 1em;
+
+    .form_btn {
+      margin: 0;
+      align-self: flex-start;
+    }
+  }
+
+  .textarea_wrapper {
+    width: 100%;
+  }
+}
