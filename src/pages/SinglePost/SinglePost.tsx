@@ -26,21 +26,23 @@ const SinglePost = () => {
             </div>
             <div className={styles.content_container}>
               <div className={styles.post_details}>
-                <Link to={`/profile/${post.user.id}`} className={styles.post_user}>
-                  <img src={`/upload/${post.user.image}`} alt="user avatar" />
-                  <span className={styles.post_author}>Автор: { post.user.login }</span>
-                </Link>
+                <div className={styles.post_user}>
+                  <img src={`/upload/${post.user.image}`} className={styles.user_image} alt="user avatar" />
+                  <div>
+                    Автор:
+                    <Link to={`/profile/${post.user.id}`} className={styles.user_name}>
+                      { ' ' + post.user.login }
+                    </Link>
+                  </div>
+                </div>
                 <div className={styles.post_data}>Дата: { post.date }</div>
               </div>
               <div className={styles.post_tags}>Тэги: { post.tags.join(', ') }</div>
               <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
             </div>
           </div>
-          { post.comments &&
-            <>
-              <DivideLine width='80%' />
-              <Comments postId={post.id} />
-            </> }
+          <DivideLine width='80%' />
+          <Comments postId={post.id} />
         </>
       }
     </>

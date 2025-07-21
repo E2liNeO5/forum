@@ -1,4 +1,4 @@
-import { SAFE_HTML_TAGS } from "./constants"
+import { SAFE_HTML_TAGS, USER_KEY } from "./constants"
 import { TPost } from "./types/post.types"
 
 export const localStorageSet = (key: string, data: any) => {
@@ -35,6 +35,19 @@ export const parseToSafeHtml = (html: string) => {
     if(!SAFE_HTML_TAGS.includes(tag))
       safeHtml = safeHtml.replace(tag, '')
   })
+
+  const userNames = safeHtml.match(/\{[^\}]+\}/g)
+  const currentUser = localStorageGet(USER_KEY)
+  userNames?.forEach(userData => {
+    try {
+      const data = JSON.parse(userData)
+      if(data && data.id && data.login)
+        safeHtml = safeHtml.replace(userData, `<span class="${currentUser && +currentUser.id === +data.id ? 'private_comment' : ''}">${data.login}</span>`)
+    } catch(e) {
+      console.error(e)
+    }
+  })
+
   return safeHtml
 }
 

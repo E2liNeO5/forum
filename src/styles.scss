@@ -67,3 +67,25 @@ body {
     background-color: var(--foreignColorDark);
   }
 }
+
+.private_comment {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  text-decoration: underline;
+  overflow: visible;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
+    background-color: var(--foreignColor);
+    filter: blur(4px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+}

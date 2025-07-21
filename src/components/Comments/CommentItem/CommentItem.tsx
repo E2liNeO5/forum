@@ -1,27 +1,45 @@
+import { useCallback } from 'react'
 import { parseToSafeHtml } from '../../../utils'
 import styles from './CommentItem.module.scss'
+import useActions from '../../../hooks/useActions'
+import { Link } from 'react-router'
 
 type Props = {
   text: string
+  authorId: number
   authorName: string
   authorImage: string
   date: string
 }
 
-const CommentItem = ({ text, authorImage, authorName, date }: Props) => {
+const CommentItem = ({ text, authorId, authorImage, authorName, date }: Props) => {
+  const { addToTextarea } = useActions()
+
+  const answerHandler = useCallback(() => {
+    addToTextarea(`<@${authorId}|${authorName},> `)
+  }, [authorId])
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.details}>
         <div className={styles.author}>
           <img className={styles.author_image} src={`/upload/${authorImage}`} alt="author_image" />
-          <div>Автор: <span className={styles.author_name}>{ authorName }</span></div>
+          <div className={styles.author_details}>
+            <div>
+              Автор: <Link to={`/profile/${authorId}`} className={styles.author_name}>{ authorName }</Link>
+            </div>
+            <div className={styles.answer} onClick={answerHandler}>
+              Ответить
+            </div>
+          </div>
         </div>
 
         <div className={styles.date}>
           Дата: { date }
         </div>
       </div>
-      <div className={styles.text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(text) }} />
+      <div className={styles.text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(text) }}>
+      </div>
     </div>
   )
 }

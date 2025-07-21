@@ -14,6 +14,7 @@
     justify-content: space-between;
     align-items: center;
     flex-flow: row nowrap;
+    width: 100%;
     border-bottom: 2px solid #fff;
     padding-bottom: 10px;
 
@@ -24,13 +25,32 @@
       flex-flow: row nowrap;
       margin-right: 1em;
 
-      .author_name {
-        color: #fff;
-        transition: color .2s;
-        cursor: pointer;
+      .author_details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
-        &:hover {
-          color: var(--foreignColor);
+        .author_name {
+          color: #fff;
+          text-decoration: none;
+          transition: color .2s;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--foreignColor);
+          }
+        }
+
+        .answer {
+          font-size: .7rem;
+          margin-top: 1em;
+          color: #fff;
+          transition: color .2s;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--foreignColorDark)
+          }
         }
       }
 
@@ -52,7 +72,6 @@
 
   .text {
     margin-top: 1em;
-    margin-left: 1em;
     word-wrap: break-word;
     word-break: break-word;
     white-space: pre-wrap;

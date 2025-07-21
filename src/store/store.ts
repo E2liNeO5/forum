@@ -4,11 +4,13 @@ import { userApi } from "./api/user.api";
 import { toastsReducer } from "./slices/toasts.slice";
 import { userReducer } from "./slices/user.slice";
 import { postApi } from "./api/post.api";
+import { textareaReducer } from "./slices/textarea.slice";
 
 const reducers = combineReducers({
   tags: tagsReducer,
   toast: toastsReducer,
   user: userReducer,
+  textarea: textareaReducer,
   [userApi.reducerPath]: userApi.reducer,
   [postApi.reducerPath]: postApi.reducer
 })

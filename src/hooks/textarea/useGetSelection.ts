@@ -1,12 +1,15 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useCallback, useState } from "react"
+import { SyntheticEvent, useCallback, useState } from "react"
+import useActions from "../useActions"
 
 export type TTextStyleType = 'b' | 'u' | 'i' | ''
 
-const useGetSelection = (text: string, setText: Dispatch<SetStateAction<string>>) => {
+const useGetSelection = (text: string) => {
   const [selection, setSelection] = useState({
     start: 0,
     end: 0
   })
+
+  const { setTextareaText } = useActions()
 
   const getSelection = (e: SyntheticEvent<HTMLTextAreaElement>) => {
     setSelection({
@@ -23,7 +26,7 @@ const useGetSelection = (text: string, setText: Dispatch<SetStateAction<string>>
 
     const startText = text.substring(0, selection.start)
     const endText = text.substring(selection.end)
-    setText(`${startText}${getTextStyle(selectedText, style)}${endText}`)
+    setTextareaText(`${startText}${getTextStyle(selectedText, style)}${endText}`)
   }, [selection])
 
   return { getSelection, applyStyle }

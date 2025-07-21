@@ -4,8 +4,8 @@ import Textarea from '../../UI/Textarea/Textarea'
 import styles from './CommentCreate.module.scss'
 import { TCommentData, TCommentItem } from '../../../types/comment.types'
 import useCreateComment from '../../../hooks/posts/useCreateComment'
-import useTextareaReset from '../../../hooks/textarea/useTextareaReset'
 import { Dispatch, SetStateAction } from 'react'
+import useActions from '../../../hooks/useActions'
 
 type Props = {
   postId: number
@@ -14,18 +14,17 @@ type Props = {
 
 const CommentCreate = ({ postId, setLoadedComments }: Props) => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<TCommentData>()
-  const { reset, isReset } = useTextareaReset()
+  const { resetTextarea } = useActions()
   const createComment = useCreateComment()
 
   const onSubmit: SubmitHandler<TCommentData> = async (data: TCommentData) => {
     createComment(data, postId)
       .then(result => {
-        console.log(result)
         if(result)
           setLoadedComments(prev => ([result, ...prev]))
       })
       .finally(() => {
-        reset()
+        resetTextarea()
       })
   }
 
@@ -47,7 +46,6 @@ const CommentCreate = ({ postId, setLoadedComments }: Props) => {
         classes={{
           wrapper: styles.textarea_wrapper
         }}
-        isReset={isReset}
       />
     </Form>
   )

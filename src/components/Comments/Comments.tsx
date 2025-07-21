@@ -41,6 +41,7 @@ const Comments = ({ postId }: Props) => {
               <CommentItem
                 key={comment.id}
                 text={comment.text}
+                authorId={comment.user.id}
                 authorImage={comment.user.image}
                 authorName={comment.user.login}
                 date={comment.date}

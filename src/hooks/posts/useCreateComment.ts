@@ -12,6 +12,14 @@ const useCreateComment = () => {
 
   const createComment = async (data: TCommentData, postId: number) => {
     try {
+      const addressees = data.text.match(/<@[0-9]\|\D[^>]+>/g) //<@id|login>
+      addressees?.forEach(address => {
+        const addressData = address.split('|')
+        const id = addressData[0].replace('<@', '')
+        const login = addressData[1].replace('>', '')
+        data.text = data.text.replace(address, `{\"id\":${id}, \"login\": \"${login}\"}`)
+      })
+
       const date = getCurrentDate()
       const response = await mutate({
         ...data,
@@ -31,7 +39,6 @@ const useCreateComment = () => {
     } catch (e: any) {
       throw new Error(e)
     }
-    
   }
 
   return createComment
