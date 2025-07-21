@@ -168,19 +168,21 @@ app.get('/get_user_posts', async (req, res) => {
 })
 
 app.get('/get_post_comments', async (req, res) => {
-  const { postId } = req.query
+  const { postId, page, commentsCount } = req.query
   try {
     const post = await json_db.getTable('posts', { condition: post => +post.id === +postId })
     const comments = await json_db.getTable('comments', { isArray: true, condition: comment => post.comments.includes(+comment.id) })
     const authorIds = comments.map(comment => +comment.authorId)
     const users = await json_db.getTable('users', { isArray: true, condition: user => authorIds.includes(+user.id) })
-    const response = comments
+    const maxComments = comments.length
+    const commentsOnPage = comments
                       .sort((a, b) => b.id - a.id)
+                      .splice((page - 1) * commentsCount, commentsCount)
                       .map(comment => {
                         comment.user = users.find(user => +user.id === +comment.authorId)
                         return comment
                       })
-    res.json(response)
+    res.json({ commentsOnPage, maxComments })
   } catch (e) {
     getError(res, e)
   }
@@ -199,7 +201,10 @@ app.post('/create_comment', async (req, res) => {
     await json_db.updateFromTable('posts', post => +post.id === +postId, {
       comments: [newIds[0], ...post.comments]
     })
-    res.json({ newIds })
+    const comment = await json_db.getTable('comments', { condition: comment => +comment.id === +newIds[0] })
+    const author = await json_db.getTable('users', { condition: user => +user.id === +comment.authorId })
+    comment.user = author
+    res.json(comment)
   } catch (e) {
     getError(res, e)
   }

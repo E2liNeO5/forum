@@ -1,9 +1,9 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BASE_URL, POSTS_PER_PAGE } from "../../constants";
+import { BASE_URL, COMMENTS_PER_PAGE, POSTS_PER_PAGE } from "../../constants";
 import { TCustomError } from "../../types/global.types";
 import { TPost, TPostData, TPostsHomeParams, TPostsResponse, TSinglePost } from "../../types/post.types";
 import { getCurrentDate } from "../../utils";
-import { TComment, TCommentData, TPostComment } from "../../types/comment.types";
+import { TCommentData, TCommentItem, TCommentOnPostData, TPostComment } from "../../types/comment.types";
 
 export const postApi = createApi({
   reducerPath: 'post/api',
@@ -49,15 +49,19 @@ export const postApi = createApi({
       },
       invalidatesTags: () => [{ type: 'posts' }]
     }),
-    getPostComments: builder.query<TPostComment[], number>({
-      query: postId => ({
+    getPostComments: builder.query<TPostComment, TCommentOnPostData>({
+      query: data => ({
         url: '/get_post_comments',
-        params: { postId },
+        params: {
+          postId: data.postId,
+          page: data.page,
+          commentsCount: COMMENTS_PER_PAGE
+        },
         method: 'GET'
       }),
       providesTags: () => [{ type: 'comments' }]
     }),
-    createComment: builder.mutation<TComment, TCommentData>({
+    createComment: builder.mutation<TCommentItem, TCommentData>({
       query: comment => ({
         url: '/create_comment',
         body: comment,

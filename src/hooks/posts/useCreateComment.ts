@@ -11,19 +11,27 @@ const useCreateComment = () => {
   const user = useGetUser()
 
   const createComment = async (data: TCommentData, postId: number) => {
-    const date = getCurrentDate()
-    const response = await mutate({
-      ...data,
-      date,
-      authorId: user?.id || 0,
-      postId
-    })
-    if(response.error && 'data' in response.error)
-      addToast({
-        id: Date.now(),
-        text: response.error && response.error.data.message,
-        type: 'error'
+    try {
+      const date = getCurrentDate()
+      const response = await mutate({
+        ...data,
+        date,
+        authorId: user?.id || 0,
+        postId
       })
+      if(response.error && 'data' in response.error) {
+        addToast({
+          id: Date.now(),
+          text: response.error.data.message,
+          type: 'error'
+        })
+        throw new Error(response.error.data.message)
+      }
+      return response.data
+    } catch (e: any) {
+      throw new Error(e)
+    }
+    
   }
 
   return createComment

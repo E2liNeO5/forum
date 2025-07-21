@@ -11,6 +11,16 @@ export type TCommentData = Pick<TComment, 'text' | 'date' | 'authorId'> & {
   postId: number
 }
 
-export type TPostComment = TComment & {
+export type TCommentItem = TComment & {
   user: TUser
+}
+
+export type TPostComment = {
+  commentsOnPage: TCommentItem[]
+  maxComments: number
+}
+
+export type TCommentOnPostData = {
+  postId: number
+  page: number
 }
