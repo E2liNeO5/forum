@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 1em;
+  margin: 1em;
+  background-color: var(--foreignColor);
+  color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      margin: 0 .25em;
+      color: #fff;
+      outline: none;
+      border: none;
+      transition: background-color .2s;
+      cursor: pointer;
+
+      &.green {
+        background-color: green;
+
+        &:hover {
+          background-color: var(--successColor);
+        }
+      }
+
+      &.red {
+        background-color: red;
+
+        &:hover {
+          background-color: var(--errorColor);
+        }
+      }
+    }
+  }
+}

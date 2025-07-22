@@ -37,7 +37,7 @@ const SinglePost = () => {
                 </div>
                 <div className={styles.post_data}>Дата: { post.date }</div>
               </div>
-              <div className={styles.post_tags}>Тэги: { post.tags.join(', ') }</div>
+              <div className={styles.post_tags}>Тэги: { post.tagsByName.join(', ') }</div>
               <div className={styles.post_text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(post.text) }} />
             </div>
           </div>

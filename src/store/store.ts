@@ -5,6 +5,7 @@ import { toastsReducer } from "./slices/toasts.slice";
 import { userReducer } from "./slices/user.slice";
 import { postApi } from "./api/post.api";
 import { textareaReducer } from "./slices/textarea.slice";
+import { tagApi } from "./api/tag.api";
 
 const reducers = combineReducers({
   tags: tagsReducer,
@@ -12,14 +13,16 @@ const reducers = combineReducers({
   user: userReducer,
   textarea: textareaReducer,
   [userApi.reducerPath]: userApi.reducer,
-  [postApi.reducerPath]: postApi.reducer
+  [postApi.reducerPath]: postApi.reducer,
+  [tagApi.reducerPath]: tagApi.reducer
 })
 
 export const store = configureStore({
   reducer: reducers,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
     userApi.middleware,
-    postApi.middleware
+    postApi.middleware,
+    tagApi.middleware
   )
 })
 

@@ -1,0 +1,36 @@
+import { SubmitHandler, useForm } from 'react-hook-form'
+import Form from '../../components/UI/Form/Form'
+import styles from './CreateTag.module.scss'
+import { TTagData } from '../../types/tag.types'
+import Input from '../../components/UI/Input/Input'
+import useCreateTag from '../../hooks/tags/useCreateTag'
+import ExistTags from './ExistTags/ExistTags'
+
+const CreateTag = () => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<TTagData>()
+  const createTag = useCreateTag()
+  
+  const onSubmit: SubmitHandler<TTagData> = (data: TTagData) => {
+    createTag(data)
+      .finally(reset)
+  }
+
+  return (
+    <div className={styles.container}>
+      <Form
+        button='Создать'
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          type='text'
+          label='Название тэга'
+          error={errors.name}
+          register={register('name', { required: true })}
+        />
+      </Form>
+      <ExistTags />
+    </div>
+  )
+}
+
+export default CreateTag

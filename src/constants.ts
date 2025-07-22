@@ -6,12 +6,16 @@ export const USER_KEY = 'user'
 
 export const USER_LINKS = [
   {
-    to:'create_post',
+    to: 'create_post',
     title: 'Написать'
   }
 ]
 
 export const ADMIN_LINKS = [
+  {
+    to: 'create_tag',
+    title: 'Тэги'
+  }
 ]
 
 export const POSTS_PER_PAGE = 8

@@ -10,23 +10,24 @@
     width: 100%;
     padding: 1em;
     text-align: center;
-    background-color: var(--errorColor);
-    border: 3px solid red;
+    background-color: var(--mainColor);
+    border: 3px solid var(--foreignColor);
     border-radius: 5px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+
+    &.error {
+      background-color: var(--errorColor);
+      border-color: red;
+    }
+
+    &.success {
+      background-color: var(--successColor);
+      border-color: green;
+    }
 
     animation: toastShow 1s both;
 
     @keyframes toastShow {
-      // 0% { bottom: -100%; transform: scale(0.5); }
-      // 20% { bottom: 0; transform: scale(1) translateY(-20px); }
-      // 30% { bottom: 0; transform: translateY(0px); }
-      // 40% { bottom: 0; transform: translateY(-10px); }
-      // 50% { bottom: 0; transform: translateY(0px); }
-      // 60% { bottom: 0; transform: translateY(-4px); }
-      // 80% { bottom: 0; transform: translateY(0px); }
-      // 90% { bottom: 0; transform: translateY(-2px); }
-      // 100% { bottom: 0; transform: translateY(0px); }
       0% {
         bottom: -100%;
         transform: scale(0) translateY(-80px);

@@ -27,7 +27,7 @@
         "text": "123123",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "17.6.2025 14:58:44",
         "imageSize": "width",
@@ -40,7 +40,7 @@
         "text": "Пост про что-то",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "18.6.2025 13:27:42",
         "imageSize": "width",
@@ -53,7 +53,7 @@
         "text": "123",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "18.6.2025 13:36:8",
         "imageSize": "width",
@@ -66,7 +66,7 @@
         "text": "12341234",
         "authorId": 1,
         "tags": [
-          2
+          9
         ],
         "date": "18.6.2025 13:36:45",
         "imageSize": "width",
@@ -79,7 +79,7 @@
         "text": "<b>Lorem, ipsum dolor sit</b> amet consectetur adipisicing elit. Eos tempore tempora quidem perspiciatis quae laborum fugit labore hic necessitatibus sapiente quam possimus architecto dolore alias esse unde veritatis, dolores molestiae dolor voluptatibus consequatur! Suscipit autem quis cupiditate provident error quia, similique, excepturi nam id aperiam voluptates, rerum sed consequuntur esse!\r\nНовая строка\r\nЕщё новая строка",
         "authorId": 1,
         "tags": [
-          2
+          9
         ],
         "date": "18.6.2025 15:29:9",
         "imageSize": "height",
@@ -92,7 +92,7 @@
         "text": "123",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "18.6.2025 15:35:47",
         "imageSize": "width",
@@ -105,7 +105,7 @@
         "text": "12312321213",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "19.6.2025 10:33:46",
         "imageSize": "width",
@@ -118,7 +118,7 @@
         "text": "123123",
         "authorId": 1,
         "tags": [
-          1
+          10
         ],
         "date": "19.6.2025 10:34:16",
         "imageSize": "height",
@@ -131,7 +131,7 @@
         "text": "123123",
         "authorId": 1,
         "tags": [
-          2
+          9
         ],
         "date": "19.6.2025 11:34:24",
         "imageSize": "width",
@@ -144,7 +144,7 @@
         "text": "Опа",
         "authorId": 1,
         "tags": [
-          2
+          9
         ],
         "date": "19.6.2025 12:20:6",
         "imageSize": "width",
@@ -157,7 +157,7 @@
         "text": "111",
         "authorId": 1,
         "tags": [
-          5
+          9
         ],
         "date": "23.6.2025 14:42:46",
         "imageSize": "width",
@@ -170,7 +170,7 @@
         "text": "Нет, нихрена не заменят, так как <b>нейросети </b>слишком тупые и выдают рандомные ответы, с <u>ошибками</u>, даже если их чётко побуждать учитывать все возможные и дальнейшие ошибки, которые могут возникнут. <i>Программисты, не бойтесь!</i>",
         "authorId": 1,
         "tags": [
-          1
+          9
         ],
         "date": "26.6.2025 11:59:4",
         "imageSize": "width",
@@ -189,7 +189,7 @@
         "text": "<b>Первая</b> строка\r\nВторая <i>строка</i>\r\n<u>Третья</u> строка",
         "authorId": "1",
         "tags": [
-          4
+          9
         ],
         "date": "15.07.2025 11:17:48",
         "imageSize": "width",
@@ -293,6 +293,19 @@
         "date": "21.07.2025 13:22:56",
         "text": "{\"id\":5, \"login\": \"user,\"} тест ещё",
         "postId": 17
+      }
+    ]
+  },
+  "tags": {
+    "lastId": 10,
+    "data": [
+      {
+        "id": 9,
+        "name": "Компьютеры"
+      },
+      {
+        "id": 10,
+        "name": "Природа"
       }
     ]
   }

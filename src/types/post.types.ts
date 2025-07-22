@@ -34,4 +34,5 @@ export type TUserPost = Pick<TPost, 'id' | 'title' | 'date'>
 
 export type TSinglePost = TPost & {
   user: TUser
+  tagsByName: string[]
 }

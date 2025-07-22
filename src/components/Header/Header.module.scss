@@ -37,9 +37,9 @@
   
         @keyframes navLinkAnimation {
           0% { transform: rotateX(0deg); }
-          25% { transform: rotateX(-15deg) translateZ(15px); }
-          50% { transform: rotateX(-15deg) translateZ(15px) translateY(-10px); }
-          100% { transform: rotateX(0deg) translateZ(30px); }
+          25% { transform: translateZ(15px) rotateX(-15deg) ; }
+          50% { transform: translateZ(15px) translateY(-10px) rotateX(-15deg); }
+          100% { transform: translateZ(30px) rotateX(0deg) ; }
         }
 
         &.profile {

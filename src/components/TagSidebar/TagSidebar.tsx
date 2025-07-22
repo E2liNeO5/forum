@@ -1,21 +1,14 @@
 import { CircleArrowLeft } from 'lucide-react'
 import styles from './TagSidebar.module.scss'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import TagItem from './TagItem'
 import useGetTags from '../../hooks/tags/useGetTags'
+import Loading from '../UI/Loading/Loading'
+import ErrorPage from '../../pages/ErrorPage/ErrorPage'
 
 const TagSidebar = () => {
   const [closed, setClosed] = useState(true)
-
-  const tags = useGetTags()
-
-  const memorizedTags = useMemo(() => {
-    return [{
-        id: 0,
-        name: 'Все'
-      }, ...tags
-    ].map(item => <TagItem key={item.id} item={item} />)
-  }, [])
+  const { isLoading, tags, error } = useGetTags()
   
   const visibleToggle = () => {
     setClosed(prev => !prev)
@@ -27,7 +20,18 @@ const TagSidebar = () => {
         <CircleArrowLeft size={50} color='#fff' />
       </div>
       <div className={styles.tags}>
-        { memorizedTags }
+        { 
+          isLoading ? <Loading /> : 
+          error ? <ErrorPage text={error.message} /> :
+          !tags || tags.length === 0 ? <h3>Тэги не найдены</h3> :
+          <>
+            <TagItem item={{
+              id: 0,
+              name: 'Все'
+            }} />
+            { tags.map(tag => <TagItem key={tag.id} item={tag} />) }
+          </>
+        }
       </div>
     </div>
   )

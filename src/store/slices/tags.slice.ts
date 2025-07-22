@@ -2,34 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TTag } from "../../types/tag.types";
 
 type StateType = {
-  tags: TTag[]
   currentTags: number[]
   createPost: TTag[]
 }
 
 const initialState: StateType = {
-  tags: [
-    {
-      id: 1,
-      name: 'Тема1'
-    },
-    {
-      id: 2,
-      name: 'Тема2'
-    },
-    {
-      id: 3,
-      name: 'Тема3'
-    },
-    {
-      id: 4,
-      name: 'Тема4'
-    },
-    {
-      id: 5,
-      name: 'Тема5'
-    }
-  ],
   currentTags: [],
   createPost: []
 }

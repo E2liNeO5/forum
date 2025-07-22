@@ -37,6 +37,48 @@ const getError = (res, e) => {
   })
 }
 
+
+app.post('/signIn', async (req, res) => {
+  const { login, password } = req.body
+  
+  try {
+    const user = await json_db.getTable('users', {
+      condition: item => item.login === login && item.password === password
+    })
+
+    if (!user) 
+      throw new Error('Неверные данные')
+
+    res.json(user)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/signUp', upload.single('image'), async (req, res) => {
+  const { login, password } = req.body
+  const image = req.file && req.file.filename
+  
+  try {
+    const alreadyExist = await json_db.getTable('users', {
+      condition: item => item.login === login && item.password === password
+    })
+
+    if(alreadyExist)
+      throw new Error('Пользователь с таким логином уже существует')
+
+    const userId = await json_db.writeToTable('users', {
+      login, password, role: 'user', image
+    })
+
+    const user = await json_db.getTable('users', { condition: item => item.id === userId })
+
+    res.json(user)
+  } catch (e) {
+    getError(res, e)
+  }
+});
+
 app.post('/create_post', upload.single('image'), async (req, res) => {
   const image = req.file && req.file.filename
   const postData = req.body
@@ -92,7 +134,9 @@ app.get('/get_single_post', async (req, res) => {
   try {
     const post = await json_db.getTable('posts', { condition: item => +item.id === +postId })
     const user = await json_db.getTable('users', { condition: user => +user.id === +post.authorId })
+    const tags = await json_db.getTable('tags', { isArray: true, condition: tag => post.tags.includes(+tag.id) })
     post.user = user
+    post.tagsByName = tags.map(tag => tag.name)
     res.json(post)
   } catch(e) {
     getError(res, e)
@@ -109,47 +153,6 @@ app.get('/get_user_by_id', async (req, res) => {
     getError(res, e)
   }
 })
-
-app.post('/signIn', async (req, res) => {
-  const { login, password } = req.body
-  
-  try {
-    const user = await json_db.getTable('users', {
-      condition: item => item.login === login && item.password === password
-    })
-
-    if (!user) 
-      throw new Error('Неверные данные')
-
-    res.json(user)
-  } catch (e) {
-    getError(res, e)
-  }
-})
-
-app.post('/signUp', upload.single('image'), async (req, res) => {
-  const { login, password } = req.body
-  const image = req.file && req.file.filename
-  
-  try {
-    const alreadyExist = await json_db.getTable('users', {
-      condition: item => item.login === login && item.password === password
-    })
-
-    if(alreadyExist)
-      throw new Error('Пользователь с таким логином уже существует')
-
-    const userId = await json_db.writeToTable('users', {
-      login, password, role: 'user', image
-    })
-
-    const user = await json_db.getTable('users', { condition: item => item.id === userId })
-
-    res.json(user)
-  } catch (e) {
-    getError(res, e)
-  }
-});
 
 app.get('/get_user_posts', async (req, res) => {
   const { id } = req.query
@@ -205,6 +208,26 @@ app.post('/create_comment', async (req, res) => {
     const author = await json_db.getTable('users', { condition: user => +user.id === +comment.authorId })
     comment.user = author
     res.json(comment)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.get('/get_tags', async (req, res) => {
+  try {
+    const tags = await json_db.getTable('tags')
+    res.json(tags)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/create_tag', async (req, res) => {
+  const { name } = req.body
+  try {
+    const newIds = await json_db.writeToTable('tags', { name })
+    const tag = await json_db.getTable('tags', { condition: tag => +tag.id === +newIds[0] })
+    res.json(tag)
   } catch (e) {
     getError(res, e)
   }

@@ -6,11 +6,6 @@ export type TCustomError = {
   status: number
 }
 
-export type TTagsSelectItem = {
-  id: number
-  name: string
-}
-
 export type TExtraClass = {
   label?: string
   input?: string

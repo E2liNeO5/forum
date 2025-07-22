@@ -12,6 +12,7 @@ import SinglePost from './pages/SinglePost/SinglePost.tsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx'
 import CreatePost from './pages/CreatePost/CreatePost.tsx'
 import Profile from './pages/Profile/Profile.tsx'
+import CreateTag from './pages/CreateTag/CreateTag.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/post/:id" element={<SinglePost />} />
             <Route path="/create_post" element={<CreatePost />} />
+            <Route path="/create_tag" element={<CreateTag />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="*" element={<ErrorPage text='Такой страницы не существует' />} />
           </Route>
