@@ -15,7 +15,6 @@ const Modal = ({ children, title, onClose }: Props & PropsWithChildren) => {
 
   return createPortal(
     <div className={styles.wrapper}>
-      <div className={styles.overlay} onClick={onClose} />
       <div className={styles.container}>
         <div className={styles.close_btn} onClick={onClose}>X</div>
         { title && <h2 className={styles.title}>{ title }</h2> }

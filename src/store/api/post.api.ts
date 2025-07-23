@@ -7,7 +7,7 @@ import { TCommentData, TCommentItem, TCommentOnPostData, TPostComment } from "..
 
 export const postApi = createApi({
   reducerPath: 'post/api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<string | FetchArgs, unknown, TCustomError, {}>,
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<FetchArgs, unknown, TCustomError>,
   tagTypes: ['posts', 'comments'],
   endpoints: builder => ({
     getPosts: builder.query<TPostsResponse, TPostsHomeParams>({

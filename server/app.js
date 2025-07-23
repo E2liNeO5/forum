@@ -80,18 +80,22 @@ app.post('/signUp', upload.single('image'), async (req, res) => {
 });
 
 app.post('/create_post', upload.single('image'), async (req, res) => {
-  const image = req.file && req.file.filename
-  const postData = req.body
+  try {
+    const image = req.file && req.file.filename
+    const postData = req.body
 
-  const newPost = await json_db.writeToTable('posts', {
-    ...postData,
-    tags: JSON.parse(postData.tags),
-    comments: [],
-    author_id: +postData.author_id,
-    image })
-  const post = await json_db.getTable('posts', { condition: item => item.id === newPost[0] })
+    const newPost = await json_db.writeToTable('posts', {
+      ...postData,
+      tags: JSON.parse(postData.tags),
+      comments: [],
+      author_id: +postData.author_id,
+      image })
+    const post = await json_db.getTable('posts', { condition: item => item.id === newPost[0] })
 
-  res.json(post)
+    res.json(post)
+  } catch (e) {
+    getError(res, e)
+  }
 })
 
 app.get('/get_posts', async (req, res) => {
@@ -143,7 +147,6 @@ app.get('/get_single_post', async (req, res) => {
   }
 })
 
-
 app.get('/get_user_by_id', async (req, res) => {
   const { id } = req.query
   try {
@@ -156,7 +159,6 @@ app.get('/get_user_by_id', async (req, res) => {
 
 app.get('/get_user_posts', async (req, res) => {
   const { id } = req.query
-
   try {
     const user = await json_db.getTable('users', { condition: user => +user.id === +id })
 
@@ -228,6 +230,26 @@ app.post('/create_tag', async (req, res) => {
     const newIds = await json_db.writeToTable('tags', { name })
     const tag = await json_db.getTable('tags', { condition: tag => +tag.id === +newIds[0] })
     res.json(tag)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/edit_tag_name', async (req, res) => {
+  const { id, name } = req.body
+  try {
+    const tag = await json_db.updateFromTable('tags', tag => +tag.id === +id, { name })
+    res.json(tag)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/delete_tag', async (req, res) => {
+  const { tagId } = req.body
+  try {
+    await json_db.deleteFromTable('tags', { condition: tag => +tag.id === +tagId })
+    res.json(null)
   } catch (e) {
     getError(res, e)
   }

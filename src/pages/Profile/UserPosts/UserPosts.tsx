@@ -41,7 +41,7 @@ const UserPosts = ({ id }: Props) => {
               }
             </div>
           </> :
-          <ErrorPage text='Посты не найдены' />
+          <h3 className='data_is_not_found'>Посты не найдены</h3>
         }
     </div>
   )

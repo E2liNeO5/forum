@@ -1,6 +1,6 @@
 import { useCreateCommentMutation } from "../../store/api/post.api"
 import { TCommentData } from "../../types/comment.types"
-import { getCurrentDate } from "../../utils"
+import { getCurrentDate, handleError } from "../../utils"
 import useActions from "../useActions"
 import useGetUser from "../user/useGetUser"
 
@@ -27,17 +27,15 @@ const useCreateComment = () => {
         authorId: user?.id || 0,
         postId
       })
-      if(response.error && 'data' in response.error) {
-        addToast({
-          id: Date.now(),
-          text: response.error.data.message,
-          type: 'error'
-        })
-        throw new Error(response.error.data.message)
-      }
+      
+      handleError(response.error)
+
       return response.data
     } catch (e: any) {
-      throw new Error(e)
+      addToast({
+        text: e.message,
+        type: 'error'
+      })
     }
   }
 

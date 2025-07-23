@@ -23,7 +23,28 @@
   .content_container {
     width: 100%;
 
+    .post_title {
+      width: 100%;
+      margin: 1em 0;
+      padding: 1em;
+      text-align: center;
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: pre-wrap;
+      background-color: var(--mainColor);
+      clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+      border: 5px solid var(--foreignColor);
+
+      .title_text {
+        width: 80%;
+        margin: auto auto;
+        color: #fff;
+      }
+    }
+
     .post_text {
+      background-color: #ccc;
+      box-shadow: inset -2px -2px 10px rgba(0, 0, 0, .5);
       word-wrap: break-word;
       word-break: break-word;
       white-space: pre-wrap;

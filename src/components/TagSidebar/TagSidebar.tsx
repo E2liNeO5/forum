@@ -23,7 +23,7 @@ const TagSidebar = () => {
         { 
           isLoading ? <Loading /> : 
           error ? <ErrorPage text={error.message} /> :
-          !tags || tags.length === 0 ? <h3>Тэги не найдены</h3> :
+          !tags || tags.length === 0 ? <h3 className='data_is_not_found'>Тэги не найдены</h3> :
           <>
             <TagItem item={{
               id: 0,

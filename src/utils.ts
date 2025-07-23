@@ -1,4 +1,6 @@
+import { SerializedError } from "@reduxjs/toolkit"
 import { SAFE_HTML_TAGS, USER_KEY } from "./constants"
+import { TCustomError } from "./types/global.types"
 import { TPost } from "./types/post.types"
 
 export const localStorageSet = (key: string, data: any) => {
@@ -53,4 +55,11 @@ export const parseToSafeHtml = (html: string) => {
 
 export const getPostSearchCondition = (post: TPost, search: string) => {
   return post.title.toLowerCase().indexOf(search) >= 0 || post.text.toLowerCase().indexOf(search) >= 0
+}
+
+export const handleError = (error: TCustomError | SerializedError | undefined) => {
+  if(error && 'data' in error)
+    throw new Error(error.data.message)
+  else if(error)
+    throw new Error('Произошла ошибка')
 }

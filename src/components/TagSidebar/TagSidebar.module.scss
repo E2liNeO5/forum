@@ -71,10 +71,14 @@
     padding: 1em;
 
     .tag_item {
+      max-width: 100%;
       margin: 2px;
       border: 2px solid #fff;
       padding: .25em;
       color: #fff;
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: pre-wrap;
       transition: background-color .2s, transform .2s;
       user-select: none;
       cursor: pointer;

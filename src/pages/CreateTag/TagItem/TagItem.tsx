@@ -1,6 +1,9 @@
-import { memo } from 'react'
+import { ChangeEvent, memo, useRef, useState } from 'react'
 import styles from './TagItem.module.scss'
-import { Pencil, Trash } from 'lucide-react'
+import { Check, Pencil, Trash, X } from 'lucide-react'
+import useEditTagName from '../../../hooks/tags/useEditTagName'
+import useDeleteTag from '../../../hooks/tags/useDeleteTag'
+import Modal from '../../../components/UI/Modal/Modal'
 
 type Props = {
   id: number
@@ -8,13 +11,69 @@ type Props = {
 }
 
 const TagItem = ({ id, name }: Props) => {
+  const ref = useRef(null)
+
+  const [tagName, setTagName] = useState(name)
+  const [isEdit, setIdEdit] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const editTagName = useEditTagName()
+  const deleteTag = useDeleteTag()
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setTagName(e.target.value)
+  }
+
+  const greenHandler = () => {
+    if(!isEdit)
+      setIdEdit(true)
+    else {
+      setIdEdit(false)
+      editTagName({ id, name: tagName })
+    }
+  }
+
+  const redHandler = () => {
+    if(isEdit)
+      setIdEdit(false)
+    else
+      setModalIsOpen(true)
+  }
+
+  const deleteTagHandler = () => {
+    deleteTag(id)
+    setModalIsOpen(false)
+  }
+
   return (
     <div className={styles.container}>
-      <div className={styles.tag_name}>{ name }</div>
-      <div className={styles.buttons}>
-        <button className={styles.green}><Pencil size={16} /></button>
-        <button className={styles.red}><Trash size={16} /></button>
+      <div className={styles.tag_name}>
+        <input
+          type="text"
+          value={tagName}
+          disabled={isEdit ? false : true}
+          title={tagName}
+          onChange={changeHandler}
+          ref={ref}
+          className={isEdit ? styles.edit : ''}
+        />
       </div>
+      <div className={styles.buttons}>
+        <div className={`${styles.button} ${styles.green}`} onClick={greenHandler}>
+          { isEdit ? <Check size={16} /> : <Pencil size={16} /> }
+        </div>
+        <div className={`${styles.button} ${styles.red}`} onClick={redHandler}>
+          { isEdit ? <X size={16} /> : <Trash size={16} /> }
+        </div>
+      </div>
+      { modalIsOpen &&
+        <Modal title={`Удалить тэг "${name}"?`} onClose={() => setModalIsOpen(false)}>
+          <div className={styles.modal_container}>
+            <button className={`btn ${styles.answer_btn}`} onClick={deleteTagHandler}>Да</button>
+            <button className={`btn ${styles.answer_btn}`} onClick={() => setModalIsOpen(false)}>Нет</button>
+          </div>
+        </Modal>
+      }
     </div>
   )
 }

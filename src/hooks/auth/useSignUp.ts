@@ -2,6 +2,7 @@ import { useSignUpMutation } from "../../store/api/user.api"
 import { TSignUpData } from "../../types/user.types"
 import { useNavigate } from "react-router"
 import useActions from "../useActions"
+import { handleError } from "../../utils"
 
 const useSignUp = () => {
   const navigate = useNavigate()
@@ -9,11 +10,17 @@ const useSignUp = () => {
   const { addToast } = useActions()
 
   const signIn = async (data: TSignUpData) => {
-    const response = await mutate(data)
-    if(response.error && 'data' in response.error)
-      addToast({ id: Date.now(), text: response.error && response.error.data.message, type: 'error' })
-    else
+    try {
+      const response = await mutate(data)
+      handleError(response.error)
+    
       navigate('/signIn')
+    } catch (e: any) {
+      addToast({
+        text: e.message,
+        type: 'error'
+      })
+    }
   }
 
   return signIn

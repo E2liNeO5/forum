@@ -22,11 +22,28 @@ export const tagApi = createApi({
         method: 'POST'
       }),
       invalidatesTags: () => [{ type: 'tags' }]
+    }),
+    editTagName: builder.mutation<TTag, TTag>({
+      query: data => ({
+        url: '/edit_tag_name',
+        body: { id: data.id, name: data.name },
+        method: 'POST'
+      })
+    }),
+    deleteTag: builder.mutation<null, number>({
+      query: tagId => ({
+        url: '/delete_tag',
+        body: { tagId },
+        method: 'POST'
+      }),
+      invalidatesTags: () => [{ type: 'tags' }]
     })
   })
 })
 
 export const {
   useGetTagsQuery,
-  useCreateTagMutation
+  useCreateTagMutation,
+  useEditTagNameMutation,
+  useDeleteTagMutation
 } = tagApi

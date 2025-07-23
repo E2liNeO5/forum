@@ -5,7 +5,6 @@ import styles from './TagsSelectSearch.module.scss'
 import useCreatePostSelectTags from '../../../../hooks/tags/useCreatePostSelectTags'
 import { X } from 'lucide-react'
 import Loading from '../../Loading/Loading'
-import ErrorPage from '../../../../pages/ErrorPage/ErrorPage'
 
 const TagsSelectSearch = () => {
   const { isLoading, tags, error } = useGetTags()
@@ -16,7 +15,7 @@ const TagsSelectSearch = () => {
 
   const selectOptions = useMemo(() => {
     return isLoading ? <Loading /> :
-      error ? <ErrorPage text={error.message} /> :
+      error ? <h4>Тэги не найдены</h4> :
       tags && tags
         .filter(tag => !selectedIds.includes(tag.id) && tag.name.toLocaleLowerCase().indexOf(search) >= 0)
         .map(tag => <TagsSelectItem key={tag.id} item={tag} type='add' />)

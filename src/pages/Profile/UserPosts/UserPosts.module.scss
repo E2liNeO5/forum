@@ -1,4 +1,5 @@
 .user_posts_wrapper {
+  max-height: 200px;
   display: grid;
   grid-template-rows: .5fr;
   position: relative;
@@ -6,6 +7,7 @@
 
   &.open {
     grid-template-rows: 1fr;
+    max-height: fit-content;
 
     .toggle {
       transform: rotateX(-180deg);
@@ -19,7 +21,7 @@
     color: #fff;
     background-color: var(--foreignColor);
     border: 3px solid var(--foreignColor);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     transition: transform .5s, color .2s;
     cursor: pointer;
 
@@ -32,7 +34,7 @@
   .user_posts {
     display: flex;
     flex-direction: column;
-    min-height: 50px;
+    min-height: 100px;
     padding: 1em;
     padding-right: 3em;
     background-color: #ccc;

@@ -7,3 +7,5 @@ export type TToast = {
 export type TToastInitialState = {
   toasts: TToast[]
 }
+
+export type TToastData = Omit<TToast, 'id'>

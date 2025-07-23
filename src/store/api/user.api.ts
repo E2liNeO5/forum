@@ -6,7 +6,7 @@ import { TUserPost } from "../../types/post.types";
 
 export const userApi = createApi({
   reducerPath: 'user/api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<string | FetchArgs, unknown, TCustomError, {}>,
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<FetchArgs, unknown, TCustomError>,
   endpoints: builder => ({
     signIn: builder.mutation<TUser, TAuthData>({
       query: user => ({
