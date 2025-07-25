@@ -7,21 +7,24 @@
         "login": "admin",
         "password": "123",
         "role": "admin",
-        "image": "1752045989121iHpMoJMuP6"
+        "image": "1752045989121iHpMoJMuP6",
+        "banReason": ""
       },
       {
         "id": 5,
         "login": "user",
         "password": "123",
         "role": "user",
-        "image": "1750249749344vertical.jpg"
+        "image": "1750249749344vertical.jpg",
+        "banReason": ""
       },
       {
         "id": 10,
         "login": "test",
         "password": "123",
-        "role": "user",
-        "image": "1753261920548Red Dead R"
+        "role": "banned",
+        "image": "1753261920548Red Dead R",
+        "banReason": "test"
       }
     ]
   },
@@ -327,7 +330,7 @@
     ]
   },
   "tags": {
-    "lastId": 17,
+    "lastId": 18,
     "data": [
       {
         "id": 9,

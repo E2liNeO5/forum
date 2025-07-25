@@ -3,6 +3,8 @@ import { parseToSafeHtml } from '../../../utils'
 import styles from './CommentItem.module.scss'
 import useActions from '../../../hooks/useActions'
 import { Link } from 'react-router'
+import useGetUser from '../../../hooks/user/useGetUser'
+import useCheckUserRole from '../../../hooks/user/useCheckUserRole'
 
 type Props = {
   text: string
@@ -14,9 +16,13 @@ type Props = {
 
 const CommentItem = ({ text, authorId, authorImage, authorName, date }: Props) => {
   const { addToTextarea } = useActions()
+  
+  const user = useGetUser()
+  const { role } = useCheckUserRole()
 
   const answerHandler = useCallback(() => {
-    addToTextarea(`<@${authorId}|${authorName},> `)
+    if(user && role !== 'banned')
+      addToTextarea(`<@${authorId}|${authorName},> `)
   }, [authorId])
 
   return (

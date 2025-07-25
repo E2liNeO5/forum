@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useRef, useState } from 'react'
+import { ChangeEvent, memo, useCallback, useRef, useState } from 'react'
 import styles from './TagItem.module.scss'
 import { Check, Pencil, Trash, X } from 'lucide-react'
 import useEditTagName from '../../../hooks/tags/useEditTagName'
@@ -40,10 +40,10 @@ const TagItem = ({ id, name }: Props) => {
       setModalIsOpen(true)
   }
 
-  const deleteTagHandler = () => {
+  const deleteTagHandler = useCallback(() => {
     deleteTag(id)
     setModalIsOpen(false)
-  }
+  }, [])
 
   return (
     <div className={styles.container}>

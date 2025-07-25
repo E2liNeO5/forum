@@ -1,0 +1,9 @@
+.selector {
+  outline: none;
+
+  &:disabled {
+    background-color: var(--foreignColor);
+    border-color: transparent;
+    color: #fff;
+  }
+}

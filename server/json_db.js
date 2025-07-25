@@ -100,8 +100,6 @@ async function updateFromTable(tableName, condition, updates) {
     const found = db[tableName].data.find(condition)
 
     for(let key in updates) {
-      if(!found[key])
-        throw new Error(`В таблице ${tableName} не найдено поле ${key}`)
       found[key] = updates[key]
     }
     

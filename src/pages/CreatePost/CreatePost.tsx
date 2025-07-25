@@ -11,11 +11,13 @@ import { useEffect } from 'react'
 import useActions from '../../hooks/useActions'
 import FileInput from '../../components/UI/Input/FileInput/FileInput'
 import Textarea from '../../components/UI/Textarea/Textarea'
+import useCheckUserRole from '../../hooks/user/useCheckUserRole'
 
 const CreatePost = () => {
   const user = useGetUser()
-  const createPost = useCreatePost()
+  const { role, banReason } = useCheckUserRole()
 
+  const createPost = useCreatePost()
   const { clearCreatePostTags } = useActions()
 
   const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<TCreatePost>()
@@ -29,7 +31,7 @@ const CreatePost = () => {
     <>
       {
         user ?
-        (
+        role === 'banned' ? <ErrorPage text={`Вы не можете создавать посты по причине: ${banReason}`} /> :
           <Form button='Создать' onSubmit={handleSubmit(onSubmit)} classes={{
             form: styles.post_form
           }}>
@@ -80,10 +82,8 @@ const CreatePost = () => {
                 }
               />
           </Form>
-        ) :
-        (
+         :
           <ErrorPage text='Нужно войти в аккаунт' />
-        )
       }
     </>
   )

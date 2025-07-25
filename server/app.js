@@ -68,7 +68,7 @@ app.post('/signUp', upload.single('image'), async (req, res) => {
       throw new Error('Пользователь с таким логином уже существует')
 
     const userId = await json_db.writeToTable('users', {
-      login, password, role: 'user', image
+      login, password, role: 'user', image, banReason: ''
     })
 
     const user = await json_db.getTable('users', { condition: item => item.id === userId })
@@ -167,6 +167,54 @@ app.get('/get_user_posts', async (req, res) => {
 
     const posts = await json_db.getTable('posts', { isArray: true, condition: post => +user.id === +post.authorId })
     res.json(posts.map(post => ({ id: post.id, title: post.title, date: post.date })).sort((a, b) => b.id - a.id))
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.get('/get_user_role', async (req, res) => {
+  const { id } = req.query
+  try {
+    const user = await json_db.getTable('users', { condition: user => +user.id === +id })
+
+    if(!user)
+      throw new Error('Пользователь не найден')
+
+    res.json({ role: user.role, banReason: user.banReason })
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.get('/get_all_users', async (req, res) => {
+  try {
+    const users = await json_db.getTable('users')
+    res.json(users)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/ban_user', async (req, res) => {
+  const { id, banReason } = req.body
+  try {
+    const user = await json_db.updateFromTable('users', user => +user.id === +id, {
+      role: 'banned',
+      banReason
+    })
+    res.json({ role: user.role, banReason: user.banReason })
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/edit_user_role', async (req, res) => {
+  const { id, role } = req.body
+  try {
+    const user = await json_db.updateFromTable('users', user => +user.id === +id, {
+      role, banReason: ''
+    })
+    res.json({ role: user.role, banReason: user.banReason })
   } catch (e) {
     getError(res, e)
   }

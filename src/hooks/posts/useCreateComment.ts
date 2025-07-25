@@ -12,7 +12,7 @@ const useCreateComment = () => {
 
   const createComment = async (data: TCommentData, postId: number) => {
     try {
-      const addressees = data.text.match(/<@[0-9]\|\D[^>]+>/g) //<@id|login>
+      const addressees = data.text.match(/<@[0-9]+\|\D[^>]+>/g) //<@id|login>
       addressees?.forEach(address => {
         const addressData = address.split('|')
         const id = addressData[0].replace('<@', '')

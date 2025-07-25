@@ -6,6 +6,7 @@ import CommentItem from './CommentItem/CommentItem'
 import styles from './Comments.module.scss'
 import { TCommentItem } from '../../types/comment.types'
 import CommentCreate from './CommentCreate/CommentCreate'
+import useGetUser from '../../hooks/user/useGetUser'
 
 type Props = {
   postId: number
@@ -16,6 +17,7 @@ const Comments = ({ postId }: Props) => {
   const [loadedComments, setLoadedComments] = useState<TCommentItem[]>([])
 
   const { isLoading, error, comments, maxComments } = useGetPostComments(postId, page)
+  const user = useGetUser()
 
   useEffect(() => {
     if(comments) {
@@ -29,7 +31,7 @@ const Comments = ({ postId }: Props) => {
   return (
     <>
       <h3 className={styles.comments_title}>Комментарии: </h3>
-      <CommentCreate postId={postId} setLoadedComments={setLoadedComments} />
+      { user && <CommentCreate postId={postId} setLoadedComments={setLoadedComments} /> }
       <div className={styles.container}>
         {
           isLoading ? <Loading /> : 

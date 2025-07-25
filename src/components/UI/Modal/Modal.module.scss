@@ -23,6 +23,13 @@
     position: relative;
     z-index: 2;
 
+    animation: showAnimation .2s both;
+
+    @keyframes showAnimation {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
     .close_btn {
       position: absolute;
       top: 5px;

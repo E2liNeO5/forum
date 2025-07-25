@@ -1,0 +1,92 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr 0fr 0;
+  width: fit-content;
+  padding: 1em;
+  margin-bottom: 1em;
+  color: #fff;
+  background-color: var(--foreignColor);
+  border-radius: 1em 0 1em 0;
+  transition: grid-template-rows .2s;
+
+  .user_container {
+    display: flex;
+    align-items: center;
+  
+    .user_image {
+      height: 75px;
+      border-radius: 5px;
+      border: 1px solid var(--mainColor);
+      margin-right: 1em;
+    }
+  
+    .user_details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 75px;
+      padding-right: 1em;
+      border-right: 2px solid var(--mainColor);
+  
+      .user_link {
+        text-decoration: none;
+        color: #fff;
+        transition: color .2s;
+        cursor: pointer;
+  
+        &:hover {
+          color: var(--foreignColorDark);
+        }
+      }
+    }
+  
+    .buttons {
+      display: flex;
+      align-items: center;
+      margin-left: 1em;
+  
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        margin: 0 .25em;
+        color: #fff;
+        outline: none;
+        border: none;
+        transition: background-color .2s;
+        cursor: pointer;
+  
+        &.green {
+          background-color: green;
+  
+          &:hover {
+            background-color: var(--successColor);
+          }
+        }
+  
+        &.red {
+          background-color: red;
+  
+          &:hover {
+            background-color: var(--errorColor);
+          }
+        }
+      }
+    }
+  }
+
+  &.open_ban_reason {
+    grid-template-rows: 1fr 1fr 0;
+  }
+
+  .ban_reason {
+    margin-top: 1em;
+    overflow: hidden;
+
+    input {
+      padding: .5em 1em;
+      outline: none;
+    }
+  }
+}

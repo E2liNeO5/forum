@@ -6,6 +6,8 @@ import { TCommentData, TCommentItem } from '../../../types/comment.types'
 import useCreateComment from '../../../hooks/posts/useCreateComment'
 import { Dispatch, SetStateAction } from 'react'
 import useActions from '../../../hooks/useActions'
+import useCheckUserRole from '../../../hooks/user/useCheckUserRole'
+import Loading from '../../UI/Loading/Loading'
 
 type Props = {
   postId: number
@@ -16,6 +18,8 @@ const CommentCreate = ({ postId, setLoadedComments }: Props) => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<TCommentData>()
   const { resetTextarea } = useActions()
   const createComment = useCreateComment()
+
+  const { isLoading, error, role, banReason } = useCheckUserRole()
 
   const onSubmit: SubmitHandler<TCommentData> = async (data: TCommentData) => {
     createComment(data, postId)
@@ -30,7 +34,7 @@ const CommentCreate = ({ postId, setLoadedComments }: Props) => {
 
   return (
     <Form
-      button='Отправить'
+      button={role === 'banned' ? '' : 'Отправить'}
       onSubmit={handleSubmit(onSubmit)}
       classes={{
         wrapper: styles.form_wrapper,
@@ -38,15 +42,20 @@ const CommentCreate = ({ postId, setLoadedComments }: Props) => {
         button: styles.form_btn
       }}
     >
-      <Textarea
-        register={register('text', { required: true })}
-        error={errors.text}
-        fieldName='text'
-        setValue={setValue}
-        classes={{
-          wrapper: styles.textarea_wrapper
-        }}
-      />
+      {
+        isLoading ? <Loading /> :
+        error ? <h3>{ error.message }</h3> :
+        role === 'banned' ? <h3>Вы не можете писать по причине: { banReason }</h3> :
+        <Textarea
+          register={register('text', { required: true })}
+          error={errors.text}
+          fieldName='text'
+          setValue={setValue}
+          classes={{
+            wrapper: styles.textarea_wrapper
+          }}
+        />
+      }
     </Form>
   )
 }
