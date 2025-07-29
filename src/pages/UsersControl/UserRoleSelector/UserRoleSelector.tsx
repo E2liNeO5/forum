@@ -1,18 +1,21 @@
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import { USER_ROLES } from '../../../constants'
 import styles from './UserRoleSelector.module.scss'
+import { TUserRoleData } from '../../../types/user.types'
 
 type Props = {
   role: string
-  setRole: Dispatch<SetStateAction<string>>
+  setValues: Dispatch<SetStateAction<TUserRoleData>>
   isDisabled: boolean
 }
 
-const UserRoleSelector = ({ role, setRole, isDisabled }: Props) => {
+const UserRoleSelector = ({ role, setValues, isDisabled }: Props) => {
   const changeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    if(e.target.value !== 'banned') {
-      setRole(e.target.value)
-    }
+    if(e.target.value !== 'banned')
+      setValues(prev => ({
+        ...prev,
+        role: e.target.value
+      }))
   }
 
   return (

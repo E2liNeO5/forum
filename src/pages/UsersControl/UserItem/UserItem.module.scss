@@ -1,13 +1,13 @@
 .container {
-  display: grid;
-  grid-template-rows: 1fr 0fr 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: fit-content;
   padding: 1em;
   margin-bottom: 1em;
   color: #fff;
   background-color: var(--foreignColor);
   border-radius: 1em 0 1em 0;
-  transition: grid-template-rows .2s;
 
   .user_container {
     display: flex;
@@ -75,18 +75,8 @@
       }
     }
   }
-
-  &.open_ban_reason {
-    grid-template-rows: 1fr 1fr 0;
-  }
-
+  
   .ban_reason {
     margin-top: 1em;
-    overflow: hidden;
-
-    input {
-      padding: .5em 1em;
-      outline: none;
-    }
   }
 }

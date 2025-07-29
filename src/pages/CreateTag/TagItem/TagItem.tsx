@@ -4,6 +4,7 @@ import { Check, Pencil, Trash, X } from 'lucide-react'
 import useEditTagName from '../../../hooks/tags/useEditTagName'
 import useDeleteTag from '../../../hooks/tags/useDeleteTag'
 import Modal from '../../../components/UI/Modal/Modal'
+import ConfirmDialog from '../../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
 
 type Props = {
   id: number
@@ -68,10 +69,7 @@ const TagItem = ({ id, name }: Props) => {
       </div>
       { modalIsOpen &&
         <Modal title={`Удалить тэг "${name}"?`} onClose={() => setModalIsOpen(false)}>
-          <div className={styles.modal_container}>
-            <button className={`btn ${styles.answer_btn}`} onClick={deleteTagHandler}>Да</button>
-            <button className={`btn ${styles.answer_btn}`} onClick={() => setModalIsOpen(false)}>Нет</button>
-          </div>
+          <ConfirmDialog yesHandler={deleteTagHandler} noHandler={() => setModalIsOpen(false)} />
         </Modal>
       }
     </div>

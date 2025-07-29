@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+
+  .answer_btn {
+    margin: 1em 0 0;
+  }
+
+  .answer_btn:last-child {
+    margin-left: 1em;
+  }
+}

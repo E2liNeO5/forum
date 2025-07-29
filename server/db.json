@@ -24,7 +24,7 @@
         "password": "123",
         "role": "banned",
         "image": "1753261920548Red Dead R",
-        "banReason": "test"
+        "banReason": "Жертва для теста"
       }
     ]
   },
@@ -330,7 +330,7 @@
     ]
   },
   "tags": {
-    "lastId": 18,
+    "lastId": 19,
     "data": [
       {
         "id": 9,

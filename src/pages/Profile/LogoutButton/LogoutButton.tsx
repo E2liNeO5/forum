@@ -2,6 +2,7 @@ import { useState } from 'react'
 import useLogout from '../../../hooks/auth/useLogout'
 import styles from './LogoutButton.module.scss'
 import Modal from '../../../components/UI/Modal/Modal'
+import ConfirmDialog from '../../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
 
 const LogoutButton = () => {
   const logout = useLogout()
@@ -12,10 +13,7 @@ const LogoutButton = () => {
     <>
       <button className="btn" onClick={() => setIsOpen(true)}>Выйти</button>
       { isOpen && <Modal title='Выйти из аккаунта?' onClose={() => setIsOpen(false)}>
-        <div className={styles.container}>
-          <button className={`btn ${styles.answer_btn}`} onClick={logout}>Да</button>
-          <button className={`btn ${styles.answer_btn}`} onClick={() => setIsOpen(false)}>Нет</button>
-        </div>
+        <ConfirmDialog yesHandler={logout} noHandler={() => setIsOpen(false)} />
       </Modal> }
     </>
   )

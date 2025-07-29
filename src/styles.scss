@@ -67,6 +67,11 @@ body {
   &:hover {
     background-color: var(--foreignColorDark);
   }
+
+  &:disabled {
+    background-color: var(--foreignColorOpacity);
+    pointer-events: none;
+  }
 }
 
 .private_comment {
