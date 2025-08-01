@@ -19,6 +19,10 @@ export const ADMIN_LINKS = [
   {
     to: 'users_control',
     title: 'Пользователи'
+  },
+  {
+    to: 'reports',
+    title: 'Жалобы'
   }
 ]
 

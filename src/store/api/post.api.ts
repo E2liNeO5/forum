@@ -1,13 +1,12 @@
-import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL, COMMENTS_PER_PAGE, POSTS_PER_PAGE } from "../../constants";
-import { TCustomError } from "../../types/global.types";
 import { TPost, TPostData, TPostsHomeParams, TPostsResponse, TSinglePost } from "../../types/post.types";
 import { getCurrentDate } from "../../utils";
 import { TCommentData, TCommentItem, TCommentOnPostData, TPostComment } from "../../types/comment.types";
 
 export const postApi = createApi({
   reducerPath: 'post/api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<FetchArgs, unknown, TCustomError>,
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ['posts', 'comments'],
   endpoints: builder => ({
     getPosts: builder.query<TPostsResponse, TPostsHomeParams>({

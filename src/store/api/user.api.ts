@@ -1,12 +1,11 @@
-import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
 import { TAuthData, TEditUserRole, TSignUpData, TUser, TUserBanData, TUserRoleData } from "../../types/user.types";
-import { TCustomError } from "../../types/global.types";
 import { TUserPost } from "../../types/post.types";
 
 export const userApi = createApi({
   reducerPath: 'user/api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }) as BaseQueryFn<FetchArgs, unknown, TCustomError>,
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
     signIn: builder.mutation<TUser, TAuthData>({
       query: user => ({

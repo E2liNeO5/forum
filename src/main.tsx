@@ -14,6 +14,7 @@ import CreatePost from './pages/CreatePost/CreatePost.tsx'
 import Profile from './pages/Profile/Profile.tsx'
 import CreateTag from './pages/CreateTag/CreateTag.tsx'
 import UsersControl from './pages/UsersControl/UsersControl.tsx'
+import ReportsPage from './pages/ReportsPage/ReportsPage.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -24,11 +25,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/" element={<Home />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
-            <Route path="/post/:id" element={<SinglePost />} />
+            <Route path="/post/:id/:comment_id?" element={<SinglePost />} />
 
             <Route path="/create_post" element={<CreatePost />} />
             <Route path="/create_tag" element={<CreateTag />} />
             <Route path="/users_control" element={<UsersControl />} />
+            <Route path="/reports" element={<ReportsPage />} />
 
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="*" element={<ErrorPage text='Такой страницы не существует' />} />

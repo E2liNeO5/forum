@@ -1,12 +1,14 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { parseToSafeHtml } from '../../../utils'
 import styles from './CommentItem.module.scss'
 import useActions from '../../../hooks/useActions'
 import { Link } from 'react-router'
 import useGetUser from '../../../hooks/user/useGetUser'
 import useCheckUserRole from '../../../hooks/user/useCheckUserRole'
+import { useParams } from 'react-router'
 
 type Props = {
+  id: number
   text: string
   authorId: number
   authorName: string
@@ -14,8 +16,9 @@ type Props = {
   date: string
 }
 
-const CommentItem = ({ text, authorId, authorImage, authorName, date }: Props) => {
+const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Props) => {
   const { addToTextarea } = useActions()
+  const ref = useRef<HTMLDivElement>(null)
   
   const user = useGetUser()
   const { role } = useCheckUserRole()
@@ -25,8 +28,15 @@ const CommentItem = ({ text, authorId, authorImage, authorName, date }: Props) =
       addToTextarea(`<@${authorId}|${authorName},> `)
   }, [authorId])
 
+  const { comment_id } = useParams()
+
+  useEffect(() => {
+    if(comment_id && ref && ref.current)
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+  }, [comment_id])
+
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper}${comment_id && Number(comment_id) === id ? ' ' + styles.glowing : ''}`} ref={ref}>
       <div className={styles.details}>
         <div className={styles.author}>
           <img className={styles.author_image} src={`/upload/${authorImage}`} alt="author_image" />

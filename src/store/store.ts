@@ -6,6 +6,7 @@ import { userReducer } from "./slices/user.slice";
 import { postApi } from "./api/post.api";
 import { textareaReducer } from "./slices/textarea.slice";
 import { tagApi } from "./api/tag.api";
+import { reportApi } from "./api/report.api";
 
 const reducers = combineReducers({
   tags: tagsReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   textarea: textareaReducer,
   [userApi.reducerPath]: userApi.reducer,
   [postApi.reducerPath]: postApi.reducer,
-  [tagApi.reducerPath]: tagApi.reducer
+  [tagApi.reducerPath]: tagApi.reducer,
+  [reportApi.reducerPath]: reportApi.reducer
 })
 
 export const store = configureStore({
@@ -22,7 +24,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
     userApi.middleware,
     postApi.middleware,
-    tagApi.middleware
+    tagApi.middleware,
+    reportApi.middleware
   )
 })
 

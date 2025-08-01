@@ -45,9 +45,7 @@ export const parseToSafeHtml = (html: string) => {
       const data = JSON.parse(userData)
       if(data && data.id && data.login)
         safeHtml = safeHtml.replace(userData, `<span class="${currentUser && +currentUser.id === +data.id ? 'private_comment' : ''}">${data.login}</span>`)
-    } catch(e) {
-      console.error(e)
-    }
+    } catch(e) {}
   })
 
   return safeHtml

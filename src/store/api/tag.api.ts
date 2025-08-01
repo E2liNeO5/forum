@@ -1,11 +1,10 @@
-import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
-import { TCustomError } from "../../types/global.types";
 import { TTag, TTagData } from "../../types/tag.types";
 
 export const tagApi = createApi({
   reducerPath: 'tag/api',
-  baseQuery: fetchBaseQuery({ baseUrl:BASE_URL }) as BaseQueryFn<FetchArgs, unknown, TCustomError>,
+  baseQuery: fetchBaseQuery({ baseUrl:BASE_URL }),
   tagTypes: ['tags'],
   endpoints: builder => ({
     getTags: builder.query<TTag[], null>({

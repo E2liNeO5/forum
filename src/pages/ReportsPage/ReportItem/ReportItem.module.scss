@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  width: fit-content;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: var(--mainColor);
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+
+  .specific_text {
+    color: var(--foreignColorDark);
+  }
+
+  .details {
+    color: #fff;
+  
+    .link {
+      color: #fff;
+      transition: color .2s;
+
+      &:hover {
+        color: var(--foreignColorDark);
+      }
+    }
+
+    .user_link {
+      text-decoration: none;
+      color: #fff;
+      transition: color .2s;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--foreignColorDark);
+      }
+    }
+  }
+
+  .delete_btn {
+    margin-left: 1em;
+    color: var(--foreignColorDark);
+    transition: color .2s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--foreignColor)
+    }
+  }
+}

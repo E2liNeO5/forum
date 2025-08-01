@@ -7,6 +7,7 @@ import styles from './Comments.module.scss'
 import { TCommentItem } from '../../types/comment.types'
 import CommentCreate from './CommentCreate/CommentCreate'
 import useGetUser from '../../hooks/user/useGetUser'
+import { useParams } from 'react-router'
 
 type Props = {
   postId: number
@@ -19,6 +20,8 @@ const Comments = ({ postId }: Props) => {
   const { isLoading, error, comments, maxComments } = useGetPostComments(postId, page)
   const user = useGetUser()
 
+  const { comment_id } = useParams()
+
   useEffect(() => {
     if(comments) {
       setLoadedComments(prev => ([
@@ -27,6 +30,11 @@ const Comments = ({ postId }: Props) => {
       ]))
     }
   }, [comments])
+
+  useEffect(() => {
+    if(comment_id && loadedComments.length > 0 && !loadedComments.find(comment => comment.id === Number(comment_id)))
+      setPage(prev => prev + 1)
+  }, [loadedComments])
 
   return (
     <>
@@ -42,6 +50,7 @@ const Comments = ({ postId }: Props) => {
               loadedComments.map(comment =>
               <CommentItem
                 key={comment.id}
+                id={comment.id}
                 text={comment.text}
                 authorId={comment.user.id}
                 authorImage={comment.user.image}

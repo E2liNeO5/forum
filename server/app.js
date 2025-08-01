@@ -303,6 +303,21 @@ app.post('/delete_tag', async (req, res) => {
   }
 })
 
+app.get('/get_reports', async (req, res) => {
+  try {
+    let reports = await json_db.getTable('reports')
+    const usersId = reports.map(report => report.userId) 
+    const users = await json_db.getTable('users', { isArray: true, condition: user => usersId.includes(+user.id) })
+    reports = reports.map(report => {
+      report.user = users.find(user => +user.id === +report.userId)
+      return report
+    })
+    res.json(reports)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`)
