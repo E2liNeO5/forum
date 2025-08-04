@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { parseToSafeHtml } from '../../../utils'
 import styles from './CommentItem.module.scss'
-import useActions from '../../../hooks/useActions'
 import { Link } from 'react-router'
-import useGetUser from '../../../hooks/user/useGetUser'
-import useCheckUserRole from '../../../hooks/user/useCheckUserRole'
 import { useParams } from 'react-router'
+import useActions from '../../../../hooks/useActions'
+import useGetUser from '../../../../hooks/user/useGetUser'
+import useCheckUserRole from '../../../../hooks/user/useCheckUserRole'
+import { parseToSafeHtml } from '../../../../utils'
+import { HEADER_HEIGHT_OFFSET } from '../../../../constants'
 
 type Props = {
   id: number
@@ -31,8 +32,13 @@ const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Prop
   const { comment_id } = useParams()
 
   useEffect(() => {
-    if(comment_id && ref && ref.current)
-      ref.current.scrollIntoView({ behavior: 'smooth' })
+    if(comment_id && +comment_id === id && ref && ref.current) {
+      window.scrollTo({
+        top: ref.current.offsetTop - HEADER_HEIGHT_OFFSET,
+        left: ref.current.offsetLeft,
+        behavior: 'smooth'
+      })
+    }
   }, [comment_id])
 
   return (

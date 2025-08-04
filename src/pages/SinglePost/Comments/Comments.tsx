@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import useGetPostComments from '../../hooks/posts/useGetPostComments'
-import ErrorPage from '../../pages/ErrorPage/ErrorPage'
-import Loading from '../UI/Loading/Loading'
-import CommentItem from './CommentItem/CommentItem'
 import styles from './Comments.module.scss'
-import { TCommentItem } from '../../types/comment.types'
-import CommentCreate from './CommentCreate/CommentCreate'
-import useGetUser from '../../hooks/user/useGetUser'
+import useGetPostComments from '../../../hooks/posts/useGetPostComments'
 import { useParams } from 'react-router'
+import { TCommentItem } from '../../../types/comment.types'
+import useGetUser from '../../../hooks/user/useGetUser'
+import CommentCreate from './CommentCreate/CommentCreate'
+import Loading from '../../../components/UI/Loading/Loading'
+import ErrorPage from '../../ErrorPage/ErrorPage'
+import CommentItem from './CommentItem/CommentItem'
+import { useLazyIsCommentExistQuery } from '../../../store/api/post.api'
+import useActions from '../../../hooks/useActions'
 
 type Props = {
   postId: number
@@ -16,9 +18,12 @@ type Props = {
 const Comments = ({ postId }: Props) => {
   const [page, setPage] = useState(1)
   const [loadedComments, setLoadedComments] = useState<TCommentItem[]>([])
+  const [isCommentExist, setIsCommentExist] = useState(false)
 
   const { isLoading, error, comments, maxComments } = useGetPostComments(postId, page)
   const user = useGetUser()
+  const [isCommentExistTrigger] = useLazyIsCommentExistQuery()
+  const { addToast } = useActions()
 
   const { comment_id } = useParams()
 
@@ -32,9 +37,21 @@ const Comments = ({ postId }: Props) => {
   }, [comments])
 
   useEffect(() => {
-    if(comment_id && loadedComments.length > 0 && !loadedComments.find(comment => comment.id === Number(comment_id)))
+    if(comment_id && isCommentExist && loadedComments.length > 0 && !loadedComments.find(comment => comment.id === Number(comment_id)))
       setPage(prev => prev + 1)
   }, [loadedComments])
+
+  useEffect(() => {
+    if(comment_id) {
+      (async () => {
+          const res = await isCommentExistTrigger({ id: Number(comment_id), postId })
+          if(res.isError || !res.data)
+            addToast({ text: `Комментарий с id "${comment_id}" не найден`, type: 'error' })
+          if(!res.isError && !res.isLoading && res.data)
+            setIsCommentExist(res.data)
+      })()
+    }
+}, [comment_id])
 
   return (
     <>

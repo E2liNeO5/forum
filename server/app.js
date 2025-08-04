@@ -263,6 +263,16 @@ app.post('/create_comment', async (req, res) => {
   }
 })
 
+app.get('/is_comment_exist', async (req, res) => {
+  const { id, postId } = req.query
+  try {
+    const comment = await json_db.getTable('comments', { condition: comment => +comment.id === +id && +comment.postId === +postId })
+    res.json(comment ? true : false)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
 app.get('/get_tags', async (req, res) => {
   try {
     const tags = await json_db.getTable('tags')

@@ -24,3 +24,7 @@ export type TCommentOnPostData = {
   postId: number
   page: number
 }
+
+export type TCommentExistData = Pick<TComment, 'id'> & {
+  postId: number
+}

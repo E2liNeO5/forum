@@ -72,6 +72,10 @@
             background-color: var(--errorColor);
           }
         }
+        &.disabled {
+          background-color: #939393;
+          pointer-events: none;
+        }
       }
     }
   }

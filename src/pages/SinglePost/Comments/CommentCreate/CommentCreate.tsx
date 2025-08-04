@@ -1,13 +1,13 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Form from '../../UI/Form/Form'
-import Textarea from '../../UI/Textarea/Textarea'
 import styles from './CommentCreate.module.scss'
-import { TCommentData, TCommentItem } from '../../../types/comment.types'
-import useCreateComment from '../../../hooks/posts/useCreateComment'
 import { Dispatch, SetStateAction } from 'react'
-import useActions from '../../../hooks/useActions'
-import useCheckUserRole from '../../../hooks/user/useCheckUserRole'
-import Loading from '../../UI/Loading/Loading'
+import { TCommentData, TCommentItem } from '../../../../types/comment.types'
+import useActions from '../../../../hooks/useActions'
+import useCreateComment from '../../../../hooks/posts/useCreateComment'
+import useCheckUserRole from '../../../../hooks/user/useCheckUserRole'
+import Loading from '../../../../components/UI/Loading/Loading'
+import Textarea from '../../../../components/UI/Textarea/Textarea'
+import Form from '../../../../components/UI/Form/Form'
 
 type Props = {
   postId: number

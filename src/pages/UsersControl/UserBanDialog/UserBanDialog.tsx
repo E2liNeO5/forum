@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
-import styles from './UserBan.module.scss'
+import styles from './UserBanDialog.module.scss'
 import { TUserRoleData } from '../../../types/user.types'
 import ConfirmDialog from '../../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
 
@@ -10,7 +10,7 @@ type Props = {
   setValues: Dispatch<SetStateAction<TUserRoleData>>
 }
 
-const UserBan = ({ banReason, onClose, okHandler, setValues }: Props) => {
+const UserBanDialog = ({ banReason, onClose, okHandler, setValues }: Props) => {
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValues(prev => ({
       ...prev,
@@ -36,4 +36,4 @@ const UserBan = ({ banReason, onClose, okHandler, setValues }: Props) => {
   )
 }
 
-export default UserBan
+export default UserBanDialog

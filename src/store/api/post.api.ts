@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL, COMMENTS_PER_PAGE, POSTS_PER_PAGE } from "../../constants";
 import { TPost, TPostData, TPostsHomeParams, TPostsResponse, TSinglePost } from "../../types/post.types";
 import { getCurrentDate } from "../../utils";
-import { TCommentData, TCommentItem, TCommentOnPostData, TPostComment } from "../../types/comment.types";
+import { TCommentData, TCommentExistData, TCommentItem, TCommentOnPostData, TPostComment } from "../../types/comment.types";
 
 export const postApi = createApi({
   reducerPath: 'post/api',
@@ -67,6 +67,16 @@ export const postApi = createApi({
         method: 'POST'
       }),
       invalidatesTags: () => [{ type: 'comments' }]
+    }),
+    isCommentExist: builder.query<boolean, TCommentExistData>({
+      query: data => ({
+        url: '/is_comment_exist',
+        params: {
+          id: data.id,
+          postId: data.postId
+        },
+        method: 'GET'
+      })
     })
   })
 })
@@ -76,5 +86,6 @@ export const {
   useGetPostsQuery,
   useGetSinglePostQuery,
   useGetPostCommentsQuery,
-  useCreateCommentMutation
+  useCreateCommentMutation,
+  useLazyIsCommentExistQuery
 } = postApi

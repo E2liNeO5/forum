@@ -1,6 +1,6 @@
 import styles from './SinglePost.module.scss'
 import { Link, useParams } from 'react-router'
-import Comments from '../../components/Comments/Comments'
+import Comments from './Comments/Comments'
 import useGetSinglePost from '../../hooks/posts/useGetSinglePost'
 import Loading from '../../components/UI/Loading/Loading'
 import { parseToSafeHtml } from '../../utils'

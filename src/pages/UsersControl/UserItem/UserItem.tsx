@@ -7,7 +7,7 @@ import useBanUser from '../../../hooks/user/useBanUser'
 import UserRoleSelector from '../UserRoleSelector/UserRoleSelector'
 import useEditUserRole from '../../../hooks/user/useEditUserRole'
 import Modal from '../../../components/UI/Modal/Modal'
-import UserBan from '../UserBan/UserBan'
+import UserBanDialog from '../UserBanDialog/UserBanDialog'
 
 type Props = {
   user: TUser
@@ -86,7 +86,7 @@ const UserItem = ({ user }: Props) => {
           <div className={`${styles.button} ${styles.green}`} onClick={greenHandler}>
             { roleEdit ? <Check size={24} /> : <UserPen size={24} /> }
           </div>
-          <div className={`${styles.button} ${styles.red}`} onClick={redHandler}>
+          <div className={`${styles.button} ${styles.red}${initialData.role === 'banned' && !roleEdit ? ' ' + styles.disabled : ''}`} onClick={redHandler}>
             { roleEdit ? <X size={24} /> : <UserLock size={24} /> }
           </div>
         </div>
@@ -103,7 +103,7 @@ const UserItem = ({ user }: Props) => {
           title={`Забанить пользователя "${user.login}"?`}
           onClose={() => setModalIsOpen(false)}
         >
-          <UserBan
+          <UserBanDialog
             banReason={editedValues.banReason}
             setValues={setEditedValues}
             onClose={() => setModalIsOpen(false)}
