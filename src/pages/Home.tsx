@@ -6,10 +6,10 @@ import TagSidebar from "../components/TagSidebar/TagSidebar"
 import ErrorPage from "./ErrorPage/ErrorPage"
 import Loading from "../components/UI/Loading/Loading"
 import { TSinglePost } from "../types/post.types"
-import PostSearch from "../components/PostSearch/PostSearch"
 import { getPostSearchCondition } from "../utils"
 import useGetCurrentTags from "../hooks/tags/useGetCurrentTags"
 import Post from "../components/Post/Post"
+import SearchItems from "../components/UI/SearchItems/SearchItems"
 
 function Home() {
   const [page, setPage] = useState(1)
@@ -53,7 +53,7 @@ function Home() {
   return (
     <>
       <TagSidebar />
-      <PostSearch setSearch={setSearch} />
+      <SearchItems setSearch={setSearch} classes={{ wrapper: styles.post_search }} />
       {
         isLoading ? <Loading /> :
         error ? <ErrorPage text={error.message} /> : 

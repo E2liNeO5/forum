@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+
+  .search_input {
+    width: 200px;
+    padding: .5em 1em;
+    background-color: var(--mainColor);
+    border-radius: 5px;
+    border: none;
+    border-left: 3px solid var(--foreignColor);
+    color: #fff;
+    outline: none;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+
+  .reset {
+    background-color: var(--mainColor);
+    border-radius: 5px;
+    margin-left: 5px;
+    color: #fff;
+    transition: color .2s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--foreignColor)
+    }
+  }
+}

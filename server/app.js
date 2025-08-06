@@ -276,7 +276,7 @@ app.get('/is_comment_exist', async (req, res) => {
 app.get('/get_tags', async (req, res) => {
   try {
     const tags = await json_db.getTable('tags')
-    res.json(tags)
+    res.json(tags.sort((a, b) => b.id - a.id))
   } catch (e) {
     getError(res, e)
   }

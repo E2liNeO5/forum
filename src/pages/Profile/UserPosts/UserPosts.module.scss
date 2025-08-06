@@ -41,6 +41,11 @@
     box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.5);
     border: 3px solid #ddd;
     overflow: hidden;
+
+    .search {
+      margin: 0;
+      margin-bottom: 1em;
+    }
     
     .user_post_link {
       text-decoration: none;
