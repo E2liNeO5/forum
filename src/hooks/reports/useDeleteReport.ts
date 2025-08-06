@@ -1,19 +1,19 @@
-import { useDeleteTagMutation } from "../../store/api/tag.api"
+import { useDeleteReportMutation } from "../../store/api/report.api"
 import { TCustomError } from "../../types/global.types"
 import { handleError } from "../../utils"
 import useActions from "../useActions"
 
-const useDeleteTag = () => {
-  const [mutate] = useDeleteTagMutation()
+const useDeleteReport = () => {
+  const [mutate] = useDeleteReportMutation()
   const { addToast } = useActions()
 
-  const deleteTag = async (id: number) => {
+  const deleteReport = async (id: number) => {
     try {
       const response = await mutate(id)
       handleError(response.error as TCustomError)
 
       addToast({
-        text: 'Тэг успешно удалён',
+        text: 'Жалоба успешно удалена',
         type: 'success'
       })
     } catch (e: any) {
@@ -24,7 +24,7 @@ const useDeleteTag = () => {
     }
   }
 
-  return deleteTag
+  return deleteReport
 }
 
-export default useDeleteTag
+export default useDeleteReport

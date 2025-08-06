@@ -1,4 +1,5 @@
 import { useCreateTagMutation } from "../../store/api/tag.api"
+import { TCustomError } from "../../types/global.types"
 import { TTagData } from "../../types/tag.types"
 import { handleError } from "../../utils"
 import useActions from "../useActions"
@@ -10,7 +11,7 @@ const useCreateTag = () => {
   const createTag = async (data: TTagData) => {
     try {
       const result = await mutate(data)
-      handleError(result.error)
+      handleError(result.error  as TCustomError)
 
       addToast({
         text: 'Тэг успешно добавлен',

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
-import { TReportItem } from "../../types/report.types";
+import { TReportData, TReportItem } from "../../types/report.types";
 
 export const reportApi = createApi({
   reducerPath: 'api/report',
@@ -11,10 +11,26 @@ export const reportApi = createApi({
         url: '/get_reports',
         method: 'GET'
       })
+    }),
+    createReport: builder.mutation<null, TReportData>({
+      query: data => ({
+        url: '/create_report',
+        body: { ...data },
+        method: 'POST'
+      })
+    }),
+    deleteReport: builder.mutation<null, number>({
+      query: reportId => ({
+        url: '/delete_report',
+        body: { reportId },
+        method: 'POST'
+      })
     })
   })
 })
 
 export const {
-  useGetReportsQuery
+  useGetReportsQuery,
+  useCreateReportMutation,
+  useDeleteReportMutation
 } = reportApi

@@ -27,7 +27,7 @@ const SearchItems = ({ setSearch, classes }: Props) => {
   }, [inputValue])
 
   return (
-    <div className={`${styles.container + addExtraClass('wrapper')}`}>
+    <div className={styles.container + addExtraClass('wrapper')}>
       <input
         type="text"
         placeholder='Поиск'

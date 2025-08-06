@@ -318,11 +318,36 @@ app.get('/get_reports', async (req, res) => {
     let reports = await json_db.getTable('reports')
     const usersId = reports.map(report => report.userId) 
     const users = await json_db.getTable('users', { isArray: true, condition: user => usersId.includes(+user.id) })
-    reports = reports.map(report => {
-      report.user = users.find(user => +user.id === +report.userId)
-      return report
-    })
+    reports = reports
+      .map(report => {
+        report.user = users.find(user => +user.id === +report.userId)
+        return report
+      })
+      .sort((a, b) => b.id - a.id)
+
     res.json(reports)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/create_report', async (req, res) => {
+  const { text, url, userId, date } = req.body
+  try {
+    await json_db.writeToTable('reports', {
+      text, url, userId, date
+    })
+    res.json(null)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/delete_report', async (req, res) => {
+  const { reportId } = req.body
+  try {
+    await json_db.deleteFromTable('reports', { condition: report => +report.id === +reportId })
+    res.json(null)
   } catch (e) {
     getError(res, e)
   }

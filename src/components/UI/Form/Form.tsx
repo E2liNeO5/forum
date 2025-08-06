@@ -13,8 +13,8 @@ const Form = ({ children, button, onSubmit, classes }: Props & PropsWithChildren
   const addExtraClass = useExtraClass(classes)
 
   return (
-    <div className={`${styles.form_wrapper + (addExtraClass('wrapper'))}`}>
-      <form className={`${styles.form + (addExtraClass('form'))}`} onSubmit={onSubmit}>
+    <div className={styles.form_wrapper + addExtraClass('wrapper')}>
+      <form className={styles.form + addExtraClass('form')} onSubmit={onSubmit}>
         { children }
         { button && <button className={`btn${addExtraClass('button')}`}>{button}</button> }
       </form>

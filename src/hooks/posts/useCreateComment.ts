@@ -1,5 +1,6 @@
 import { useCreateCommentMutation } from "../../store/api/post.api"
 import { TCommentData } from "../../types/comment.types"
+import { TCustomError } from "../../types/global.types"
 import { getCurrentDate, handleError } from "../../utils"
 import useActions from "../useActions"
 import useGetUser from "../user/useGetUser"
@@ -28,7 +29,7 @@ const useCreateComment = () => {
         postId
       })
       
-      handleError(response.error)
+      handleError(response.error as TCustomError)
 
       return response.data
     } catch (e: any) {

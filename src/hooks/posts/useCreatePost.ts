@@ -4,6 +4,7 @@ import { TCreatePost, TPostData } from "../../types/post.types"
 import { getCurrentDate, handleError } from "../../utils"
 import useActions from "../useActions"
 import useGetUser from "../user/useGetUser"
+import { TCustomError } from "../../types/global.types"
 
 const useCreatePost = () => {
   const user = useGetUser()
@@ -27,7 +28,7 @@ const useCreatePost = () => {
             imageSize: img.height > img.width ? 'height' : 'width'
           }
           const response = await mutate(post)
-          handleError(response.error)
+          handleError(response.error as TCustomError)
           
           if(response.data)
             navigate(`/post/${response.data.id}`)

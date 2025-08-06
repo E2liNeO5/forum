@@ -16,8 +16,8 @@ const Input = ({ label, type, error, register, classes }: Props) => {
   const addExtraClass = useExtraClass(classes)
 
   return (
-    <label className={`${styles.input_block + (addExtraClass('block'))}`}>
-      <span className={`${styles.input_label + (addExtraClass('label'))}`}>{ label }</span>
+    <label className={styles.input_block + addExtraClass('block')}>
+      <span className={styles.input_label + addExtraClass('label')}>{ label }</span>
       <input
         className={`${error ? styles.invalid : ''}${addExtraClass('input')}`}
         type={type}

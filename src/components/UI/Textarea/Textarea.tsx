@@ -33,7 +33,7 @@ const Textarea = <T extends FieldValues>({ error, register, setValue, fieldName,
   }, [text])
 
   return (
-    <div className={`${styles.text_container + (addExtraClass('wrapper'))}`}>
+    <div className={styles.text_container + addExtraClass('wrapper')}>
       <textarea
         className={`${styles.text + (error ? ' ' + styles.invalid : '')}`}
         { ...register }

@@ -7,6 +7,7 @@ import useGetUser from '../../../../hooks/user/useGetUser'
 import useCheckUserRole from '../../../../hooks/user/useCheckUserRole'
 import { parseToSafeHtml } from '../../../../utils'
 import { HEADER_HEIGHT_OFFSET } from '../../../../constants'
+import ReportButton from '../../../../components/UI/ReportButton/ReportButton'
 
 type Props = {
   id: number
@@ -56,9 +57,20 @@ const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Prop
           </div>
         </div>
 
-        <div className={styles.date}>
-          Дата: { date }
+        <div>
+          <div className={styles.date}>
+            Дата: { date }
+          </div>
+          <ReportButton
+            size={18}
+            url={`${window.location.href}/${id}`}
+            userId={authorId}
+            classes={{
+              wrapper: styles.report_btn
+            }}
+          />
         </div>
+        
       </div>
       <div className={styles.text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(text) }}>
       </div>

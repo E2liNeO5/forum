@@ -4,6 +4,7 @@
   align-items: flex-start;
   flex-direction: column;
   padding: 1em;
+  padding-top: .25em;
   margin-top: 1em;
   background-color: var(--mainColor);
   border-radius: 5px;
@@ -29,7 +30,8 @@
       justify-content: center;
       align-items: center;
       flex-flow: row nowrap;
-      margin-right: 1em;
+      margin-right: 5em;
+      margin-top: 1em;
 
       .author_details {
         display: flex;
@@ -73,6 +75,12 @@
       font-size: .8rem;
       color: #fff;
       border-bottom: 1px solid #fff;
+    }
+
+    .report_btn {
+      align-self: flex-end;
+      justify-self: flex-end;
+      margin-top: 1em;
     }
   }
 

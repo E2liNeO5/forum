@@ -49,12 +49,12 @@ const FileInput = <T extends FieldValues>({ label, error, register, classes, set
 
   return (
     <label
-      className={`${styles.input_block + (addExtraClass('block'))}`}
+      className={styles.input_block + addExtraClass('block')}
       onDrop={dropHandler}
       onDragOver={dragOverHandler}
       onDragLeave={dragLeaveHandler}
     >
-      <span className={`${styles.input_label + (addExtraClass('label'))}`}>{ label }</span>
+      <span className={styles.input_label + addExtraClass('label')}>{ label }</span>
       <input
         className={`${stylesFile.file_input}`}
         type='file'

@@ -171,7 +171,9 @@
         ],
         "date": "23.6.2025 14:42:46",
         "imageSize": "width",
-        "comments": [],
+        "comments": [
+          20
+        ],
         "image": "1750678966100x3uOW-mB5Z"
       },
       {
@@ -234,7 +236,7 @@
     ]
   },
   "comments": {
-    "lastId": 19,
+    "lastId": 20,
     "data": [
       {
         "id": 1,
@@ -326,6 +328,13 @@
         "date": "23.07.2025 12:18:27",
         "text": "соглы",
         "postId": 19
+      },
+      {
+        "id": 20,
+        "authorId": 1,
+        "date": "06.08.2025 11:31:43",
+        "text": "Для жалобы",
+        "postId": 16
       }
     ]
   },
@@ -347,19 +356,28 @@
     ]
   },
   "reports": {
-    "lastId": 2,
+    "lastId": 8,
     "data": [
       {
         "id": 1,
         "url": "http://localhost:5173/post/17",
         "text": "Оскорбление чувств нейросетей",
-        "userId": 1
+        "userId": 1,
+        "date": "06.08.2025 12:32:47"
       },
       {
         "id": 2,
         "url": "http://localhost:5173/post/17/14",
         "text": "Оскорбление чувств тестов",
-        "userId": 5
+        "userId": 5,
+        "date": "06.08.2025 12:32:47"
+      },
+      {
+        "id": 8,
+        "text": "Ну комментарий для жалобы же",
+        "url": "http://localhost:5173/post/16/20",
+        "userId": 1,
+        "date": "06.08.2025 13:07:13"
       }
     ]
   }

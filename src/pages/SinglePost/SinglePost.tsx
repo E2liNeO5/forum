@@ -5,6 +5,7 @@ import useGetSinglePost from '../../hooks/posts/useGetSinglePost'
 import Loading from '../../components/UI/Loading/Loading'
 import { parseToSafeHtml } from '../../utils'
 import DivideLine from '../../components/UI/DivideLine/DivideLine'
+import ReportButton from '../../components/UI/ReportButton/ReportButton'
 
 const SinglePost = () => {
   const { id } = useParams()
@@ -36,6 +37,7 @@ const SinglePost = () => {
                   </div>
                 </div>
                 <div className={styles.post_data}>Дата: { post.date }</div>
+                <ReportButton url={window.location.href} userId={post.authorId} />
               </div>
               <div className={styles.post_tags}>Тэги: { post.tagsByName.join(', ') }</div>
               <div className={styles.post_title}>

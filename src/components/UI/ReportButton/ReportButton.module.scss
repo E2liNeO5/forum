@@ -1,0 +1,15 @@
+.container {
+  color: #fff;
+  transition: color .2s;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--foreignColorDark);
+  }
+}
+
+.reason_input {
+  width: 300px;
+  padding: .5em 1em;
+  outline: none;
+}

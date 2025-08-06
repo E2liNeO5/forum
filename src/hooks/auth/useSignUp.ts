@@ -3,6 +3,7 @@ import { TSignUpData } from "../../types/user.types"
 import { useNavigate } from "react-router"
 import useActions from "../useActions"
 import { handleError } from "../../utils"
+import { TCustomError } from "../../types/global.types"
 
 const useSignUp = () => {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const useSignUp = () => {
   const signIn = async (data: TSignUpData) => {
     try {
       const response = await mutate(data)
-      handleError(response.error)
+      handleError(response.error as TCustomError)
     
       navigate('/signIn')
     } catch (e: any) {

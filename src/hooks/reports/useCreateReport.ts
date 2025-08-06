@@ -1,25 +1,21 @@
-import { useBanUserMutation } from "../../store/api/user.api"
+import { useCreateReportMutation } from "../../store/api/report.api"
 import { TCustomError } from "../../types/global.types"
-import { TUserBanData } from "../../types/user.types"
+import { TReportData } from "../../types/report.types"
 import { handleError } from "../../utils"
 import useActions from "../useActions"
 
-const useBanUser = () => {
-  const [mutate] = useBanUserMutation()
+const useCreateReport = () => {
+  const [mutate] = useCreateReportMutation()
   const { addToast } = useActions()
 
-  const banUser = async (data: TUserBanData, userName: string) => {
+  return async (data: TReportData) => {
     try {
       const response = await mutate(data)
-
       handleError(response.error as TCustomError)
-
       addToast({
-        text: `Пользователь "${userName}" забанен`,
+        text: 'Жалоба отправлена',
         type: 'success'
       })
-
-      return response.data
     } catch (e: any) {
       addToast({
         text: e.message,
@@ -27,8 +23,6 @@ const useBanUser = () => {
       })
     }
   }
-
-  return banUser
 }
 
-export default useBanUser
+export default useCreateReport
