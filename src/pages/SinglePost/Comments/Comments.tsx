@@ -61,7 +61,6 @@ const Comments = ({ postId }: Props) => {
         {
           isLoading ? <Loading /> : 
           error ? <ErrorPage text={error.message} /> :
-          !comments || comments.length === 0 ? <></> :
           <>
             {
               loadedComments.map(comment =>
@@ -73,9 +72,11 @@ const Comments = ({ postId }: Props) => {
                 authorImage={comment.user.image}
                 authorName={comment.user.login}
                 date={comment.date}
+                setLoadedComments={setLoadedComments}
               />)
             }
-            { maxComments !== loadedComments.length && <div className="loading_posts" onClick={() => setPage(prev => prev + 1)}>Показать ещё</div> }
+            { !!maxComments && loadedComments.length > 1  && maxComments > loadedComments.length &&
+              <div className="loading_posts" onClick={() => setPage(prev => prev + 1)}>Показать ещё</div> }
           </>
         }
       </div>

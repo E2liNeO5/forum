@@ -58,7 +58,14 @@ export const postApi = createApi({
         },
         method: 'GET'
       }),
-      providesTags: () => [{ type: 'comments' }]
+      // providesTags: () => [{ type: 'comments' }]
+    }),
+    deletePost: builder.mutation<null, number>({
+      query: postId => ({
+        url: '/delete_post',
+        body: { postId },
+        method: 'POST'
+      })
     }),
     createComment: builder.mutation<TCommentItem, TCommentData>({
       query: comment => ({
@@ -66,7 +73,7 @@ export const postApi = createApi({
         body: comment,
         method: 'POST'
       }),
-      invalidatesTags: () => [{ type: 'comments' }]
+      // invalidatesTags: () => [{ type: 'comments' }]
     }),
     isCommentExist: builder.query<boolean, TCommentExistData>({
       query: data => ({
@@ -77,6 +84,13 @@ export const postApi = createApi({
         },
         method: 'GET'
       })
+    }),
+    deleteComment: builder.mutation<null, number>({
+      query: commentId => ({
+        url: '/delete_comment',
+        body: { commentId },
+        method: 'POST'
+      })
     })
   })
 })
@@ -85,7 +99,9 @@ export const {
   useCreatePostMutation,
   useGetPostsQuery,
   useGetSinglePostQuery,
+  useDeletePostMutation,
   useGetPostCommentsQuery,
   useCreateCommentMutation,
-  useLazyIsCommentExistQuery
+  useLazyIsCommentExistQuery,
+  useDeleteCommentMutation
 } = postApi

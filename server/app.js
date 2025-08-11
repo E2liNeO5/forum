@@ -147,6 +147,17 @@ app.get('/get_single_post', async (req, res) => {
   }
 })
 
+app.post('/delete_post', async (req, res) => {
+  const { postId } = req.body
+  try {
+    await json_db.deleteFromTable('comments', { isArray: true, condition: comment => +comment.postId === +postId })
+    await json_db.deleteFromTable('posts', { condition: post => +post.id === +postId })
+    res.json(null)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
 app.get('/get_user_by_id', async (req, res) => {
   const { id } = req.query
   try {
@@ -268,6 +279,16 @@ app.get('/is_comment_exist', async (req, res) => {
   try {
     const comment = await json_db.getTable('comments', { condition: comment => +comment.id === +id && +comment.postId === +postId })
     res.json(comment ? true : false)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/delete_comment', async (req, res) => {
+  const { commentId } = req.body
+  try {
+    await json_db.deleteFromTable('comments', { condition: comment => +comment.id === +commentId })
+    res.json(null)
   } catch (e) {
     getError(res, e)
   }

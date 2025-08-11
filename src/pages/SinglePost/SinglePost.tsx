@@ -6,10 +6,25 @@ import Loading from '../../components/UI/Loading/Loading'
 import { parseToSafeHtml } from '../../utils'
 import DivideLine from '../../components/UI/DivideLine/DivideLine'
 import ReportButton from '../../components/UI/ReportButton/ReportButton'
+import { Trash2 } from 'lucide-react'
+import useCheckUserRole from '../../hooks/user/useCheckUserRole'
+import Modal from '../../components/UI/Modal/Modal'
+import ConfirmDialog from '../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
+import useDeletePost from '../../hooks/posts/useDeletePost'
+import { useState } from 'react'
 
 const SinglePost = () => {
   const { id } = useParams()
   const { isLoading, error, post } = useGetSinglePost(Number(id))
+  
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const { isAdmin } = useCheckUserRole()
+  const deletePost = useDeletePost()
+
+  const deleteHandler = () => {
+    deletePost(Number(id))
+  }
 
   return (
     <>
@@ -37,7 +52,10 @@ const SinglePost = () => {
                   </div>
                 </div>
                 <div className={styles.post_data}>Дата: { post.date }</div>
-                <ReportButton url={window.location.href} userId={post.authorId} />
+                <div className={styles.post_options}>
+                  <ReportButton url={window.location.href} userId={post.authorId} />
+                  { isAdmin && <Trash2 className={styles.post_delete_btn} onClick={() => setModalIsOpen(true)} /> }
+                </div>
               </div>
               <div className={styles.post_tags}>Тэги: { post.tagsByName.join(', ') }</div>
               <div className={styles.post_title}>
@@ -48,6 +66,12 @@ const SinglePost = () => {
           </div>
           <DivideLine width='80%' />
           <Comments postId={post.id} />
+          { modalIsOpen && <Modal title='Удалить пост?' onClose={() => setModalIsOpen(false)}>
+            <ConfirmDialog
+              yesHandler={deleteHandler}
+              noHandler={() => setModalIsOpen(false)}
+            />
+          </Modal> }
         </>
       }
     </>

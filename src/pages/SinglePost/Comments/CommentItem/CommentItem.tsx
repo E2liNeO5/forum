@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './CommentItem.module.scss'
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
@@ -8,6 +8,11 @@ import useCheckUserRole from '../../../../hooks/user/useCheckUserRole'
 import { parseToSafeHtml } from '../../../../utils'
 import { HEADER_HEIGHT_OFFSET } from '../../../../constants'
 import ReportButton from '../../../../components/UI/ReportButton/ReportButton'
+import { Trash2 } from 'lucide-react'
+import useDeleteComment from '../../../../hooks/posts/useDeleteComment'
+import { TCommentItem } from '../../../../types/comment.types'
+import Modal from '../../../../components/UI/Modal/Modal'
+import ConfirmDialog from '../../../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
 
 type Props = {
   id: number
@@ -16,14 +21,18 @@ type Props = {
   authorName: string
   authorImage: string
   date: string
+  setLoadedComments: Dispatch<SetStateAction<TCommentItem[]>>
 }
 
-const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Props) => {
+const CommentItem = ({ id, text, authorId, authorImage, authorName, date, setLoadedComments }: Props) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
   const { addToTextarea } = useActions()
   const ref = useRef<HTMLDivElement>(null)
   
   const user = useGetUser()
-  const { role } = useCheckUserRole()
+  const { role, isAdmin } = useCheckUserRole()
+  const deleteComment = useDeleteComment()
 
   const answerHandler = useCallback(() => {
     if(user && role !== 'banned')
@@ -41,6 +50,13 @@ const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Prop
       })
     }
   }, [comment_id])
+
+  const deleteHandler = () => {
+    deleteComment(id)
+      .then(() => {
+        setLoadedComments(prev => prev.filter(comment => comment.id !== id))
+      })
+  }
 
   return (
     <div className={`${styles.wrapper}${comment_id && Number(comment_id) === id ? ' ' + styles.glowing : ''}`} ref={ref}>
@@ -61,19 +77,26 @@ const CommentItem = ({ id, text, authorId, authorImage, authorName, date }: Prop
           <div className={styles.date}>
             Дата: { date }
           </div>
-          <ReportButton
-            size={18}
-            url={`${window.location.href}/${id}`}
-            userId={authorId}
-            classes={{
-              wrapper: styles.report_btn
-            }}
-          />
+          <div className={styles.comment_options}>
+            <ReportButton
+              size={18}
+              url={`${window.location.href}/${id}`}
+              userId={authorId}
+            />
+            { isAdmin && <Trash2 className={styles.comment_delete_btn} size={18} onClick={() => setModalIsOpen(true)} /> }
+          </div>
         </div>
         
       </div>
       <div className={styles.text} dangerouslySetInnerHTML={{ __html: parseToSafeHtml(text) }}>
       </div>
+
+      { modalIsOpen && <Modal title='Удалить комментарий?' onClose={() => setModalIsOpen(false)}>
+        <ConfirmDialog
+          yesHandler={deleteHandler}
+          noHandler={() => setModalIsOpen(false)}
+        />
+      </Modal> }
     </div>
   )
 }

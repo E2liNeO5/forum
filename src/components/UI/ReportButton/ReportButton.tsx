@@ -47,7 +47,7 @@ const ReportButton = ({ size, url, userId, classes }: Props) => {
       <div className={styles.container + addExtraClass('wrapper')} onClick={() => setIsOpen(true)} title='Пожаловаться'>
         <MessageCircleWarning size={size ? size : 24} />
       </div>
-      { isOpen && <Modal title='Напишите причину' onClose={closeModal}>
+      { isOpen && <Modal title='Напишите причину жалобы' onClose={closeModal}>
           <input
             type="text"
             className={styles.reason_input}

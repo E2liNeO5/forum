@@ -109,6 +109,20 @@
           margin-right: 10px;
         }
       }
+
+      .post_options {
+        display: flex;
+
+        .post_delete_btn {
+          margin-left: .5em;
+          transition: .2s color;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--foreignColorDark);
+          }
+        }
+      }
     }
 
     .post_tags {

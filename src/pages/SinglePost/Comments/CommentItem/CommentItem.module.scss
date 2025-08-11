@@ -76,12 +76,6 @@
       color: #fff;
       border-bottom: 1px solid #fff;
     }
-
-    .report_btn {
-      align-self: flex-end;
-      justify-self: flex-end;
-      margin-top: 1em;
-    }
   }
 
   .text {
@@ -89,5 +83,22 @@
     word-wrap: break-word;
     word-break: break-word;
     white-space: pre-wrap;
+  }
+
+  .comment_options {
+    display: flex;
+    justify-self: flex-end;
+    margin-top: 1em;
+
+    .comment_delete_btn {
+      margin-left: .5em;
+      color: #fff;
+      transition: .2s color;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--foreignColorDark);
+      }
+    }
   }
 }
