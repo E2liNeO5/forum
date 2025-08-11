@@ -33,5 +33,11 @@
         color: var(--foreignColor);
       }
     }
+
+    .user_settings {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }

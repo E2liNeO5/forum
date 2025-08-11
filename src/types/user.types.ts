@@ -22,3 +22,9 @@ export type TUserRoleData = Pick<TUser, 'role' | 'banReason'>
 export type TUserBanData = Required<Pick<TUser, 'id' | 'banReason'>>
 
 export type TEditUserRole = Pick<TUser, 'id' | 'role'>
+
+export type TPasswordChange = {
+  currentPassword: string
+  newPassword: string
+  applyPassword: string
+}

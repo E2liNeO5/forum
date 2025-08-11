@@ -18,7 +18,7 @@ const UsersControl = () => {
 
   useEffect(() => {
     if(usersData.users)
-      setUserItems(usersData.users.filter(user => user.login.toLowerCase().indexOf(search) >= 0))
+      setUserItems(usersData.users.filter(user => user.login.toLowerCase().indexOf(search) >= 0 || String(user.id).toLowerCase().indexOf(search) >= 0))
   }, [usersData.users, search])
 
   return (

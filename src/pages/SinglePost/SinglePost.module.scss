@@ -115,7 +115,7 @@
 
         .post_delete_btn {
           margin-left: .5em;
-          transition: .2s color;
+          transition: color .2s;
           cursor: pointer;
 
           &:hover {

@@ -7,6 +7,8 @@ import ErrorPage from '../ErrorPage/ErrorPage'
 import UserPosts from './UserPosts/UserPosts'
 import DivideLine from '../../components/UI/DivideLine/DivideLine'
 import LogoutButton from './LogoutButton/LogoutButton'
+import LoginEditor from './LoginEditor/LoginEditor'
+import PasswordEditor from './PasswordEditor/PasswordEditor'
 
 const Profile = () => {
   const { id } = useParams()
@@ -32,6 +34,8 @@ const Profile = () => {
             {
               currentUser?.id === user.id &&
               <div className={styles.user_settings}>
+                <LoginEditor />
+                <PasswordEditor />
                 <LogoutButton />
               </div>
             }

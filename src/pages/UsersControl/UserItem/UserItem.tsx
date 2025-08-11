@@ -76,7 +76,7 @@ const UserItem = ({ user }: Props) => {
         <img src={`/upload/${user.image}`} alt="user avatar" className={styles.user_image} />
 
         <div className={styles.user_details}>
-          <div className={styles.user_login}>Логин: <Link className={styles.user_link} to={`/profile/${user.id}`}>{ user.login }</Link></div>
+          <div className={styles.user_login}>Логин: <Link className={styles.user_link} to={`/profile/${user.id}`}>{ user.login } (id={user.id})</Link></div>
           <div className={styles.user_role}>
             Роль: <UserRoleSelector role={editedValues.role} setValues={setEditedValues} isDisabled={!roleEdit} />
           </div>

@@ -93,7 +93,7 @@
     .comment_delete_btn {
       margin-left: .5em;
       color: #fff;
-      transition: .2s color;
+      transition: color .2s;
       cursor: pointer;
 
       &:hover {
