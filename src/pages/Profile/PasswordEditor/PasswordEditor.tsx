@@ -1,24 +1,32 @@
 import { ChevronDown } from 'lucide-react'
 import styles from './PasswordEditor.module.scss'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useGetUser from '../../../hooks/user/useGetUser'
 import Form from '../../../components/UI/Form/Form'
 import { useForm } from 'react-hook-form'
 import { TPasswordChange } from '../../../types/user.types'
 import Input from '../../../components/UI/Input/Input'
+import useEditUserPassword from '../../../hooks/user/useEditUserPassword'
 
 const PasswordEditor = () => {
   const currentUser = useGetUser()
-  const { handleSubmit, formState: { errors }, register, reset } = useForm<TPasswordChange>()
+  const editUserPassword = useEditUserPassword()
 
-  const [isOpen, setIsOpen] = useState(true)
- 
+  const [isOpen, setIsOpen] = useState(false)
+
+  const { handleSubmit, formState: { errors }, register, reset, watch } = useForm<TPasswordChange>()
+  const onSubmit = (data: TPasswordChange) => {
+    editUserPassword({
+      id: Number(currentUser?.id),
+      password: data.newPassword
+    })
+    setIsOpen(false)
+  }
+
   useEffect(() => {
     if(!isOpen)
       reset()
   }, [isOpen])
-
-  const onSubmit = (data: TPasswordChange) => console.log(data)
 
   return (
     <div className={`${styles.wrapper}${isOpen ? ' ' + styles.open : ''}`}>
@@ -46,7 +54,10 @@ const PasswordEditor = () => {
           />
           <Input
             register={register('newPassword', {
-              required: true
+              required: true,
+              validate: {
+                customValidate: (value: string) => value !== currentUser?.password ? true : 'Старый пароль совпадает с новым'
+              }
             })}
             label='Новый пароль'
             type='password'
@@ -57,7 +68,10 @@ const PasswordEditor = () => {
           />
           <Input
             register={register('applyPassword', {
-              required: true
+              required: true,
+              validate: {
+                customValidate: (value: string) => value === watch('newPassword') ? true : 'Неверно введено подтверждение пароля'
+              }
             })}
             label='Подтвердите пароль'
             type='password'

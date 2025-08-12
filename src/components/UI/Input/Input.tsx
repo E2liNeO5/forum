@@ -1,8 +1,9 @@
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 import styles from './Input.module.scss'
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { TExtraClass } from '../../../types/global.types'
 import useExtraClass from '../../../hooks/useExtraClass'
+import useActions from '../../../hooks/useActions'
 
 type Props = {
   label: string
@@ -14,6 +15,12 @@ type Props = {
 
 const Input = ({ label, type, error, register, classes }: Props) => {
   const addExtraClass = useExtraClass(classes)
+  const { addToast } = useActions()
+
+  useEffect(() => {
+    if(error && error.type === 'customValidate')
+      addToast({ text: error.message || 'Ошибка', type: 'error' })
+  }, [error])
 
   return (
     <label className={styles.input_block + addExtraClass('block')}>

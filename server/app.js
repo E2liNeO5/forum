@@ -231,6 +231,40 @@ app.post('/edit_user_role', async (req, res) => {
   }
 })
 
+app.post('/edit_login', async (req, res) => {
+  const { id, login } = req.body
+  try {
+    await json_db.updateFromTable('users', user => +user.id === +id, { login })
+    const user = await json_db.getTable('users', { condition: user => +user.id === +id })
+    res.json(user)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/edit_password', async (req, res) => {
+  const { id, password } = req.body
+  try {
+    await json_db.updateFromTable('users', user => +user.id === +id, { password })
+    const user = await json_db.getTable('users', { condition: user => +user.id === +id })
+    res.json(user)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
+app.post('/edit_image', upload.single('image'), async (req, res) => {
+  const { id } = req.body
+  const image = req.file && req.file.filename
+  try {
+    await json_db.updateFromTable('users', user => +user.id === +id, { image })
+    const user = await json_db.getTable('users', { condition: user => +user.id === +id })
+    res.json(user)
+  } catch (e) {
+    getError(res, e)
+  }
+})
+
 app.get('/get_post_comments', async (req, res) => {
   const { postId, page, commentsCount } = req.query
   try {

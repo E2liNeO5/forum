@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
-import { TAuthData, TEditUserRole, TSignUpData, TUser, TUserBanData, TUserRoleData } from "../../types/user.types";
+import { TAuthData, TEditImageData, TEditLoginData, TEditPasswordData, TEditUserRole, TSignUpData, TUser, TUserBanData, TUserRoleData } from "../../types/user.types";
 import { TUserPost } from "../../types/post.types";
 
 export const userApi = createApi({
@@ -74,6 +74,32 @@ export const userApi = createApi({
         },
         method: 'POST'
       })
+    }),
+    editUserLogin: builder.mutation<TUser, TEditLoginData>({
+      query: data => ({
+        url: '/edit_login',
+        body: data,
+        method: 'POST'
+      })
+    }),
+    editUserPassword: builder.mutation<TUser, TEditPasswordData>({
+      query: data => ({
+        url: '/edit_password',
+        body: data,
+        method: 'POST'
+      })
+    }),
+    editUserImage: builder.mutation<TUser, TEditImageData>({
+      query: data => {
+        const formData = new FormData()
+        formData.append('id', String(data.id))
+        formData.append('image', data.image[0])
+        return {
+          url: '/edit_image',
+          body: formData,
+          method: 'POST'
+        }
+      }
     })
   })
 })
@@ -86,5 +112,8 @@ export const {
   useGetUserRoleQuery,
   useGetAllUsersQuery,
   useBanUserMutation,
-  useEditUserRoleMutation
+  useEditUserRoleMutation,
+  useEditUserLoginMutation,
+  useEditUserPasswordMutation,
+  useEditUserImageMutation
 } = userApi

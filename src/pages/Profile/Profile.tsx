@@ -9,6 +9,7 @@ import DivideLine from '../../components/UI/DivideLine/DivideLine'
 import LogoutButton from './LogoutButton/LogoutButton'
 import LoginEditor from './LoginEditor/LoginEditor'
 import PasswordEditor from './PasswordEditor/PasswordEditor'
+import ImageEditor from './ImageEditor/ImageEditor'
 
 const Profile = () => {
   const { id } = useParams()
@@ -36,6 +37,7 @@ const Profile = () => {
               <div className={styles.user_settings}>
                 <LoginEditor />
                 <PasswordEditor />
+                <ImageEditor />
                 <LogoutButton />
               </div>
             }
