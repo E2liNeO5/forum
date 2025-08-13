@@ -12,12 +12,14 @@ import Modal from '../../components/UI/Modal/Modal'
 import ConfirmDialog from '../../components/UI/Modal/ConfirmDialog/ConfirmDialog'
 import useDeletePost from '../../hooks/posts/useDeletePost'
 import { useState } from 'react'
+import ImageViewer from '../../components/ImageViewer/ImageViewer'
 
 const SinglePost = () => {
   const { id } = useParams()
   const { isLoading, error, post } = useGetSinglePost(Number(id))
   
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [imageViewerIsOpen, setImageViewerIsOpen] = useState(false)
 
   const { isAdmin } = useCheckUserRole()
   const deletePost = useDeletePost()
@@ -38,7 +40,9 @@ const SinglePost = () => {
                 src={`/upload/${post.image}`}
                 alt={`${post.id}_post_picture`}
                 className={post.imageSize === 'width' ? styles.size_by_width : styles.size_by_height}
+                onClick={() => setImageViewerIsOpen(true)}
               />
+              { imageViewerIsOpen && <ImageViewer imageUrl={`/upload/${post.image}`} onClose={() => setImageViewerIsOpen(false)} /> }
             </div>
             <div className={styles.content_container}>
               <div className={styles.post_details}>
