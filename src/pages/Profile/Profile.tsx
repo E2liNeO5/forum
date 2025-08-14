@@ -10,11 +10,15 @@ import LogoutButton from './LogoutButton/LogoutButton'
 import LoginEditor from './LoginEditor/LoginEditor'
 import PasswordEditor from './PasswordEditor/PasswordEditor'
 import ImageEditor from './ImageEditor/ImageEditor'
+import { useState } from 'react'
+import ImageViewer from '../../components/ImageViewer/ImageViewer'
 
 const Profile = () => {
   const { id } = useParams()
   const currentUser = useGetUser()
   const { isLoading, user, error } = useGetUserById(Number(id))
+
+  const [isImageViewerOpen, setIsImageViewerOpen] = useState(false)
 
   return (
     <>
@@ -24,7 +28,8 @@ const Profile = () => {
         !user ? <ErrorPage text='Пользователь не найден' /> :
         <div className={styles.container}>
           <div className={styles.user_image}>
-            <img src={`/upload/${user.image}`} alt='avatar' />
+            <img src={`/upload/${user.image}`} alt='avatar' onClick={() => setIsImageViewerOpen(true)} />
+            { isImageViewerOpen && <ImageViewer imageUrl={`/upload/${user.image}`} onClose={() => setIsImageViewerOpen(false)} /> }
           </div>
           <div className={styles.user_info}>
             <div className={styles.user_login}>
